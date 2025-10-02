@@ -1,0 +1,13 @@
+# Ignore venv
+venv/
+
+# Ignore cache & tạm
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment config
+.env
+
+

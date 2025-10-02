@@ -1,0 +1,8 @@
+billboard.py
+spotipy
+requests
+pandas
+numpy
+matplotlib
+seaborn
+python-dotenv
