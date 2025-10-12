@@ -46,17 +46,17 @@ dtype: int64
 Số dòng trùng lặp (sau clean): 0
 
 Thống kê mô tả:
-                                 week       rank         title         artist  ...     loudness          key         mode    genre
-count                            3900     3900.0          3900           3900  ...  3900.000000  3900.000000  3900.000000     3900
-unique                            NaN       <NA>           568            301  ...          NaN          NaN          NaN       40
-top                               NaN       <NA>  Lose Control  Morgan Wallen  ...          NaN          NaN          NaN  Unknown
-freq                              NaN       <NA>            39            285  ...          NaN          NaN          NaN     1393
-mean    2025-05-17 23:59:59.999999744       50.5           NaN            NaN  ...    -7.553143     5.315571     0.644544      NaN
-min               2025-01-05 00:00:00        1.0           NaN            NaN  ...   -54.341000     0.000000     0.000000      NaN
-25%               2025-03-09 00:00:00      25.75           NaN            NaN  ...    -7.553143     2.000000     0.000000      NaN
-50%               2025-05-18 00:00:00       50.5           NaN            NaN  ...    -6.826000     5.315571     1.000000      NaN
-75%               2025-07-27 00:00:00      75.25           NaN            NaN  ...    -5.202000     7.000000     1.000000      NaN
-max               2025-09-28 00:00:00      100.0           NaN            NaN  ...    -2.014000    11.000000     1.000000      NaN
-std                               NaN  28.869772           NaN            NaN  ...     5.299126     3.236624     0.429133      NaN
+                                 week       rank         title         artist              spotify_id  ...     liveness     loudness          key         mode    genre
+count                            3900     3900.0          3900           3900                    3900  ...  3900.000000  3900.000000  3900.000000  3900.000000     3900
+unique                            NaN       <NA>           568            301                     562  ...          NaN          NaN          NaN          NaN       40
+top                               NaN       <NA>  Lose Control  Morgan Wallen  45J4avUb9Ni0bnETYaYFVJ  ...          NaN          NaN          NaN          NaN  Unknown
+freq                              NaN       <NA>            39            285                      65  ...          NaN          NaN          NaN          NaN     1393
+mean    2025-05-17 23:59:59.999999744       50.5           NaN            NaN                     NaN  ...     0.165128    -7.553143     5.315571     0.644544      NaN
+min               2025-01-05 00:00:00        1.0           NaN            NaN                     NaN  ...     0.030700   -54.341000     0.000000     0.000000      NaN
+25%               2025-03-09 00:00:00      25.75           NaN            NaN                     NaN  ...     0.104750    -7.553143     2.000000     0.000000      NaN
+50%               2025-05-18 00:00:00       50.5           NaN            NaN                     NaN  ...     0.141500    -6.826000     5.315571     1.000000      NaN
+75%               2025-07-27 00:00:00      75.25           NaN            NaN                     NaN  ...     0.165128    -5.202000     7.000000     1.000000      NaN
+max               2025-09-28 00:00:00      100.0           NaN            NaN                     NaN  ...     0.934000    -2.014000    11.000000     1.000000      NaN
+std                               NaN  28.869772           NaN            NaN                     NaN  ...     0.109128     5.299126     3.236624     0.429133      NaN
 
 [11 rows x 17 columns]

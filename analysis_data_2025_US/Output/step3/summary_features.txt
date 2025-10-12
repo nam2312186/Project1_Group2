@@ -62,17 +62,17 @@ dtype: int64
 Số dòng trùng lặp: 0
 
 Thống kê mô tả:
-                                 week         rank         title         artist  ...     is_top10       is_new    is_collab  season
-count                            3900  3900.000000          3900           3900  ...  3900.000000  3900.000000  3900.000000    3900
-unique                            NaN          NaN           568            301  ...          NaN          NaN          NaN       4
-top                               NaN          NaN  Lose Control  Morgan Wallen  ...          NaN          NaN          NaN  Summer
-freq                              NaN          NaN            39            285  ...          NaN          NaN          NaN    1400
-mean    2025-05-17 23:59:59.999999744    50.500000           NaN            NaN  ...     0.100000     0.145128     0.193846     NaN
-min               2025-01-05 00:00:00     1.000000           NaN            NaN  ...     0.000000     0.000000     0.000000     NaN
-25%               2025-03-09 00:00:00    25.750000           NaN            NaN  ...     0.000000     0.000000     0.000000     NaN
-50%               2025-05-18 00:00:00    50.500000           NaN            NaN  ...     0.000000     0.000000     0.000000     NaN
-75%               2025-07-27 00:00:00    75.250000           NaN            NaN  ...     0.000000     0.000000     0.000000     NaN
-max               2025-09-28 00:00:00   100.000000           NaN            NaN  ...     1.000000     1.000000     1.000000     NaN
-std                               NaN    28.869772           NaN            NaN  ...     0.300038     0.352275     0.395360     NaN
+                                 week         rank         title         artist              spotify_id  ...     avg_rank     is_top10       is_new    is_collab  season
+count                            3900  3900.000000          3900           3900                    3900  ...  3900.000000  3900.000000  3900.000000  3900.000000    3900
+unique                            NaN          NaN           568            301                     562  ...          NaN          NaN          NaN          NaN       4
+top                               NaN          NaN  Lose Control  Morgan Wallen  45J4avUb9Ni0bnETYaYFVJ  ...          NaN          NaN          NaN          NaN  Summer
+freq                              NaN          NaN            39            285                      65  ...          NaN          NaN          NaN          NaN    1400
+mean    2025-05-17 23:59:59.999999744    50.500000           NaN            NaN                     NaN  ...    50.499921     0.100000     0.145128     0.193846     NaN
+min               2025-01-05 00:00:00     1.000000           NaN            NaN                     NaN  ...     3.320000     0.000000     0.000000     0.000000     NaN
+25%               2025-03-09 00:00:00    25.750000           NaN            NaN                     NaN  ...    28.750000     0.000000     0.000000     0.000000     NaN
+50%               2025-05-18 00:00:00    50.500000           NaN            NaN                     NaN  ...    53.000000     0.000000     0.000000     0.000000     NaN
+75%               2025-07-27 00:00:00    75.250000           NaN            NaN                     NaN  ...    71.000000     0.000000     0.000000     0.000000     NaN
+max               2025-09-28 00:00:00   100.000000           NaN            NaN                     NaN  ...   100.000000     1.000000     1.000000     1.000000     NaN
+std                               NaN    28.869772           NaN            NaN                     NaN  ...    25.155069     0.300038     0.352275     0.395360     NaN
 
 [11 rows x 25 columns]
