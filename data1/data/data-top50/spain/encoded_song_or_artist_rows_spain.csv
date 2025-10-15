@@ -1,0 +1,105 @@
+﻿date,position,song,artist,track_id,popularity,duration_ms,is_explicit,album_id,release_date,genres,main_genre
+2023-05-18,3,AcrÃ³stico,Shakira,7txjUEY6McJDJKqIo1Rxjp,81,170785,0,4ZQmQzeicvUGkLxFTI2Dvd,2023-05-11,latin pop,latin pop
+2023-05-18,4,BESO,ROSALÃA & Rauw Alejandro,609E1JCInJncactoMmkDon,96,194543,0,50uChhk7AKkzDKytDixjYW,2023-03-24,latin,latin
+2023-05-18,12,Todo Contigo,Ãlvaro De Luna,0FLh1ZDsjnoACzBrAVjXT2,78,165527,0,1KgKemleH5GeTmcUA7U9ka,2023-03-17,unknown,unknown
+2023-05-18,14,NiÃ±a Bonita,Feid & Sean Paul,4VPoFy002PwspvctfYP6zx,88,187653,0,16ScBmKm5WA3RwvTqiQlJd,2023-04-21,"reggaeton, urbano latino",reggaeton
+2023-05-18,15,PLAYA DEL INGLÃS,Quevedo,3y33vvSSP8dNie0hDK4CvF,84,237525,0,7menGlTCTcVnCbUMKRgu3Z,2023-01-20,unknown,unknown
+2023-05-18,20,Los Ãngeles,Aitana,0knbcslkZje0qdsqbd8jwj,84,158483,0,7itZH9cqWCweOqCGsjWlLx,2023-03-29,unknown,unknown
+2023-05-18,29,Antes,Rvfv & Edu GarcÃ­a,1fGyuHEZApuDCnLwtYmTfn,79,153684,0,2rj3MJ2xl1NJK09lvNi50A,2023-03-10,"flamenco urbano, flamenco",flamenco urbano
+2023-05-18,36,La Fiesta,Pedro CapÃ³,2o6pi3nx1UAYxuBccabCMQ,71,201044,0,4jL4G1XbqAKQjp3irG9kl1,2022-12-02,"latin pop, latin",latin pop
+2023-05-18,37,Cha Cha Cha,KÃ¤Ã¤rijÃ¤,5RX8T3EoTuXcybAxe6oPAw,86,175161,0,5rBqeRlrrzR77MAkbgAmS6,2023-01-17,"finnish pop, europop",finnish pop
+2023-05-18,39,VAGABUNDO,Sebastian Yatra & Manuel Turizo & BeÃ©le,1MB8kTH7VKvAMfL9SHgJmG,76,215600,0,0Rl1vI3oOOh3rylfBLiemc,2023-05-12,"colombian pop, reggaeton",colombian pop
+2023-05-18,41,RÃPIDO,Mora,6peVAUzSxDlTigQw5T99O5,81,182857,1,2D5urBuawvNIrKdxO0X1pe,2023-04-27,"urbano latino, trap latino, reggaeton",urbano latino
+2023-05-18,42,La Jumpa,ArcÃ¡ngel,2mnXxnrX5vCGolNkaFvVeM,87,255693,1,2AvuFDqTlnxvYhyVaLU6NY,2022-12-01,"reggaeton, trap latino, urbano latino",reggaeton
+2023-05-22,43,DESPECHÃ,ROSALÃA,53tfEupEzQRtVFOeZvk7xq,84,156787,0,3zbiiu3JTibw0esC7eoMXr,2022-09-09,latin,latin
+2023-05-28,6,Sangre y Fe,Cruz CafunÃ©,40irSq1hoBAZuPLgxiQ7ge,61,231500,1,7yvmtCjHcBe9DqIVl7AwQT,2023-05-25,unknown,unknown
+2023-05-28,35,4 PREZ,Cruz CafunÃ©,5KI2PiYrNnVhj4PQ3kqMjr,53,149484,1,2Blh4kM0W8RddcJojwSlll,2023-05-25,unknown,unknown
+2023-05-28,43,Dios #1,Cruz CafunÃ©,5xP4rmVm5frtwOPwbmZNQw,56,200125,1,7yvmtCjHcBe9DqIVl7AwQT,2023-05-25,unknown,unknown
+2023-05-28,48,Cangrinaje,Cruz CafunÃ©,5V1YyUMhty1NCO3zVePAtR,56,211765,1,7yvmtCjHcBe9DqIVl7AwQT,2023-05-25,unknown,unknown
+2023-06-11,6,TUYA,ROSALÃA,1HII0EIufOG0nGpWCQixbO,72,154551,1,5TZtxHs23y0ckhY6RqL8d3,2023-06-08,latin,latin
+2023-07-02,16,Copa VacÃ­a,Shakira & Manuel Turizo,2iVgM5C7m1G4CJGbms301G,74,173547,0,4qtiO9UGqajxnKC0z0Mxn7,2023-06-29,latin pop,latin pop
+2023-07-05,40,CORAZÃN VACÃO,Maria Becerra,3oNnzH6hmqIGIhJ1NcHlrh,85,160535,0,3YBQyY0Bj7bpxj0VHAse0P,2023-06-22,argentine trap,argentine trap
+2023-07-23,10,Cafe MalibÃº,Sech & Mora & Saiko,33bNRpwc8VLNTvBoMnXe7J,69,260307,1,1GxyPA49lK0Av3LVMTsoIG,2023-07-20,"reggaeton, urbano latino",reggaeton
+2023-08-10,49,CorazÃ³n Roto - Remix,Brray & Jhayco & Ryan Castro,6k5wiT5l9DK8iZmhvEvoqo,86,275040,1,6tt4TtcglWQFVSI0AGUvEF,2023-04-07,"reggaeton, urbano latino",reggaeton
+2023-08-13,16,MI EX TENÃA RAZÃN,KAROL G,54zcJnb3tp9c5OVKREZ1Is,62,154374,0,0FqAaUEyKCyUNFE1uQPZ7i,2023-08-10,"reggaeton, latin, urbano latino",reggaeton
+2023-08-30,8,PÃLVORA,Mora,3pQr8EhSzvKN3ZZlaL4Pae,0,185326,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-08-30,9,FANTASÃAS,Mora,2v1EKQQn4UYC6qB13Vphaf,0,191847,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-08-30,17,CÃRCEGA,Mora,0FCiBGB36gPUW49xuoZYJm,0,189001,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-09-13,35,CorazÃ³n Roto pt. 3,Brray & Anuel AA & Chencho Corleone,27HBnGnxhWk4ALgFjyCHmh,70,348400,1,32y8xkeCWnJhMuuP4rHcYX,2023-09-08,"reggaeton, urbano latino",reggaeton
+2023-09-20,48,Si No EstÃ¡s,iÃ±igo quintero,2HafqoJbgXdtjwCOvNEF14,60,184061,0,66k6EGkPtYoN44anGIsEPW,2022-09-23,unknown,unknown
+2023-09-24,13,DararÃ­,Aitana,260rBjdoUcXRK8AeAqeg5X,40,170346,0,7itZH9cqWCweOqCGsjWlLx,2023-09-21,unknown,unknown
+2023-10-09,48,Penas de AntaÃ±o,Bizarrap & Milo j,4zYHsmc2V9RyR8eOA0mlx6,74,201272,0,4NMv3cMkDwkkR6EdLloQDB,2023-10-04,"argentine trap, trap latino, urbano latino",argentine trap
+2023-11-03,47,lady madrizZz,cÃ©ro,1f3oAGS76ZIzOrsxcD2P36,67,131020,0,6GCckrVHubDC4DRoCWIONI,2023-09-01,unknown,unknown
+2023-11-16,38,EnamÃ³rate,Nicki Nicole & Bad Gyal,332fAqelC3Uik91QPxPcB8,49,147785,0,17FLF5NkLfUNkEYjQkaO32,2023-11-14,argentine trap,argentine trap
+2023-11-25,13,QUIZÃS SI QUIZÃS NO,Alvaro Diaz & Quevedo,7zJu3gmfC46vRoCQ8MZSIY,0,203213,0,7kfPf285KnlWUTbqaB1jnI,2023-11-24,unknown,unknown
+2023-11-29,49,Como CamarÃ³n,Estopa,1VB4sadHjFcFklHcZuoROi,70,202026,0,5EiebUqlX025HxiCvVTsNs,1999-10-18,"flamenco, flamenco pop",flamenco
+2023-12-25,5,Feliz Navidad,JosÃ© Feliciano,0oPdaY4dXtc3ZsaG17V972,88,182066,0,3No96PtEFyRfX1oELmZTPu,2002-09-24,"christmas, bolero, villancicos",christmas
+2023-12-25,16,It's Beginning to Look a Lot like Christmas,Michael BublÃ©,3it2BvJfyhPEWF3kD2TZJ1,87,207199,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-12-25,24,Holly Jolly Christmas,Michael BublÃ©,6rqn19AqjcM5wgI1hCYciJ,83,119786,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-12-25,34,Ya es Navidad PopurrÃ­: Ya es Navidad- ZÃºmbale a la pandereta - Ya vienen los Reyes Magos - Arre Borriquito - Ya es Navidad,Raya Real,5Z6PrTzUHsuVfzbz8Fwre8,50,262144,0,3inlz2qylbPMh32teyf40h,2010-12-14,"villancicos, flamenco, flamenco pop",villancicos
+2024-01-21,13,La CanciÃ³n Feliz Del Disco,Eladio Carrion,3vP62cjz1b4QvUS5vSyEVY,69,173524,1,2zE9RJSh5sMV0NJ8Oc8k5s,2024-01-19,"trap latino, urbano latino, trap",trap latino
+2024-01-21,38,"FÃ©, Cojones y Paciencia",Eladio Carrion,0KK2eoNnggdrfUU6sMqRoR,66,190243,1,2zE9RJSh5sMV0NJ8Oc8k5s,2024-01-19,"trap latino, urbano latino, trap",trap latino
+2024-01-28,21,PerdiÃ³ Este Culo,Bad Gyal,1bmIRafMOhUKsnZE7haw2u,62,159253,1,14IBdTrbCCeHRZgTATdgRd,2024-01-26,neoperreo,neoperreo
+2024-02-03,1,LA ÃLTIMA,Quevedo,6cIQcOpkU0lSeYfgqksFq4,72,170322,0,63WQxc4Ufmnwe48LVWLD66,2024-02-01,unknown,unknown
+2024-02-17,19,CONTIGO (with TiÃ«sto),KAROL G & TiÃ«sto,4UkUxO2WlKLc0Q1iEutGGh,73,192786,0,2mKcYIgv7ItYDQXke3uprl,2024-02-15,"reggaeton, latin, urbano latino",reggaeton
+2024-02-22,28,Historias Por Contar,OperaciÃ³n Triunfo 2023,7HmviR8ziPMKDWBmdYWIFA,57,192042,0,0PeGuVoBxczsoTqxzfuB69,2024-02-19,unknown,unknown
+2024-02-25,33,EMPELOTICA,Lenny TavÃ¡rez & Feid,0dKsNKiWmqkoz8YAUzfigC,0,190322,1,1Cf5ZIMxdIYC60Cz7Q4GZg,2024-02-22,"reggaeton, urbano latino, trap latino, argentine trap",reggaeton
+2024-03-02,45,CÃ³mo Te Atreves,Morat,7M6CFruBrM5x7u0lTMtm6r,78,240560,0,50eHcXc4qede9mUKCYOuoz,2016-06-17,"colombian pop, latin pop",colombian pop
+2024-03-03,1,X'CLUSIVO - REMIX,Gonzy & SAIKO & ArcÃ¡ngel,2aqRWpP49Gux9UnTtMQBtu,66,208133,1,56s4Ir20fPiUbIosAdkbky,2024-02-29,unknown,unknown
+2024-03-13,50,DiabÃ³lica,Cris Mj,4IJWhehNLXru5WfS71EWSx,70,192000,1,5v3JncpvWjEDrGDeHJw9TL,2023-11-09,"reggaeton chileno, chilean trap, chilean mambo, reggaeton",reggaeton chileno
+2024-03-15,45,ThalÃ­a,Cyril Kamer,3Hl5b74xHTGYXLKLaYk9dr,63,183428,0,0Sv4SXAi4vysSOzkfscO96,2024-03-06,drill,drill
+2024-03-31,7,LA RANGER (feat. Myke Towers),The Academy: Segunda MisiÃ³n & Justin Quiles & Lenny TavÃ¡rez,0QoaFLmBJyuVuzOIGy6iCS,64,229738,1,2de63hNYGRgcNTXCtXQGvu,2024-03-28,unknown,unknown
+2024-03-31,16,"SI SI SI SI (feat. Eladio Carrion, Bryant Myers, Dei V)",The Academy: Segunda MisiÃ³n,3GY16GkbrhV1hya2TKsaaj,42,241958,1,2de63hNYGRgcNTXCtXQGvu,2024-03-28,unknown,unknown
+2024-03-31,32,"FLOWHOT (feat. ArcÃ¡ngel, De La Ghetto, Randy)",The Academy: Segunda MisiÃ³n & Sech & Dalex,617mNvfkXLMu1NisQfvYF2,53,233099,1,2de63hNYGRgcNTXCtXQGvu,2024-03-28,unknown,unknown
+2024-03-31,43,LATTE (feat. Maria Becerra),The Academy: Segunda MisiÃ³n & Sech & Dalex,4G3noMmipB4pOuVwbjkbov,53,260534,1,7HPtZ8XfUirtDilX4LZ9Cg,2024-03-28,unknown,unknown
+2024-04-14,46,Pedro,Jaxomy & Agatino Romero & Raffaella CarrÃ ,48lxT5qJF0yYyf2z4wB4xW,77,144846,0,5y6RXjI5VPR0RyInghTbf1,2024-03-29,unknown,unknown
+2024-04-18,38,Lo que no ves de mÃ­,Juanjo Bona,64rKQoBxfFBkCrHYYbHpgT,69,144000,0,71TroE48bdF55EmYHlRIdR,2024-03-21,unknown,unknown
+2024-04-19,8,YO LO SOÃÃ,SAIKO & Omar Montes,1NTluDanyn4ET8RTYi0H1I,60,175456,0,1Ou15E6Sw869LfoFGBZMBx,2024-04-17,unknown,unknown
+2024-04-28,13,3 CAÃDAS,SAIKO,5EkY4fbvYQIMrgeGWbnHt4,61,251565,0,5z4aZJ5U7LqwRc2tXk98cc,2024-04-26,unknown,unknown
+2024-04-28,14,NÃMERO TELEFÃNICO,SAIKO,6PbLnd6t5qAtn6saMvbCOE,61,190000,1,5z4aZJ5U7LqwRc2tXk98cc,2024-04-26,unknown,unknown
+2024-04-28,38,caÃ­da del cielo <3,Rels B,0Njk7qwCya5tSeXMZzoBUw,66,133220,1,6MxVqDR6nACRxGSePfK9y4,2024-04-26,"urbano latino, trap latino",urbano latino
+2024-04-28,39,DetrÃ¡s del DJ,Rels B,0w5lDKKX6YvfAXrytalvpR,66,119354,1,6MxVqDR6nACRxGSePfK9y4,2024-04-26,"urbano latino, trap latino",urbano latino
+2024-05-16,48,Gran DÃ­a,Mau y Ricky & Guaynaa,31zvQazbahCmdyPanbUWse,60,193840,0,7zDXEU4nyXHA193wcfXjfZ,2024-04-26,"reggaeton, latin pop, pop urbano",reggaeton
+2024-05-29,47,Potra Salvaje - Hard Remix,Isabel AaiÃºn & Fernando Moreno,4gdpQ6zuDsePnD1YIDJCRw,62,342000,0,7ztKmDnGDBWN0aFhuwXRfW,2023-10-14,"flamenco pop, flamenco",flamenco pop
+2024-06-03,43,Hala Madrid ...y nada mÃ¡s,Real Madrid,5pIy4qzGJmEElPppFxSN8W,60,177000,0,1yk9VTzQ0NWy1kDIOsxaLw,2014-05-25,unknown,unknown
+2024-06-16,50,QuiÃ©n es Dei V?,Dei V,4tiGdOvnCpsGEgZ9REYBSO,13,162244,1,2r23a27qGkIUR9BCgi0X6q,2024-06-14,"trap latino, urbano latino",trap latino
+2024-07-15,9,La roja baila - Himno oficial de la selecciÃ³n espaÃ±ola,Sergio Ramos & NiÃ±a Pastori & RedOne,5EbklL3iBxWedD57pMIFXM,56,235384,0,72dFPqNxuYIkflxGt77esK,2016-06-10,"flamenco, flamenco pop",flamenco
+2024-07-21,34,do it 4 thâ¬ gram,Cruz CafunÃ©,6YGjrujqK1xUsvk0z89nr2,54,150582,1,4w81uLwtHNI0rgoLYBJCIT,2024-07-19,unknown,unknown
+2024-07-21,42,la raÃ­z dâ¬l mal,Cruz CafunÃ©,6S8uVRVYlNsXLQ57FCWpt8,54,133767,1,4w81uLwtHNI0rgoLYBJCIT,2024-07-19,unknown,unknown
+2024-07-21,43,mâ¬ntiras,Cruz CafunÃ©,3ltwe8PHuuZ5eSveRytkXZ,54,151841,1,4w81uLwtHNI0rgoLYBJCIT,2024-07-19,unknown,unknown
+2024-07-21,44,Mis TÃ­as,Juanjo Bona,0j9azcT9Rj85v2PKLulWfs,58,158400,0,1yaPRCa4pcJpYHQzDTFtaD,2024-07-18,unknown,unknown
+2024-07-21,47,rangâ¬ rovâ¬r,Cruz CafunÃ©,0zxs6jQiT8Y28fNVFy1ex4,53,117213,1,4cdd2jx9GScUzDETwJ6GEk,2024-07-19,unknown,unknown
+2024-07-25,47,DÃ©jame Entrar,Rauw Alejandro,5tZgkV8FTe3rtl8OcSeQAb,73,254705,1,0aX0UXrHG2ceYIxTQcqJdA,2024-07-18,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-08-01,46,CÃºrame,Rauw Alejandro,1FlL8ycld6uVDDyhV7P5FA,82,164705,1,2Nt6MDJXfoxQ22tIQgWXIh,2021-12-10,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-08-10,33,DoblexxÃ³,J Balvin,2llFXBrftm6YJzBj3tpk0s,0,176720,1,1hUqwHvAVIEXMXqIrkHgPo,2024-08-09,"reggaeton, latin",reggaeton
+2024-08-17,15,New Woman (feat. ROSALÃA),LISA & ROSALÃA,5UmfBGfRJgjZ8CdhgffabQ,0,179789,0,5eoWRkeplmcCL97afSMJVm,2024-08-15,k-pop,k-pop
+2024-08-24,36,FRÃO,Myke Towers,3zDYLvu15G46WpqT5xWsnx,0,160373,1,3pkIK8SI5mcUUjb9jNjx4H,2024-08-22,"reggaeton, trap latino, urbano latino",reggaeton
+2024-08-24,37,MEJOR ASÃ,Myke Towers,04VtpZUPdXDIM5VrzQwLlN,0,219480,1,3pkIK8SI5mcUUjb9jNjx4H,2024-08-22,"reggaeton, trap latino, urbano latino",reggaeton
+2024-08-24,41,TAMBIÃN,Myke Towers,39Pc4a04VgCtcc7m0XKi9M,0,139546,1,6NmYJszy5BaEm1WF4tJL7Z,2024-08-22,"reggaeton, trap latino, urbano latino",reggaeton
+2024-08-24,47,CACHÃ,Myke Towers,6Snhzg4NoTqNgRlkLhzzBW,0,196906,1,6NmYJszy5BaEm1WF4tJL7Z,2024-08-22,"reggaeton, trap latino, urbano latino",reggaeton
+2024-09-04,47,Me has invitado a bailar,Dani FernÃ¡ndez,3tMftGMXTPbQlmjh4FzXpZ,63,192906,0,4cAjvCWbcfaDhuiJxew1Sw,2024-08-23,unknown,unknown
+2024-09-15,46,La Torre Picasso,Arde BogotÃ¡,2Czaw41IWZLz5JxwLueamL,50,484573,0,090Jo9iBjpgrcBwezLFTYq,2024-09-13,indie,indie
+2024-09-19,41,DespuÃ©s De La 1,Cris Mj & FloyyMenor,6PhRhocBXP4y7NpciGmzra,77,177600,1,2lIzIH2mQQ0ItgkJKefQMp,2024-09-12,"reggaeton chileno, chilean trap, chilean mambo, reggaeton",reggaeton chileno
+2024-09-27,3,Omega (feat. Ralphie Choo),ROSALÃA,2ibFPYHzUnqVpS2rv655oF,63,169500,0,5wtVvVmUynbA3Yj1Pqys8w,2024-09-24,latin,latin
+2024-09-28,48,AlegrÃ­a,Tiago PZK,5v9LMshhQsNtkUkcXRGO7i,73,165054,0,0jEGAl1Uz2PAE6XQyRGBtq,2024-07-04,"argentine trap, urbano latino",argentine trap
+2024-10-06,29,QuÃ© Pecao,Manuel Turizo & Kapo,25CfEf59PmRAhV18oZRMNr,58,230073,0,3w4tn0BuFHNjiqGMevGaz9,2024-10-03,"reggaeton, pop urbano, latin, colombian pop",reggaeton
+2024-10-10,50,Que Me Lleve el Aire,Luis CortÃ©s,5ticDLxAM5Y5r0mkGO1AHs,67,170172,0,66r7fi6L2StfAxnkCr32qm,2024-07-16,"flamenco, flamenco pop, flamenco urbano",flamenco
+2024-10-20,9,DEGENERE ð (feat. benny blanco),Myke Towers,0qeIFEGRQqHoaJtLCl0U73,58,130880,1,3pkIK8SI5mcUUjb9jNjx4H,2024-10-17,"reggaeton, trap latino, urbano latino",reggaeton
+2024-10-23,45,APT.,ROSÃ & Bruno Mars,5vNRhkKd0yEAg8suGBpjeY,88,169917,0,2IYQwwgxgOIn7t3iF6ufFD,2024-10-18,k-pop,k-pop
+2024-10-25,46,ConexiÃ³n,Cano & JC Reyes,2znYZuZsjd52WgMkp6iVwL,63,188160,0,47wk0lhqRt1MWuCxPfctcc,2024-10-10,"flamenco urbano, flamenco",flamenco urbano
+2024-11-01,29,ConstelaciÃ³n,Duki & Lia Kali,7wH1efzwFeSsaLoOIxx0YT,58,200631,0,3rVk419T7ct4qoW52h2q2d,2024-10-29,"argentine trap, trap, trap latino",argentine trap
+2024-11-01,48,Orgullosa De PapÃ¡,Cano,5zRbKyT1z1TsYOVy1aLLtf,50,174174,0,47wk0lhqRt1MWuCxPfctcc,2024-10-24,"flamenco urbano, flamenco",flamenco urbano
+2024-11-01,49,Yo sÃ©,Yan Block & TORRRES,5DdLSEyKh8zgCrJq2hFj92,69,129705,1,4NHI7kUT9UsxlgKgDnaJdv,2024-05-23,unknown,unknown
+2024-11-03,42,Cine ð¬,Duki,64sXViF6VlsihR0eJt0vUq,61,142957,1,3rVk419T7ct4qoW52h2q2d,2024-10-31,"argentine trap, trap, trap latino",argentine trap
+2024-11-15,45,ImagÃ­nate,Danny Ocean & Kapo,4zbEItKoaRId1vRZkoO0Uh,70,170365,1,3kzUHIIJdOeP7mwyfT3qJ8,2024-11-07,reggaeton,reggaeton
+2024-11-17,1,QuÃ© PasarÃ­a...,Rauw Alejandro,0l0vcZMU7AOeQmUIREoI2U,72,191018,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,10,RevolÃº,Rauw Alejandro,4lqJsJd7kqWVvamQ4aFHA8,67,215511,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,12,TÃº Con Ãl,Rauw Alejandro,2eQFYGegTZaObk2kuBz83Z,69,289131,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,18,KhÃ©?,Rauw Alejandro,1YYfyJ2yCvGFCxwjsIqEK9,67,206066,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,22,Baja Pa' AcÃ¡,Rauw Alejandro,3HCcfBsa4TdiC0so0fPnRi,66,200000,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-24,1,GRAN VÃA,Quevedo,2kQ1OvmMzs1xdlH020aJJh,66,213528,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown
+2024-11-24,4,LOS DÃAS CONTADOS,Quevedo,0ffPRT5WW86ecgGWGf5CyY,64,161943,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown
+2024-11-24,11,POR ATRÃS,Quevedo,7s8qhehMgdXKpixiqyFFrV,62,171685,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown
+2024-11-24,13,AMANECIÃ,Quevedo,4DxbTPS1DUzTKzpNfCbYjy,62,255333,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown
+2024-11-24,15,NOEMÃ,Quevedo,5Oo9D3xJJ2sF6HWiJweV0V,61,206910,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown
+2024-11-24,17,TE FALLÃ,Quevedo,2stYCm7UAyZ4srGFrI4MNX,61,219460,0,3V2ApPxUSquOkjLQU3wmjh,2024-11-22,unknown,unknown

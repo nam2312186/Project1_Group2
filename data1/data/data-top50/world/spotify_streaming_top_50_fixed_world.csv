@@ -1,0 +1,92 @@
+﻿date,position,song,artist,track_id,popularity,duration_ms,is_explicit,album_id,release_date,genres,main_genre
+2023-05-18,11,Cha Cha Cha,Käärijä,5RX8T3EoTuXcybAxe6oPAw,86,175161,0,5rBqeRlrrzR77MAkbgAmS6,2023-01-17,"finnish pop, europop",finnish pop
+2023-05-18,13,Acróstico - Milan + Sasha,Shakira,7txjUEY6McJDJKqIo1Rxjp,81,170785,0,4ZQmQzeicvUGkLxFTI2Dvd,2023-05-11,latin pop,latin pop
+2023-05-18,16,BESO,"ROSALÍA, Rauw Alejandro",609E1JCInJncactoMmkDon,96,194543,0,50uChhk7AKkzDKytDixjYW,2023-03-24,latin,latin
+2023-05-18,48,Frágil,"Yahritza Y Su Esencia, Grupo Frontera",4JdSXF2p71cr8uCY3UiJM0,89,160517,0,6iZUwDpa27jeAvKxs8UYI2,2023-04-07,"sad sierreño, música mexicana, banda, corridos tumbados, corrido",sad sierreño
+2023-05-22,46,Abcdario,"Eden Muñoz, Junior H",0qCPD6ilr9nXkI4KVZgcns,82,220650,0,7BgImTrFzm2nQQW59IeFGD,2023-05-13,"banda, corrido, norteño, corridos bélicos, corridos tumbados",banda
+2023-05-24,43,AMERICA HAS A PROBLEM (feat. Kendrick Lamar),"Beyoncé, Kendrick Lamar",6l8mgVN9Xf1hiDIFGA6CTE,75,260962,1,2x4aShbWkdZ1h8sfO23yZN,2023-05-19,unknown,unknown
+2023-06-05,46,Tá OK,"DENNIS, MC Kevin o Chris",0fABszUFNbNq9IW503Gj8v,82,92093,0,41iAYv4hU3BL86F0sOTvqp,2023-05-04,"brazilian funk, funk carioca, funk pop, funk melody",brazilian funk
+2023-07-02,50,Copa Vacía,"Shakira, Manuel Turizo",2iVgM5C7m1G4CJGbms301G,74,173547,0,4qtiO9UGqajxnKC0z0Mxn7,2023-06-29,latin pop,latin pop
+2023-07-09,4,Sparks Fly (Taylor’s Version),Taylor Swift,3MytWN8L7shNYzGl4tAKRp,0,261230,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,8,I Can See You (Taylor’s Version) (From The Vault),Taylor Swift,5kHMfzgLZP95O9NBy0ku4v,0,273186,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,12,Electric Touch (feat. Fall Out Boy) (Taylor’s Version) (From The Vault),"Taylor Swift, Fall Out Boy",4e3ZNTAV6PCrdYMUrUlMpQ,0,266466,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,14,When Emma Falls in Love (Taylor’s Version) (From The Vault),Taylor Swift,0zo975x58DlXbZllWvfYhg,0,252385,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,16,Castles Crumbling (feat. Hayley Williams) (Taylor’s Version) (From The Vault),"Taylor Swift, Hayley Williams",4ABYxlb92WBIjHu7TIKmml,0,306062,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,21,Foolish One (Taylor’s Version) (From The Vault),Taylor Swift,4s8BIKx4Zh6ryAEz8RTlaU,0,311765,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,24,Timeless (Taylor’s Version) (From The Vault),Taylor Swift,1HCdems7PQZRj42QDWLA0A,0,321396,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,26,Ours (Taylor’s Version),Taylor Swift,3yNJkriPzWjkkDAWHIAVUq,0,235803,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-07-09,34,Superman (Taylor’s Version),Taylor Swift,4evLyY5Ue1Wesc61t2KXAU,0,274945,0,5AEDGbliTTfjOB8TSm1sxt,2023-07-07,unknown,unknown
+2023-08-01,22,DELRESTO (ECHOES) (feat. Beyoncé),"Travis Scott, Beyoncé",0OEe83mMZ5kaNw5uZQ7ilG,86,274137,1,18NOKLkZETa4sWwLMIm0UZ,2023-07-28,rap,rap
+2023-08-13,15,MI EX TENÍA RAZÓN,KAROL G,54zcJnb3tp9c5OVKREZ1Is,62,154374,0,0FqAaUEyKCyUNFE1uQPZ7i,2023-08-10,"reggaeton, latin, urbano latino",reggaeton
+2023-08-13,49,UNA NOCHE EN MEDELLÍN - REMIX,"KAROL G, Cris MJ, Ryan Castro",0GJwUAlBMJTbY4VE7iE761,56,205144,1,0FqAaUEyKCyUNFE1uQPZ7i,2023-08-10,"reggaeton, latin, urbano latino",reggaeton
+2023-08-30,44,PÓLVORA,"Mora, Yandel",3pQr8EhSzvKN3ZZlaL4Pae,0,185326,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-08-30,49,FANTASÍAS,Mora,2v1EKQQn4UYC6qB13Vphaf,0,191847,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-08-31,41,Penhasco2,"Luísa Sonza, Demi Lovato",0t5cfOZxePTvuYXTywHzjH,0,173228,0,39nlfd4MoNcVGgvx64Opnt,2023-08-29,"brazilian pop, funk pop, brazilian funk",brazilian pop
+2023-09-01,48,Prada,"cassö, RAYE, D-Block Europe",59NraMJsLaMCVtwXTSia8i,87,132359,1,5MU0RmBSpoSxOPYBfcobDc,2023-08-11,hypertechno,hypertechno
+2023-09-07,27,Chico,Luísa Sonza,43eRVwfXFkY3kXN4K47gNT,73,182111,0,39nlfd4MoNcVGgvx64Opnt,2023-08-29,"brazilian pop, funk pop, brazilian funk",brazilian pop
+2023-09-10,27,pretty isn’t pretty,Olivia Rodrigo,6W9l02gRsXVxzIuQC1oc1X,76,199422,1,1xJHno7SmdVtZAtXbdbDZp,2023-09-08,unknown,unknown
+2023-09-24,28,Según Quién,"Maluma, Carín León",4bw8mcDUSRWfQo63ZTYRnU,76,142334,1,3Fk8yQvPlCHgwR2pNhEIRA,2023-08-25,"reggaeton, latin, urbano latino",reggaeton
+2023-09-29,41,Si No Estás,iñigo quintero,2HafqoJbgXdtjwCOvNEF14,78,184061,0,66k6EGkPtYoN44anGIsEPW,2022-09-23,unknown,unknown
+2023-10-29,33,This Love (Taylor’s Version),Taylor Swift,4d1CG5ei1E2vGbvmgf5KKv,0,250100,0,3In1CblWZswwun5MhOa10y,2023-10-26,unknown,unknown
+2023-11-20,46,Canât Catch Me Now - from The Hunger Games: The Ballad of Songbirds & Snakes,Olivia Rodrigo & Rachel Zegler & Flatland Cavalry,unknown_track,63,205483,0,unknown_album,2023-11-17,unknown,unknown
+2023-11-23,45,VULTURES,"¥$, Kanye West, Ty Dolla $ign",3w9WvHLKSXOsW6aAw0yr1n,0,237534,1,4DOsPwJtokv6HEifZ6t5j6,2023-11-22,unknown,unknown
+2023-11-25,39,It's Beginning to Look a Lot like Christmas,Michael Bublé,3it2BvJfyhPEWF3kD2TZJ1,77,207199,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-11-26,45,Holly Jolly Christmas,Michael Bublé,6rqn19AqjcM5wgI1hCYciJ,75,119786,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-11-26,47,Feliz Navidad,José Feliciano,0oPdaY4dXtc3ZsaG17V972,79,182066,0,3No96PtEFyRfX1oELmZTPu,2002-09-24,"christmas, bolero, villancicos",christmas
+2023-11-30,1,You’re Losing Me (From The Vault),Taylor Swift,3CWq0pAKKTWb0K4yiglDc4,0,277831,0,5q3jthpn2h59P7pe2gmAl7,2023-11-29,unknown,unknown
+2023-12-17,43,La Víctima,Xavi,5XVdHRf4CAJ2Jm0uMIy5qY,90,156345,1,30KJEN3ICjhYsZ1NgunRCr,2023-08-17,"corridos tumbados, corrido, corridos bélicos, sad sierreño, música mexicana, banda, sierreño",corridos tumbados
+2023-12-24,40,"Santa, Can’t You Hear Me","Kelly Clarkson, Ariana Grande",2O3MQ6H3gjrIWDcpeTrikT,87,242644,0,5sVFXIMrFRKBtDOexVlBBU,2021-10-15,christmas,christmas
+2023-12-24,41,Santa Baby (with Henri René & His Orchestra),"Eartha Kitt, Henri René and His Orchestra",1foCxQtxBweJtZmdxhEHVO,79,206066,0,6gOVmmV26wBBgxUtbF8YZd,2023-01-01,christmas,christmas
+2024-01-14,13,née-nah,"21 Savage, Travis Scott, Metro Boomin",2yUzr8Sr6ldG8vmHhZwTnz,77,220584,1,2RRYaYHY7fIIdvFlvgb5vq,2024-01-12,unknown,unknown
+2024-01-14,17,Igual Que Un Ángel (with Peso Pluma),"Kali Uchis, Peso Pluma",6XaJfhwof7qIgbbXO5tIQI,75,260370,0,5U20AVSsUvycGtWip4XQfo,2024-01-12,unknown,unknown
+2024-01-25,50,FIRST LOVE,"Oscar Ortiz, Edgardo Nuñez",3QQAeMQbbjZXVFbF8DgFWT,87,169440,0,4NNAc6EF4agYuWUqZ5OZr0,2023-12-07,"electro corridos, dembow belico, corrido, corridos tumbados, corridos bélicos, banda",electro corridos
+2024-02-09,47,"I P’ ME, TU P’ TE","Geolier, Michelangelo",3j1453KrdHjw7y4gnBj7nF,73,187881,0,09DwcnxasBOzPGqVXJPF13,2024-02-07,"canzone napoletana, neomelodico, italian trap",canzone napoletana
+2024-02-14,4,TEXAS HOLD 'EM,Beyoncé,0Z7nGFVCLfixWctgePsRk9,77,235636,1,6cBlaud5JVmPjkjxnwIMLx,2024-02-11,unknown,unknown
+2024-02-16,1,CARNIVAL,"¥$, Kanye West, Ty Dolla $ign",2McT2fkH0VDqPsbiB9HWPq,0,264324,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-08,unknown,unknown
+2024-02-16,14,BURN,"¥$, Kanye West, Ty Dolla $ign",7BPadP3q9qwMkho3IMPU99,0,111458,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-09,unknown,unknown
+2024-02-16,15,FUK SUMN,"¥$, Kanye West, Ty Dolla $ign",0cbVD7WpHVdHUKwoolzhCZ,0,209577,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-09,unknown,unknown
+2024-02-16,22,BACK TO ME,"¥$, Kanye West, Ty Dolla $ign",3g9UquSEBErZiXSDa02YfG,0,295471,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-09,unknown,unknown
+2024-02-16,36,STARS,"¥$, Kanye West, Ty Dolla $ign",5ogdIq5F70xEPB3kwiiecr,0,115238,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-09,unknown,unknown
+2024-02-16,43,TALKING,"¥$, Kanye West, Ty Dolla $ign",2os3F2ZKbj02ZWXWAdWGFD,79,185110,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-08,unknown,unknown
+2024-02-16,49,DO IT,"¥$, Kanye West, Ty Dolla $ign",1oNaDXXu9I4UCJ8Fh0Hfjg,0,225000,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-09,unknown,unknown
+2024-02-18,25,CONTIGO (with Tiësto),"KAROL G, Tiësto",4UkUxO2WlKLc0Q1iEutGGh,79,192786,0,2mKcYIgv7ItYDQXke3uprl,2024-02-15,"reggaeton, latin, urbano latino",reggaeton
+2024-03-18,45,Lan,Zeynep Bastık,1whKKdtCiFjN7MW7DrIRUH,77,196075,0,1LvnmkkATPS4wBrEPMec26,2024-03-08,"turkish pop, turkish hip hop",turkish pop
+2024-03-24,48,Corazón de Piedra,Xavi,3VeR05PCure0YL3pHl5aI9,0,193568,0,1bWcE0tKOJgn4kgpNKSHU0,2024-03-21,"corridos tumbados, corrido, corridos bélicos, sad sierreño, música mexicana, banda, sierreño",corridos tumbados
+2024-03-31,7,II MOST WANTED,"Beyoncé, Miley Cyrus",1UP7PXne1lIYZB5G5aiRGL,49,208521,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,8,JOLENE,Beyoncé,2PmMh2t7jAtN6cqFooA0Xy,50,189638,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,14,AMERIICAN REQUIEM,Beyoncé,6K2Iut8nSQigP83yvbiqi8,50,325037,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,16,BLACKBIIRD,"Beyoncé, Tanner Adell, Brittney Spencer, Tiera Kennedy, Reyna Roberts",7eEr7lgWYudwEKEaWCPiPI,49,131949,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,17,BODYGUARD,Beyoncé,6Y4rniIxibegzsg8cdWAWV,74,240254,1,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-29,unknown,unknown
+2024-03-31,19,SPAGHETTII,"Beyoncé, Linda Martell, Shaboozey",5UcUppRaEIBMIHXiUFl7LI,73,158477,1,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-29,unknown,unknown
+2024-03-31,20,DAUGHTER,Beyoncé,0hWCzWl04zT7P6vMy63XCN,48,203851,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,22,LEVII'S JEANS,"Beyoncé, Post Malone",2UDARQiksl207HcSduDpov,73,257699,1,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-29,unknown,unknown
+2024-03-31,23,16 CARRIAGES,Beyoncé,6XXxKsu3RJeN3ZvbMYrgQW,47,227250,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,25,PROTECTOR,"Beyoncé, Rumi Carter",4dsdSwSdBWjlsVzU6iJs3b,48,184399,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,29,SMOKE HOUR ★ WILLIE NELSON,"Beyoncé, Willie Nelson",2dv2DYn0V0j0Wx6Ra40bce,47,50721,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,31,MY ROSE,Beyoncé,486YUqcmF9IWPkreU0THcQ,47,53442,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,33,YA YA,Beyoncé,0K9tfzrxJyCQIf7oAlPwaK,72,274766,1,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-29,unknown,unknown
+2024-03-31,35,ALLIIGATOR TEARS,Beyoncé,1LSWDkZxVngIpfjvMs6Q56,46,179397,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,43,JUST FOR FUN,"Beyoncé, Willie Jones",4h6iaiMchTUHlK5ovMiJ3h,46,204487,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-03-31,50,FLAMENCO,Beyoncé,3B7EZgquNKHrSIo2tEc8mK,45,100364,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-04-14,44,Pedro,"Jaxomy, Agatino Romero, Raffaella Carrà",48lxT5qJF0yYyf2z4wB4xW,77,144846,0,5y6RXjI5VPR0RyInghTbf1,2024-03-29,unknown,unknown
+2024-04-16,50,TÚ NAME,Fuerza Regida,3FqUPvubYeRCMsdJ02QyZR,89,152078,0,5WPTc1Xa8REVDQ5YazhNgv,2024-02-09,"corrido, corridos tumbados, corridos bélicos, música mexicana, sierreño, banda, electro corridos, sad sierreño",corrido
+2024-04-21,11,Who’s Afraid of Little Old Me?,Taylor Swift,2d8UxVNhJinc8uat9PoM9y,79,334084,0,5H7ixXZfsNMGbIE5OBSpcb,2024-04-18,unknown,unknown
+2024-05-19,15,L’AMOUR DE MA VIE,Billie Eilish,6fPan2saHdFaIHuTSatORv,58,333986,0,7aJuG4TFXa2hmE4z1yxc3n,2024-05-17,unknown,unknown
+2024-05-26,46,MTG QUEM NÃO QUER SOU EU,"DJ TOPO, Seu Jorge, Mc Leozin, MC G15",6RjSXi9cPGroetXeNsWFGL,79,123692,0,4sLNpzARYcLX5BIGLOvgNC,2024-05-10,brazilian funk,brazilian funk
+2024-07-15,38,EL RITMO QUE NOS UNE - feat. Selección Colombia,"Ryan Castro, SOG",79IBoMfFn67UI15YkP1FSp,74,189795,0,6gHvLYdqKPaiCXK92crXFR,2024-06-08,reggaeton,reggaeton
+2024-08-04,20,FIELD TRIP,"¥$, Kanye West, Ty Dolla $ign",7vv89PswQvqGKCGJ1rw5on,0,167228,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-04,34,SLIDE,"¥$, Kanye West, Ty Dolla $ign",5MGMXOhVvwzCjFgdQsFokR,0,198060,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-17,4,New Woman (feat. ROSALÍA),"LISA, ROSALÍA",5UmfBGfRJgjZ8CdhgffabQ,0,179789,0,5eoWRkeplmcCL97afSMJVm,2024-08-15,k-pop,k-pop
+2024-08-18,35,Só Fé,Grelo,0bPP5cDG1ZnbAVCEa3ZbQ1,79,203337,0,41ng9tBJsRNYqaqRDEtrbN,2024-07-19,"seresta, arrocha, piseiro, forró, brega, sertanejo",seresta
+2024-08-24,39,Don’t Smile,Sabrina Carpenter,09LrGvT9KsACH66RHYMDyR,48,206295,0,3iPSVi54hsacKKl1xIR2eH,2024-08-23,pop,pop
+2024-09-23,29,Después De La 1,"Cris MJ, FloyyMenor, LOUKI",6PhRhocBXP4y7NpciGmzra,81,177600,1,2lIzIH2mQQ0ItgkJKefQMp,2024-09-12,"reggaeton chileno, chilean trap, chilean mambo, reggaeton",reggaeton chileno
+2024-09-23,37,Rey Sin Reina,Julión Álvarez y su Norteño Banda,0BiDnJFB3TlRB6aji7jUz3,82,150523,0,38uizvY4xqOiAq750FDmW2,2024-09-05,"banda, norteño, grupera, corrido",banda
+2024-09-30,44,DOS DÍAS,"Tito Double P, Peso Pluma",5lKFO0PrOC9jmOlPEdjHsL,86,153928,1,27GWSFRITD8JJcSGMgEfTN,2024-08-22,"corrido, corridos tumbados, corridos bélicos, electro corridos, dembow belico, música mexicana",corrido
+2024-10-20,3,APT.,"ROSÉ, Bruno Mars",5vNRhkKd0yEAg8suGBpjeY,76,169917,0,2IYQwwgxgOIn7t3iF6ufFD,2024-10-18,k-pop,k-pop
+2024-10-25,30,That’s So True,Gracie Abrams,7ne4VBA60CxGM75vw0EYad,79,166300,1,0hBRqPYPXhr1RkTDG3n4Mk,2024-10-18,unknown,unknown
+2024-11-02,10,São Paulo (feat. Anitta) - Single Version,"The Weeknd, Anitta",2HXQL06smXD4evuW7MLY4X,72,301623,1,28TLpNqlJzeOqm9N4OY3BS,2024-10-31,unknown,unknown
+2024-11-04,45,DEGENERE 👑 (feat. benny blanco),"Myke Towers, benny blanco",0qeIFEGRQqHoaJtLCl0U73,79,130880,1,3pkIK8SI5mcUUjb9jNjx4H,2024-10-17,"reggaeton, trap latino, urbano latino",reggaeton
+2024-11-17,13,Qué Pasaría...,"Rauw Alejandro, Bad Bunny",0l0vcZMU7AOeQmUIREoI2U,72,191018,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,43,Tú Con Él,Rauw Alejandro,2eQFYGegTZaObk2kuBz83Z,69,289131,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-20,40,Khé?,"Rauw Alejandro, Romeo Santos",1YYfyJ2yCvGFCxwjsIqEK9,76,206066,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-24,31,number one girl,ROSÉ,1lcBt7LoEikqYmhUoa2cez,72,216442,0,7kFyd5oyJdVX2pIi6P4iHE,2024-11-22,k-pop,k-pop

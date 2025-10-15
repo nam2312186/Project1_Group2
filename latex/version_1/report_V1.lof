@@ -1,0 +1,48 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Logo Spotify}}{1}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Spotify Wrapped}}{2}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Đặc điểm chung của các dataset}}{7}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Các trường sau khi thêm}}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Bảng đặc trưng}}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Đặc trưng chung}}{14}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Track mới phát hành theo năm}}{15}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 1.2 Tuổi thọ các bài hát trên BXH}}{16}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 1.2 Độ biến động tổng quan trên BXH}}{17}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Top 10 nghệ sĩ nổi bật nhất}}{18}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Top 10 bài hát trụ nổi nhất}}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Top 5 bài hát trụ lâu nhất}}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Top 10 thể loại nổi bật nhất}}{20}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Top 10 thể loại nổi bật nhất}}{21}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Độ đa dạng theo tuần}}{22}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Đặc trưng energy}}{23}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Đặc trưng tempo}}{25}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Đặc trưng valence}}{26}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Đặc trưng danceability}}{27}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces So sánh tỷ lệ Explicit }}{28}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces So sánh tỷ lệ Explicit }}{30}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Kiểm tra null, xác định kiểu dữ liệu và đổi các khoảng trống giữa các features}}{32}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.21}{\ignorespaces KẾt quả từ hình 1}}{33}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Kiểm tra, xóa các cột null, tách tên nghệ sĩ và chuẩn hóa releaseDate}}{34}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Kết quả từ hình 3}}{35}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Ma trận tương quan giữa các features}}{36}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Code thực thi}}{37}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.26}{\ignorespaces Phân phối tỉ lệ Skip rate theo Genre}}{38}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.27}{\ignorespaces Lượt Stream trung bình theo kiểu user và genre}}{38}{figure.caption.36}%
+\contentsline {figure}{\numberline {3.28}{\ignorespaces Code thực thi}}{39}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.29}{\ignorespaces Top 10 nghệ sĩ theo độ phổ biến}}{39}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.30}{\ignorespaces Phân bố độ phổ biến của album}}{40}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.31}{\ignorespaces Số lượng album phát hành theo năm}}{40}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.32}{\ignorespaces Top 10 label phát hành nhiều album nhất}}{41}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.33}{\ignorespaces Biểu đồ heatmap thể hiện các giá trị thiếu trong dữ liệu}}{47}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.34}{\ignorespaces Biểu đồ phân bố \texttt {danceability} của các bài hát.}}{48}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.35}{\ignorespaces Top 15 thể loại âm nhạc phổ biến nhất .}}{49}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.36}{\ignorespaces Ma trận tương quan giữa các thuộc tính âm nhạc.}}{50}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.37}{\ignorespaces Heatmap giá trị thiếu sau khi làm sạch dữ liệu.}}{52}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.38}{\ignorespaces Ma trận tương quan sau khi thêm đặc trưng}}{55}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.39}{\ignorespaces Số lượng bài hát mới (new entry) theo tuần trong năm 2025.}}{57}{figure.caption.48}%
+\contentsline {figure}{\numberline {3.40}{\ignorespaces Phân phối số tuần tồn tại của các bài hát trên Billboard Hot 100.}}{58}{figure.caption.49}%
+\contentsline {figure}{\numberline {3.41}{\ignorespaces Timeline thứ hạng của một số ca khúc đạt vị trí số 1 trên Billboard Hot 100.}}{59}{figure.caption.50}%
+\contentsline {figure}{\numberline {3.42}{\ignorespaces Top 10 thể loại âm nhạc phổ biến nhất trong BXH Billboard Hot 100.}}{60}{figure.caption.51}%
+\contentsline {figure}{\numberline {3.43}{\ignorespaces Top 10 nghệ sĩ có nhiều ca khúc lọt vào Top 10 Billboard Hot 100 năm 2025.}}{61}{figure.caption.52}%
+\contentsline {figure}{\numberline {3.44}{\ignorespaces So sánh giá trị trung bình của các audio features theo mùa.}}{62}{figure.caption.53}%
+\contentsline {figure}{\numberline {3.45}{\ignorespaces Mối quan hệ giữa Peak Rank và số tuần tồn tại trên BXH.}}{63}{figure.caption.54}%

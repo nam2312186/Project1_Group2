@@ -1,0 +1,435 @@
+\documentclass{../hcmut-report}
+\usepackage{../codespace}
+
+% Draft watermark
+% https://github.com/callegar/LaTeX-draftwatermark
+
+% Encodings
+\usepackage{gensymb,textcomp}
+
+% Better tables
+% Wide tables go to https://tex.stackexchange.com/q/332902
+\usepackage{array,longtable,multicol,multirow,siunitx,tabularx}
+
+% Better enum
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption,float}
+
+
+% Add options for figures, like max width, framing, etc.
+\usepackage{adjustbox}
+
+\usepackage{../graphicx}
+
+% References
+% Use \Cref{} instead of \ref{}
+\usepackage[nameinlink]{cleveref}
+
+% FOR DEMONSTRATION PURPOSES, REMOVE IN PRODUCTION
+\usepackage{float}
+\usepackage{mwe}
+\usepackage{longtable}
+\usepackage{soul}
+\usepackage{multicol}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{tikz} 
+\setlength{\parskip}{0.25em}
+% Sub-preambles
+% https://github.com/MartinScharrer/standalone
+
+% Configurations
+\coursename{Đồ án tổng hợp - hướng kỹ thuật dữ liệu  (CO3127)}
+\reporttype{ Report tuần 40} 
+\title{Thu thập và phân tích dữ liệu của ứng dụng giải trí Spotify}
+\advisor{ GV.Dương Huỳnh Anh Đức }
+\stuname{%
+\hline
+\textbf{Họ tên SV} & \textbf{MSSV} & \textbf{Nhóm - Lớp} \\
+\hline
+ Nguyễn Minh Nhựt & 2312550 & 2 - L02  \\
+\hline
+ Phạm Đình Phương Nam & 2312186 & 2 - L02  \\
+\hline
+ Đoàn Mạnh Tất  & 2313074  & 2 - L02  \\
+\hline
+ Phạm Đức Hoài Nam & 2212157 & 2 - L02  \\
+
+\hline
+} 
+
+
+% Allow page breaks inside align* environment
+%\allowdisplaybreaks{}
+
+% Makes a lot of things blue, avoid at all costs
+%\everymath{\color{blue}}
+
+% Set depth of numbering for counters
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+% Rename some sections
+%\AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+%\AtBeginDocument{\renewcommand*{\refname}{References}}
+%\AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+% Custom commands
+%\newcommand*\mean[1]{\bar{#1}}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{newunicodechar}
+\newunicodechar{ア}{A}
+\newunicodechar{イ}{I}
+\newunicodechar{ド}{Do}
+
+
+\begin{document}
+
+\coverpage
+
+
+
+\section*{Nhiệm cụ công việc}
+\subsection*{Danh sách phân công ở giai đoạn 1(tuần 37-40)}
+\renewcommand{\arraystretch}{1.3} % tăng khoảng cách dòng trong ô
+\setlength{\tabcolsep}{8pt} % khoảng cách giữa các cột
+
+\begin{longtable}{|c|c|c|p{5cm}|c|}
+\hline
+\textbf{STT} & \textbf{Họ và tên} & \textbf{Tuần} & \textbf{Nhiệm vụ} & \textbf{Hoàn thành} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{STT} & \textbf{Họ và tên} & \textbf{Tuần} & \textbf{Nhiệm vụ} & \textbf{Hoàn thành} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+\multirow{4}{*}{1} & \multirow{4}{*}{Nguyễn Minh Nhựt} 
+    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
+& & 39 & Lấy data từ Kaggle; Dùng Spotify API để làm đầy metadata; ReccoBeats để lấy audio features; Viết report & \\ \cline{3-4}
+& & 40 & Tiền xử lý, khám phá insight dữ liệu & \\ \hline
+
+\multirow{4}{*}{2} & \multirow{4}{*}{Phạm Đình Phương Nam} 
+    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
+& & 39 & Tìm hiểu nguồn data; Thu thập dữ liệu; Giải quyết vấn đề về data & \\ \cline{3-4}
+& & 40 & Hoàn chỉnh cho thu thập, phân tích dữ liệu, demo code cho nguồn thứ 3; Viết báo cáo, chuẩn bị slide & \\ \hline
+
+\multirow{4}{*}{3} & \multirow{4}{*}{Đoàn Mạnh Tất} 
+    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
+& & 39 & Tìm hiểu dữ liệu, xử lí vấn đề về dữ liệu & \\ \cline{3-4}
+& & 40 & Viết demo phân tích dữ liệu , làm báo cáo và slide thuyết trình & \\ \hline
+
+\multirow{4}{*}{4} & \multirow{4}{*}{Phạm Đức Hoài Nam} 
+    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
+& & 39 & Tiền xử lý dữ liệu;Phân tích tương quan dữ liệu & \\ \cline{3-4}
+& & 40 & Demo code, chuẩn bị báo cáo & \\ \hline
+
+\end{longtable}
+
+\subsection*{Nhận xét từ giảng viên}
+
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{STT} & \textbf{Họ và tên} & \textbf{Điểm số} & \textbf{Nhận xét} \\
+    \hline
+    1 &  Nguyễn Minh Nhựt   & \hspace{1cm} & \hspace{7.5cm} \\    \hline
+    2 & Phạm Đình Phương Nam &  &  \\     \hline
+    3 & Đoàn Mạnh Tất  &  &  \\       \hline
+    4 & Phạm Đức Hoài Nam  &  &  \\ \hline 
+
+  \end{tabular}
+
+
+
+\clearpage
+\pagenumbering{gobble}
+\tableofcontents
+\listoffigures
+%\listoftables
+%\lstlistoflistings{}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\setcounter{section}{0}
+
+\section{ Giới thiệu}
+\subsection{Tổng quan về Spotify }
+Spotify là nền tảng phát nhạc trực tuyến hàng đầu thế giới, cung cấp dịch vụ nghe nhạc, podcast và audiobook theo yêu cầu cho hàng trăm triệu người dùng trên toàn cầu. Được ra mắt lần đầu tiên vào năm 2008 tại Thụy Điển, Spotify ra đời với mục tiêu tạo ra một giải pháp hợp pháp, tiện lợi và chống lại tình trạng vi phạm bản quyền âm nhạc trong thời kỳ bùng nổ Internet. Từ đó, Spotify đã nhanh chóng phát triển, trở thành biểu tượng cho sự thay đổi cách con người tiếp cận và thưởng thức âm nhạc.\\
+
+Spotify hoạt động trên nhiều nền tảng như máy tính, điện thoại thông minh, TV, và các thiết bị IoT. Ứng dụng này hiện có mặt tại hơn 180 quốc gia và vùng lãnh thổ, sở hữu hơn 100 triệu bài hát cùng hơn 5 triệu podcast. Với hơn 600 triệu người dùng hàng tháng, trong đó hơn 240 triệu thuê bao trả phí, Spotify giữ vị trí dẫn đầu trong ngành công nghiệp phát nhạc trực tuyến toàn cầu.\\
+
+\begin{figure}[h] % môi trường figure để quản lý hình
+    \centering % căn giữa
+    \includegraphics[width=0.5\textwidth]{../graphics/spotify_logo.png} % tên file hình
+    \caption{Logo Spotify} % chú thích
+    \label{fig:example} % nhãn để tham chiếu
+\end{figure}
+
+Không chỉ là một nền tảng âm nhạc, Spotify còn mang theo những giá trị mới mẻ về cá nhân hóa trải nghiệm. Hệ thống đề xuất thông minh dựa trên trí tuệ nhân tạo và dữ liệu lớn mang đến cho người dùng những playlist riêng biệt như Discover Weekly hay Release Radar. Qua đó, Spotify không chỉ thỏa mãn nhu cầu giải trí mà còn kết nối nghệ sĩ với khán giả, mở rộng ảnh hưởng văn hóa và hỗ trợ sự phát triển của ngành công nghiệp âm nhạc.\\
+
+Một trong những nét đặc trưng nổi bật của Spotify là các chiến dịch sáng tạo và biểu tượng văn hóa số. Ví dụ, Spotify Wrapped – bản tổng kết hằng năm – đã trở thành hiện tượng toàn cầu, nơi hàng triệu người chia sẻ thói quen nghe nhạc của mình trên mạng xã hội. Bên cạnh đó, Spotify cũng chú trọng vào trải nghiệm đồng bộ qua Spotify Connect, cho phép người dùng dễ dàng phát nhạc trên nhiều thiết bị cùng lúc.\\
+\begin{figure}[h] % môi trường figure để quản lý hình
+    \centering % căn giữa
+    \includegraphics[width=0.5\textwidth]{../graphics/spotify_wrapped.png} % tên file hình
+    \caption{Spotify Wrapped} % chú thích
+    \label{fig:example} % nhãn để tham chiếu
+\end{figure}
+
+Trong suốt quá trình phát triển, Spotify đã chứng kiến và góp phần tạo nên nhiều dấu ấn lịch sử của ngành nhạc số, thay đổi thói quen thưởng thức âm nhạc của cả một thế hệ. Không chỉ là nơi phát nhạc, Spotify còn là một nền tảng truyền cảm hứng, đưa âm nhạc đến gần hơn với cuộc sống hằng ngày và khẳng định sức mạnh của công nghệ trong việc kết nối con người qua âm nhạc.\\
+\subsection{Vấn đề thực tế – Nhu cầu phân tích dữ liệu Spotify (xu hướng âm nhạc, gợi ý nhạc, phân tích nghệ sĩ)}
+Trong kỷ nguyên số, lượng dữ liệu âm nhạc mà Spotify quản lý và tạo ra mỗi ngày là vô cùng khổng lồ: hàng tỷ lượt nghe, tìm kiếm, thêm vào playlist, chia sẻ và tương tác xã hội. Việc phân tích dữ liệu từ Spotify không chỉ phục vụ mục tiêu thương mại mà còn mang lại nhiều giá trị trong nghiên cứu, phát triển công nghệ và thậm chí là lĩnh vực văn hóa – xã hội. Một số nhóm đối tượng tiêu biểu có nhu cầu sử dụng dữ liệu này như sau:\\
+\subsubsection{Nhà nghiên cứu âm nhạc và dữ liệu}
+\begin{itemize}
+    \item Phân tích xu hướng nghe nhạc theo thời gian, theo khu vực địa lý hoặc theo độ tuổi.
+
+    \item Nghiên cứu mối liên hệ giữa đặc điểm âm nhạc (tempo, energy, danceability) với mức độ phổ biến.
+
+    \item Tạo ra các mô hình dự đoán bài hát/ nghệ sĩ có khả năng trở thành xu hướng trong tương lai.
+\end{itemize}
+\subsubsection{Người dùng và cộng đồng nghe nhạc:}
+\begin{itemize}
+    \item Khám phá thói quen nghe nhạc cá nhân và so sánh với bạn bè hoặc cộng đồng.
+
+    \item Tìm kiếm và gợi ý playlist phù hợp với tâm trạng, bối cảnh, hoạt động hàng ngày.
+    
+    \item Theo dõi các bảng xếp hạng như Top 50 Global hay Top 50 theo quốc gia để nắm bắt trào lưu âm nhạc mới.
+\end{itemize}
+
+\subsubsection{Nghệ sĩ và hãng thu âm}
+\begin{itemize}
+    \item Phân tích dữ liệu lượt nghe để đánh giá mức độ thành công của ca khúc, album hay tour diễn.
+
+    \item Nghiên cứu thị trường mục tiêu: quốc gia, độ tuổi, giới tính của người nghe.
+
+    \item Tối ưu hóa chiến lược phát hành (ngày ra mắt, thể loại, hợp tác nghệ sĩ) nhằm tối đa hóa doanh thu và mức độ lan tỏa.
+\end{itemize}
+
+\subsubsection{Doanh nghiệp và tổ chức quảng cáo}
+\begin{itemize}
+    \item Sử dụng dữ liệu hành vi người dùng để tối ưu hóa việc phân phối quảng cáo âm thanh và banner.
+
+    \item Xác định nhóm khách hàng tiềm năng thông qua sở thích âm nhạc, từ đó đưa ra chiến lược tiếp thị hiệu quả hơn.
+
+    \item Tận dụng dữ liệu thời gian thực để phân tích hiệu quả chiến dịch marketing (ví dụ: chiến dịch gắn liền với sự kiện âm nhạc quốc tế).
+\end{itemize}
+
+\subsubsection{Kỹ sư dữ liệu và nhà phát triển hệ thống}
+\begin{itemize}
+    \item Nhu cầu xử lý big data với tốc độ cao, từ đó yêu cầu hạ tầng dữ liệu mạnh mẽ (Apache Kafka, Spark, Hadoop).
+
+    \item Đảm bảo tính chính xác, toàn vẹn và bảo mật của dữ liệu khi có hàng trăm triệu người dùng cùng truy cập.
+
+    \item Xây dựng pipeline phân tích dữ liệu streaming theo thời gian thực, phục vụ cho hệ thống gợi ý cá nhân hóa.
+\end{itemize}
+
+\section{Mục tiêu đồ án}
+
+\subsection{Thu thập và tiền xử lý dữ liệu}
+\begin{itemize}
+    \item Thu thập các dataset về Spotify từ Kaggle, API Sportify, ReccoBeats
+    \item Làm sạch và chuẩn hóa dữ liệu: xử lý giá trị thiếu, định dạng ngày, chuẩn hóa các trường thuộc tính, loại bỏ dữ liệu dư thừa.
+\end{itemize}
+
+\subsection{Thiết kế và xây dựng hệ thống dữ liệu}
+\begin{itemize}
+    \item Thiết kế mô hình dữ liệu quan hệ (ERD, RM) dựa trên các file CSV đã chuẩn hóa.
+    \item Tổ chức dữ liệu vào hệ quản trị CSDL (MySQL,..) nhằm đảm bảo tính toàn vẹn, tối ưu truy vấn và dễ dàng mở rộng.
+    \item Áp dụng các kỹ thuật Data Engineering: indexing, trigger, backup/restore, tối ưu hóa dữ liệu.
+\end{itemize}
+
+\subsection{Xây dựng pipeline xử lý và phân tích dữ liệu}
+\begin{itemize}
+    \item Thiết kế mô hình dữ liệu quan hệ (ERD) dựa trên các file CSV đã chuẩn hóa.
+    \item Tổ chức dữ liệu vào hệ quản trị CSDL (MySQL,..) nhằm đảm bảo tính toàn vẹn, tối ưu truy vấn và dễ dàng mở rộng.
+    \item Áp dụng các kỹ thuật Data Engineering: indexing, trigger, backup/restore, tối ưu hóa dữ liệu.
+\end{itemize}
+
+
+\subsection{Phân tích và trực quan hóa dữ liệu Spotify}
+\begin{itemize}
+    \item Phân tích xu hướng âm nhạc: sự nổi bật của ca khúc/nghệ sĩ, vòng đời của bài hát (Hot/Cold cycle), sự khác biệt giữa các quốc gia.
+    \item Khai thác đặc trưng âm nhạc (danceability, energy, acousticness, valence, tempo, v.v.) để tìm mối liên hệ với độ phổ biến.
+    \item Trực quan hóa dữ liệu qua dashboard (Streamlit/Matplotlib/Seaborn), cho phép người dùng tra cứu bảng xếp hạng, so sánh quốc gia, xem biểu đồ xu hướng.
+    \item còn tìm hiểu để thay đổi hoặc mở rộng
+\end{itemize}
+
+\subsection{Ứng dụng và mở rộng}
+\begin{itemize}
+    \item Hỗ trợ người dùng (sinh viên, nhà nghiên cứu, nghệ sĩ, doanh nghiệp) trong việc khai thác thông tin từ dữ liệu Spotify.
+    \item Đề xuất khả năng mở rộng với Machine Learning như gợi ý bài hát, dự đoán bài hát tiềm năng sẽ vào bảng xếp hạng.
+    \item Nâng cấp hệ thống thành mô hình phân tích dữ liệu streaming thời gian thực (Kafka + Spark) để phục vụ cập nhật liên tục.
+    \item còn tìm hiểu để thay đổi hoặc mở rộng ( chọn 1 hướng để phát triển)
+\end{itemize}
+
+
+
+
+
+
+\section{Tìm hiểu và phân tích đặc điểm của nguồn dữ liệu}
+Trong quá trình thực hiện đề tài, nhóm đã tiến hành khảo sát và lựa chọn các nguồn dữ liệu 
+liên quan trực tiếp đến lĩnh vực nghiên cứu. 
+Mỗi nguồn dữ liệu đều có những đặc trưng riêng về cấu trúc, dung lượng, cũng như mức độ phù hợp 
+với yêu cầu của bài toán. 
+Việc phân tích đặc điểm của từng nguồn giúp nhóm:
+\begin{itemize}
+    \item Đánh giá tính tin cậy và độ bao phủ của dữ liệu.
+    \item Hiểu rõ cấu trúc, định dạng, và mối quan hệ giữa các thuộc tính.
+    \item Xác định những vấn đề cần tiền xử lý (dữ liệu thiếu, dữ liệu nhiễu, trùng lặp, …).
+    \item Đề ra phương án tích hợp và khai thác hiệu quả cho hệ thống.
+\end{itemize}
+
+\large{Dưới đây là phân tích chi tiết từng nguồn dữ liệu mà nhóm sử dụng :}
+\input{source_1.tex}
+% \input{source_1}
+\input{source_2.tex}
+% \end{thebibliography}
+\input{source_3.tex}
+% \subsection{Nguồn 2 + 3: Phần tiếp theo nhóm trình bài bên Phần 2 của báo cáo }
+
+\section{Phụ lục}
+
+\subsection{Timeline công việc và bảng phân công nhiệm vụ}
+\subsubsection{Timeline thực hiện đề tài}
+
+\begin{longtable}{|c|p{11cm}|}
+\caption{Timeline thực hiện đề tài} \\
+\hline
+\textbf{Tuần} & \textbf{Nhóm cần làm gì} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Tuần} & \textbf{Nhóm cần làm gì} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+37 & Giới thiệu đề tài, phân tích yêu cầu bài toán, tính cấp thiết \\ \hline
+38 & Xác định nguồn dữ liệu, phân tích đặc điểm dữ liệu, đặt mục tiêu, phân chia công việc \\ \hline
+39 & Hoàn thiện phần phân tích yêu cầu (chuẩn bị cho L.0.1), tìm hiểu sơ bộ kiến trúc \& công nghệ \\ \hline
+40 & \textbf{Trình bày L.0.1 – Phân tích yêu cầu \& bài toán thực tế} \\ \hline
+41 & Bắt đầu thiết kế kiến trúc dữ liệu, mô hình ERD, chuẩn hóa dữ liệu \\ \hline
+42 & Hoàn thiện kiến trúc \& mô hình dữ liệu, lựa chọn công nghệ, báo cáo tiến độ \\ \hline
+43 & Thi giữa kỳ, rà soát tiến độ \\ \hline
+44 & Hiện thực giải pháp: thiết kế CSDL, tạo bảng, trigger, index \\ \hline
+45 & Kiểm thử dữ liệu \& hệ thống, so sánh với yêu cầu ban đầu \\ \hline
+46 & Hoàn thiện phần kiểm thử \& đánh giá, chỉnh sửa hạn chế \\ \hline
+47 & \textbf{Trình bày L.0.2 – Thiết kế \& hiện thực giải pháp} \\ \hline
+48 & Ứng dụng thực tế: giao diện, biểu đồ, trực quan hóa \\ \hline
+49 & Hoàn thiện kết luận \& hướng phát triển, báo cáo tiến độ \\ \hline
+50 & Hoàn thành báo cáo + slide cuối kỳ \\ \hline
+51 & \textbf{Báo cáo cuối kỳ \& nộp sản phẩm} \\ \hline
+
+\end{longtable}
+
+
+\subsubsection{Phân công nhiệm vụ dự kiến sau tuần 40}
+
+\begin{center}
+\begin{longtable}{|c|c|p{10cm}|}
+\hline
+\textbf{Tuần} & \textbf{Thành viên} & \textbf{Nhiệm vụ} \\
+\hline
+41 & Nguyễn Minh Nhựt & Thiết kế kiến trúc dữ liệu, vẽ ERD sơ bộ \\
+   & Phạm Đình Phương Nam & Tìm hiểu mô hình quan hệ, chuẩn bị ràng buộc dữ liệu \\
+   & Đoàn Mạnh Tất & Bắt đầu tiền xử lý dataset bằng Python/Pandas \\
+   & Phạm Đức Hoài Nam & Khảo sát công nghệ triển khai (DB, web) \\
+\hline
+42 & Nguyễn Minh Nhựt & Hoàn thiện ERD, mô hình dữ liệu quan hệ \\
+   & Phạm Đình Phương Nam & Viết phần chuẩn hóa (1NF–BCNF) \\
+   & Đoàn Mạnh Tất & Tiếp tục xử lý dữ liệu, sinh file clean \\
+   & Phạm Đức Hoài Nam & Thiết kế sơ đồ kiến trúc hệ thống \\
+\hline
+43 & Cả nhóm & Thi giữa kỳ, rà soát tiến độ, chỉnh sửa báo cáo \\
+\hline
+44 & Nguyễn Minh Nhựt & Hỗ trợ tạo bảng trong DB \\
+   & Phạm Đình Phương Nam & Thêm ràng buộc, trigger, index \\
+   & Đoàn Mạnh Tất & Import dữ liệu vào DB \\
+   & Phạm Đức Hoài Nam & Kiểm tra pipeline DB–ứng dụng \\
+\hline
+45 & Nguyễn Minh Nhựt & Viết kịch bản kiểm thử dữ liệu \\
+   & Phạm Đình Phương Nam & Kiểm thử CSDL (truy vấn, trigger) \\
+   & Đoàn Mạnh Tất & Kiểm thử pipeline xử lý dữ liệu \\
+   & Phạm Đức Hoài Nam & Tổng hợp so sánh kết quả với yêu cầu ban đầu \\
+\hline
+46 & Cả nhóm & Hoàn thiện phần kiểm thử \& đánh giá, chuẩn bị L.0.2 \\
+\hline
+47 & Nguyễn Minh Nhựt & Chuẩn bị slide kiến trúc \& ERD \\
+   & Phạm Đình Phương Nam & Chuẩn bị slide CSDL \\
+   & Đoàn Mạnh Tất & Chuẩn bị slide xử lý dữ liệu \\
+   & Phạm Đức Hoài Nam & Chuẩn bị slide triển khai \& demo ứng dụng \\
+   & Cả nhóm &   Trình bày L.0.2 \\
+\hline
+48 & Nguyễn Minh Nhựt & Viết phần ứng dụng tra cứu dữ liệu \\
+   & Phạm Đình Phương Nam & Thiết kế giao diện web/dashboard \\
+   & Đoàn Mạnh Tất & Vẽ biểu đồ trực quan hóa \\
+   & Phạm Đức Hoài Nam & Tích hợp kết quả vào ứng dụng demo \\
+\hline
+49 & Nguyễn Minh Nhựt & Viết kết quả đạt được \\
+   & Phạm Đình Phương Nam & Viết hạn chế còn tồn tại \\
+   & Đoàn Mạnh Tất & Viết hướng phát triển (data/ML) \\
+   & Phạm Đức Hoài Nam & Hoàn thiện báo cáo tiến độ \\
+\hline
+50 & Cả nhóm & Hoàn thành báo cáo, hoàn thiện slide cuối kỳ \\
+\hline
+51 & Cả nhóm &   Báo cáo cuối kỳ, nộp sản phẩm \\
+\hline
+\end{longtable}
+\end{center}
+
+\subsection{Source code (link GitHub)}
+
+Toàn bộ mã nguồn của dự án được lưu trữ công khai tại GitHub: 
+\url{https://github.com/nam2312186/Project1_Group2}
+
+
+
+\subsection{Tài liệu tham khảo}
+
+\begin{thebibliography}{9}
+
+\bibitem{Kaggle}
+Kaggle. \textit{Datasets for Data Science and Machine Learning}.  
+\url{https://www.kaggle.com/}
+
+\bibitem{SpotifyAPI}
+Spotify. \textit{Spotify Web API Documentation}.  
+\url{https://developer.spotify.com/documentation/web-api}
+
+\bibitem{Billboard}
+Billboard. \textit{Billboard Hot 100 – Music Charts}.  
+\url{https://www.billboard.com/}
+
+\bibitem{ReccoBeats}
+ReccoBeats. \textit{Track Audio Features API}.  
+\url{https://reccobeats.com/docs/apis/get-track-audio-features}
+
+\end{thebibliography}
+
+
+\end{document}
+
+
