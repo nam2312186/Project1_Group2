@@ -1,0 +1,32 @@
+﻿date,position,song,artist,track_id,popularity,duration_ms,is_explicit,album_id,release_date,genres,main_genre
+2023-05-18,8,アイドル,YOASOBI,7ovUcF5uHTBRzUpB6ZOmvt,89,213233,0,7yMkS4NCpG0FH6NoaH3F0a,2023-04-12,"j-pop, anime",j-pop
+2023-05-18,32,愛を伝えたいだとか,Aimyon,0N8Xztr4pBHJ7V0moJWhbO,69,235240,0,0ct8ESCAYEpDGYJOndCfft,2017-09-12,j-pop,j-pop
+2023-05-18,35,Welcome To MY World (feat. nævis),"aespa, nævis",6qVqWJxIpsabUKBILG7d6N,77,206920,0,2o35lokKrBVG73xWFDEVsX,2023-05-02,k-pop,k-pop
+2023-05-26,33,"Eve, Psyche & The Bluebeard’s wife",LE SSERAFIM,4QhnNyKDsAkXPwHkSnuc89,80,185538,0,4Oz7K9DRwwGMN49i4NbVDT,2023-05-01,k-pop,k-pop
+2023-05-29,47,I Don’t Think That I Like Her,Charlie Puth,3iLBFgaQJ94iarMgzrTuWb,72,188507,0,5Jk4Eg7pxYhDrWJCVVzmMt,2022-10-06,"soft pop, pop",soft pop
+2023-08-05,50,Summer (Feat. BE’O),"Paul Blanco, BE'O",26Iv7VGUF1lqU10rxQXFL8,66,199866,1,6Ve5QOb2WKKPLYrO7VaNr8,2022-06-15,k-rap,k-rap
+2023-08-23,28,Fry’s Dream,AKMU,6f4CAdAmrOfGH3FOfwHMSV,44,204576,0,47xcjDSi1t6pQE2RvXKdUF,2023-08-21,"k-ballad, k-pop",k-ballad
+2023-09-28,39,Deseydin AnlardÄ±m,EDES,unknown_track,1,150857,0,unknown_album,2023-09-27,unknown,unknown
+2023-10-30,48,地球儀 - Spinning Globe,Kenshi Yonezu,6x7SB38tuekpu4xpH9OIPY,76,273437,0,2FoCAlugem3yJk6lFxXP0W,2023-07-17,"j-pop, anime, j-rock",j-pop
+2023-12-24,48,It's Beginning to Look a Lot like Christmas,Michael Bublé,3it2BvJfyhPEWF3kD2TZJ1,87,207199,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2024-01-18,46,Soñar (Breaker),NMIXX,6UwrPxRaR5HPNLDDl7RcT9,58,173053,0,5CCxLQgcI7cVwmgFDlicbP,2024-01-15,k-pop,k-pop
+2024-02-01,16,"Yes or No (Feat. 허윤진 of LE SSERAFIM, Crush)","GroovyRoom, HUH YUNJIN, Crush",3m5PgWSClkZ44vdFmPiqpq,71,179146,0,5O1y2JYcAX1wnNuotm6qWF,2024-01-17,k-rap,k-rap
+2024-02-16,33,CARNIVAL,"¥$, Kanye West, Ty Dolla $ign",2McT2fkH0VDqPsbiB9HWPq,0,264324,1,4DOsPwJtokv6HEifZ6t5j6,2024-02-08,unknown,unknown
+2024-03-01,25,AK47,"Men's Tear, 뷰티풀너드",58JkIC1jK1NZNSJeLXfpWt,39,160500,0,4EjOYpSg7rQvMxz74rb4mc,2024-02-28,k-rap,k-rap
+2024-04-18,40,I’ll See You There Tomorrow,TOMORROW X TOGETHER,0bMWoFtQIrnW5YyNMc4aKQ,77,196694,0,0mDwrOXZHN1lgCNeBvkBbj,2024-04-01,k-pop,k-pop
+2024-05-26,35,Well…?,YANGHONGWON,4dIhOd9VXoBDsq1RUO6rvK,36,140733,0,7hFjISvuzhZauC3EK66GuG,2024-05-24,k-rap,k-rap
+2024-06-30,29,踊り子,Vaundy,1YXot2MLAG9sttepCtBRM7,68,229328,0,4LWbfv8uvEF3oz7YBFxmzn,2023-11-15,"j-pop, japanese indie, j-rock, anime",j-pop
+2024-06-30,30,青い珊瑚礁,Seiko Matsuda,6uPyPOSTwYCgPjYINvXUKl,50,219973,0,4uDJhODUQ6DoJOIQ3di3mV,2023-01-01,"kayokyoku, city pop, enka, j-pop",kayokyoku
+2024-07-02,45,"If I’m S, Can You Be My N?",TWS,2y8vRHEoz15sYDmxyrDePO,62,168026,0,03QRqvvQFLDaJM711Gkn03,2024-06-24,k-pop,k-pop
+2024-07-05,13,Young Man,"HYUKOH, 落日飛車 Sunset Rollercoaster",0VrZodRby4IfK3rZIxSajI,47,257286,0,1tEu6qNPURb0YfjaRDK23w,2024-07-03,"k-rock, k-ballad",k-rock
+2024-08-04,22,SLIDE,"¥$, Kanye West, Ty Dolla $ign",5MGMXOhVvwzCjFgdQsFokR,0,198060,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-04,24,FIELD TRIP,"¥$, Kanye West, Ty Dolla $ign",7vv89PswQvqGKCGJ1rw5on,0,167228,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-04,39,PROMOTION,"¥$, Kanye West, Ty Dolla $ign",6bSfeCXlUaGa3eWCy5qPTb,0,158876,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-04,40,FRIED,"¥$, Kanye West, Ty Dolla $ign",4Qay2jEWJYjXmJ8eNOGtaD,0,179256,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-04,44,TIME MOVING SLOW,"¥$, Kanye West, Ty Dolla $ign",0JgassGI6jNxpX82jGpcuJ,0,159678,1,5RV2TNyjylqWJNxQyHBTeJ,2024-08-03,unknown,unknown
+2024-08-17,22,New Woman (feat. ROSALÍA),"LISA, ROSALÍA",5UmfBGfRJgjZ8CdhgffabQ,0,179789,0,5eoWRkeplmcCL97afSMJVm,2024-08-15,k-pop,k-pop
+2024-10-05,43,Begin Again Open MIC EPISODE. ​​30 - You Were Beautiful,WONPIL,5mMMlyyZtJXgxAr8BPUuOM,49,283160,0,6LsZzd8JtMVUU2ePmyuU0s,2017-06-07,k-rock,k-rock
+2024-10-20,2,APT.,"ROSÉ, Bruno Mars",5vNRhkKd0yEAg8suGBpjeY,76,169917,0,2IYQwwgxgOIn7t3iF6ufFD,2024-10-18,k-pop,k-pop
+2024-11-05,50,"무제(無題) (Untitled, 2014)",G-DRAGON,16BS342F89MDqouSxgLaUK,58,222867,0,2koSNfchdUxqw1rPJO87aH,2017-06-08,"k-pop, k-rap",k-pop
+2024-11-21,7,I’ll Be There,Jin,2SR0alFA2oWYXSoePGTj0V,49,181677,0,6MNt88F7umrtkwUPcOgG69,2024-11-19,k-pop,k-pop
+2024-11-24,8,number one girl,ROSÉ,1lcBt7LoEikqYmhUoa2cez,72,216442,0,7kFyd5oyJdVX2pIi6P4iHE,2024-11-22,k-pop,k-pop

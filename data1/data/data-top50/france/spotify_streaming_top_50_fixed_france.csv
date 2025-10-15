@@ -1,0 +1,126 @@
+﻿date,position,song,artist,track_id,popularity,duration_ms,is_explicit,album_id,release_date,genres,main_genre
+2023-05-18,2,C'est carré le S,"Naps, Gazo, Ninho",2UHSXPY5jSCpp3nzWHtaQv,74,201533,0,1rs3ZOltQ78YblG2YMIvRI,2023-04-28,"french rap, pop urbaine, chicha",french rap
+2023-05-18,22,Quoi de neuf bébé,"Jok'air, Damso",69Nu2qG69WCvju2bZvrxlu,61,202760,1,75WnRZkxa6fotcpJgIlxUC,2023-05-12,"french rap, french r&b",french rap
+2023-05-18,27,Dépassé,Nuit Incolore,3kkLa7nOjDH3bYTAt54oYh,74,172394,0,4bes8iyhIgbzo98sS5KVy3,2022-12-15,"french pop, chanson, variété française",french pop
+2023-05-18,33,Urus,Favé,7A2DyRIqqelhZ4caPJMaFI,71,147788,1,2Gf7U6e63AwtWjbG3wVV6P,2022-10-12,french rap,french rap
+2023-05-18,34,TOUTE LA JOURNÉE (feat. Tiakola),"Zola, Tiakola",2nD4X3sHH2kZ1gWraTpe7u,68,167933,1,6oi3iBbHDDAaAzMoG0UbgE,2023-03-17,"french rap, french r&b",french rap
+2023-05-18,37,NO LÈCHE,"Gazo, Favé, Kerchak, Leto",6D1HiF2e3Z0F8FwQ5uLxwn,75,194201,1,6HGMONyziFfUCEpMdwbzZn,2023-03-15,"french rap, french r&b, pop urbaine, drill",french rap
+2023-05-18,39,La vie qu'on mène,Ninho,0Jh6iWjna1wk5le0Ahn7No,74,193443,0,14p5CVdJCMRcgvICDAGS7k,2019-03-22,"french rap, pop urbaine",french rap
+2023-05-18,44,Pas là - Bonus track - édition Aube,Djadja & Dinaz,1Uu4AYdteAo3c6Zp2Sefov,72,147000,1,1NTYNLaNEoAiZwT3mcNuP5,2023-03-03,"french rap, pop urbaine",french rap
+2023-05-18,48,Δ. Dieu ne ment jamais,Damso,6YWjskKykdPsBuiTBOg1VK,74,199346,1,7ovdjtmV0Bkm4Xb4pqtrZt,2017-04-28,"french rap, pop urbaine, french r&b",french rap
+2023-05-25,47,Émotif (Booska 1H),PLK,1O2mX6MrjsJlkCGEF0TVWL,71,161737,1,6LDfsPJ7ACw7LkWzncyLx1,2019-02-01,"french rap, pop urbaine",french rap
+2023-05-27,10,Dernière ligne droite (feat. Laylow),"SCH, Laylow",25ph3mbSI8iOkaNGPtrUwk,57,193270,0,7IDykeUjRruv9YKVWt33KX,2023-05-24,"french rap, pop urbaine",french rap
+2023-05-27,49,BESO,"ROSALÍA, Rauw Alejandro",609E1JCInJncactoMmkDon,96,194543,0,50uChhk7AKkzDKytDixjYW,2023-03-24,latin,latin
+2023-05-28,26,Délire (feat. Tiakola),"Joé Dwèt Filé, Tiakola",5JzxQS6OW4GEruKqShvUo8,56,206720,1,459LQDfdX2DMzsymKkRRfP,2023-05-26,"kompa, zouk, french r&b, pop urbaine, kizomba, shatta",kompa
+2023-06-02,19,Yafama - Nouvelle École,"Nouvelle École, Vieux Père, Bassey Kone",2rd3kchMtUoVCP7S7a0Lxa,56,214901,1,73HDVkRvYkm2ubCRYifWT4,2023-05-31,french rap,french rap
+2023-06-02,39,Finale - Nouvelle École,"Dau, Nouvelle École",46NCn1HZ054Wy0o6H86teM,54,180000,1,0di4KeDALleQK2iV3R2YyS,2023-05-31,french rap,french rap
+2023-06-03,13,AMF - Nouvelle École,"Coelho, Nouvelle École",0su56748WvAwZDecsY8ZNZ,60,179769,1,5vYdXyKqXVIRKUilj5Lr0h,2023-05-31,french rap,french rap
+2023-06-04,39,Saiyan,"Heuss L'enfoiré, Gazo",2BvjmY4Mp5q1AHL0laetd6,55,189829,1,65Zsfpx3BX9uriUQ5Nvuq7,2023-06-02,"french rap, pop urbaine",french rap
+2023-06-11,3,Entraînement,Jul,5JwqiWLLvi0HGABtvw57eX,59,251266,1,1WYGwCvsfFrr7kuQcfNnJr,2023-06-09,"french rap, pop urbaine",french rap
+2023-06-11,13,Chagriné,Jul,0mVT4VH6fWPi2kyxTSRfvl,57,167186,1,1WYGwCvsfFrr7kuQcfNnJr,2023-06-09,"french rap, pop urbaine",french rap
+2023-06-11,21,Range ton égo,Jul,7r7lyWFwnnlxWOLNkzrCZk,56,180186,1,1WYGwCvsfFrr7kuQcfNnJr,2023-06-09,"french rap, pop urbaine",french rap
+2023-06-11,23,"Mattinata (Arr. Maazel for Tenor, Violin & Orchestra)","Ruggero Leoncavallo, Andrea Bocelli, London Symphony Orchestra, Lorin Maazel",6KhgJkLrKKfx9Il92686Bx,56,180306,1,2MJwtheukAdfeZvK9AbKBZ,2023-06-09,opera,opera
+2023-06-18,25,Signé,Booba,62GMut5fknWG4DCFVI3Vzh,57,180968,1,5nAPqNlNOBzQjLv3JK5zxM,2023-06-15,"french rap, french r&b, pop urbaine",french rap
+2023-06-25,28,Méchant,Maes,1h8484CNhIZqhMsqD0ljkl,18,141247,1,0qnEbi793qwTHRjUIsNQxD,2023-03-10,"french rap, pop urbaine",french rap
+2023-06-25,49,Dernière fois,Nej,1D4uIvC3NJONLIeaadicne,55,198698,0,4krkLLyWeRYqr8JLIAx0KP,2023-06-23,"french r&b, moroccan pop",french r&b
+2023-07-02,8,Branché sur snap,Ninho,0aXmmrsk2ZcnAlclHqkJCD,63,209320,1,6sY6EuHMdhyD4dgZsYcKad,2023-06-30,"french rap, pop urbaine",french rap
+2023-07-02,15,Plus qu’eux,Ninho,3XXoQ40P5yk3LczUTg0KDR,61,209253,1,6sY6EuHMdhyD4dgZsYcKad,2023-06-30,"french rap, pop urbaine",french rap
+2023-07-02,17,Bon qu’à ça,Ninho,07VDlMEZIHbocc84zVB410,61,169226,1,6sY6EuHMdhyD4dgZsYcKad,2023-06-30,"french rap, pop urbaine",french rap
+2023-07-16,48,BABY SAID,Måneskin,2KReCz1L5XkGIBhDncQ5VZ,83,164682,0,2KUaR4K36tSliwAoUA1gcs,2023-01-20,unknown,unknown
+2023-08-14,44,Petit génie,"Jungeli, Imen Es, Alonzo, Abou Debeing, Lossa",1eldTykrnkEBLX41bk5eMw,64,217142,1,4Ta3fRzeMUtQlQrrcn1cuE,2023-08-04,"french r&b, pop urbaine",french r&b
+2023-08-17,49,Emorio,"Trinix, Fafá de Belém",14VthBnru6kiREQUYAuNSL,75,163840,0,3yP0Nsb8jyXY4HMNb6tkO9,2023-04-28,unknown,unknown
+2023-08-20,40,J't'emmène au vent,Louise Attaque,0Wr98MVkENZXddiLB3bPb0,71,184173,0,2HkPAUQZm9D1wkJQeh9ENz,1997-04-22,"variété française, chanson, french pop, french house",variété française
+2023-08-26,7,Amérique du sud,Freeze corleone,1660D45R0mZpDpT9QYVuFu,42,211720,1,0gexRhoA5W8aaqIKFWRA0D,2023-08-25,"french rap, drill",french rap
+2023-09-13,10,L'homme méthode,Freeze corleone,5T0QTdLpsNIjSoWM03NLNR,63,190120,1,0gexRhoA5W8aaqIKFWRA0D,2023-09-11,"french rap, drill",french rap
+2023-09-13,11,Lamborghini bénie,Freeze corleone,3VMstzkpn4hrcQByz6F699,62,233306,1,0gexRhoA5W8aaqIKFWRA0D,2023-09-11,"french rap, drill",french rap
+2023-09-17,12,FLASHBACK,"Favé, Gazo",2PWJx5FwMrMVEaTjwYait1,35,176109,1,33Hs5QPrPlpiDEWKhNfX2S,2023-09-15,french rap,french rap
+2023-09-24,30,3x filtré,Werenoi,4XwMoPc7s1E2V0Q5eKSzpA,34,180050,1,7931mqzx81Hm7rsKGjaVFc,2023-09-22,french rap,french rap
+2023-09-27,46,Prada,"cassö, RAYE, D-Block Europe",59NraMJsLaMCVtwXTSia8i,92,132359,1,5MU0RmBSpoSxOPYBfcobDc,2023-08-11,hypertechno,hypertechno
+2023-09-28,41,Si No Estás,iñigo quintero,2HafqoJbgXdtjwCOvNEF14,76,184061,0,66k6EGkPtYoN44anGIsEPW,2022-09-23,unknown,unknown
+2023-09-30,23,La guitare suit la mélo,"Dadju, Zola",5BOfwzK5yI9sL2uit0fHIG,0,189120,0,0cBCT3uU5iywNCzTXrAaLz,2023-09-27,"french r&b, pop urbaine, french rap, french pop",french r&b
+2023-09-30,36,Préjudice,Leto,4izmyQcssvHEpC8cCFqQam,0,121446,1,1Wk9tbsibudYX1zKKGdDV5,2023-09-29,"french rap, pop urbaine",french rap
+2023-10-14,40,Sitting In The Corner (feat. Adriel Favela & Kacey Musgraves),"Cuco, Adriel Favela, Kacey Musgraves",1Cx5pTBRWI67JXVmMGJT23,31,171293,1,7JvjOgEBBcrLs9048x1QcM,2023-10-13,bedroom pop,bedroom pop
+2023-10-21,36,Toute épreuve,Leto,5upp18sWYDfl5mt22PkpKJ,0,179415,1,1Wk9tbsibudYX1zKKGdDV5,2023-10-20,"french rap, pop urbaine",french rap
+2023-10-29,11,Problèmes de Riche,Josman,3ssRqeOxEqTUZjsMuDeOU9,0,192000,1,7CWl72c1sWausPdwa2C29w,2023-10-28,french rap,french rap
+2023-10-29,17,50k€,Josman,5SN8g3koBFMIJdB7icMzk3,0,188960,1,7CWl72c1sWausPdwa2C29w,2023-10-28,french rap,french rap
+2023-10-29,32,À feu doux...,Josman,4nyBlmu7zQiuaJjIGKe1qQ,0,187013,1,7CWl72c1sWausPdwa2C29w,2023-10-28,french rap,french rap
+2023-10-29,48,Popcorn Salé,SANTA,6IyY7st5UooM84lDO3odza,71,238653,0,30M4RbTzpc2lH3OdSwJTgu,2022-03-25,"variété française, french pop, chanson",variété française
+2023-11-11,36,PHOTO,"Hös Copperfield, Werenoi",6XTRH2CGALgk2L75pkpfiA,27,158050,1,68n0MItmeUghSiL7lD5gux,2023-11-10,"french rap, pop urbaine",french rap
+2023-11-17,49,Makila : Wablé - Version Acoustique,"Dadju, Tayc",1vhxCFsb6L5PS7wcO9NIrn,44,225903,0,0Tbzb4NTozmXoJ0nJLFpxj,2023-11-15,"french r&b, pop urbaine, french rap, french pop",french r&b
+2023-11-21,47,Mélodie,OBOY,0S27n2bvUftoQ4jNX0I8HX,69,165701,1,5cnpjofSRJPxR22AriH7Q9,2020-07-03,"french rap, pop urbaine",french rap
+2023-11-24,40,Drifté,Hamza,53abMgyyPY2LhbilPsO9uK,10,160960,1,0gIOJEZLLI3TUWD3HtXTR7,2023-11-22,"french rap, pop urbaine, french r&b",french rap
+2023-11-25,24,LOYAL,La Fève,5W9JWRvM5nTLCz8Z9aW2NS,44,228192,1,5ua3ScbhrRD4fPu8G9YOtf,2023-11-23,"french rap, new wave",french rap
+2023-11-27,40,Bécane - A COLORS SHOW,"Yamê, COLORS",3oUEzTAoOxqZHN4xiqTGqJ,66,182440,1,7oBuvko8hsXKXHEUHvDXnB,2023-06-01,french rap,french rap
+2023-11-28,37,Les étoiles,"Yaro, Ninho",13WAkbVnyYikdpR8hu9Kox,46,177175,1,4j5nFb2STId6eNaozQH2RA,2023-11-23,"french rap, pop urbaine",french rap
+2023-12-03,46,It's Beginning to Look a Lot like Christmas,Michael Bublé,3it2BvJfyhPEWF3kD2TZJ1,82,207199,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-12-04,47,Holly Jolly Christmas,Michael Bublé,6rqn19AqjcM5wgI1hCYciJ,79,119786,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2023-12-10,4,J'fais plaisir à la zone,"Jul, SDM",26Anqi86HCCG57L5CE0gTr,60,183106,1,1g2C4B3Adi9L27BLlVJdEs,2023-12-08,"french rap, pop urbaine",french rap
+2023-12-10,5,Postiché,"Jul, PLK",5bh2UVFvbc6UITYgrQZY6v,58,276546,1,1g2C4B3Adi9L27BLlVJdEs,2023-12-08,"french rap, pop urbaine",french rap
+2023-12-10,10,Miné sur Paname,"Jul, Tiakola",3hc9T5XzWBHxX7uEaG3Kdz,59,226800,1,1g2C4B3Adi9L27BLlVJdEs,2023-12-08,"french rap, pop urbaine",french rap
+2023-12-10,15,Le rappeur à 3 lettres,Jul,46x6097gZein1HS9ORrOqC,58,231546,1,1g2C4B3Adi9L27BLlVJdEs,2023-12-08,"french rap, pop urbaine",french rap
+2023-12-10,17,La máquina,Jul,7953OK1zxdEkdJBv6XmJ9x,58,213866,1,1g2C4B3Adi9L27BLlVJdEs,2023-12-08,"french rap, pop urbaine",french rap
+2023-12-17,18,Périph,PLK,65w1B0wLPnEICOfSl7C4Op,60,168849,0,0VRRwExn96kc3L9BfYIF6s,2023-12-14,"french rap, pop urbaine",french rap
+2023-12-17,47,Aïcha,Djadja & Dinaz,4jqnQ6qjY0D9iUBTbH5EFw,50,206684,0,1NTYNLaNEoAiZwT3mcNuP5,2023-12-15,"french rap, pop urbaine",french rap
+2023-12-24,49,ZAY INTRO,La Fève,5WdblAl3tJu9r7S4HzeqpZ,57,104313,1,2vdJtLZGq4ljPBo3gFTwJC,2023-12-22,"french rap, new wave",french rap
+2023-12-25,18,Feliz Navidad,José Feliciano,0oPdaY4dXtc3ZsaG17V972,88,182066,0,3No96PtEFyRfX1oELmZTPu,2002-09-24,"christmas, bolero, villancicos",christmas
+2023-12-25,30,Santa Claus Is Coming to Town,Michael Bublé,5dLwdEJAFzjQbeRrDL5uzo,79,171806,0,6UuaXwIIaIaNSGrpPE1vFt,2011-10-14,christmas,christmas
+2024-01-01,28,J'irai où tu iras (with Jean-Jacques Goldman),"Céline Dion, Jean-Jacques Goldman",2dMLZBAf1mnrtviUHiwd7J,60,205800,0,2rK67uK3n9hJObOecEJOjk,1995-03-27,variété française,variété française
+2024-01-01,49,DESPECHÁ,ROSALÍA,53tfEupEzQRtVFOeZvk7xq,77,156787,1,3zbiiu3JTibw0esC7eoMXr,2022-09-09,latin,latin
+2024-01-21,2,Ça mène à rien,"PLK, Gazo",7GLtEcaxxQpdK63YsiG51g,60,198773,1,0VRRwExn96kc3L9BfYIF6s,2024-01-18,"french rap, pop urbaine",french rap
+2024-01-21,22,Il pleut à Paris,PLK,441auDLfimQNr0e1yz0KDU,58,147373,1,0VRRwExn96kc3L9BfYIF6s,2024-01-18,"french rap, pop urbaine",french rap
+2024-01-21,27,Siège chauffant,Jul,0rRaFBvow8WdGVERP8QXho,58,213893,1,49gSslDoncGfaxtZfsHyTA,2024-01-19,"french rap, pop urbaine",french rap
+2024-01-28,7,Hypé (feat. Ayra Starr),"Aya Nakamura, Ayra Starr",6oi6AAmRd2IbanRMQZC39J,59,157053,0,5RuD9wVp96jSA1Lx1pZNYD,2024-01-26,"french r&b, pop urbaine",french r&b
+2024-02-04,35,Ça fait longtemps,PLK,4NhPbSqVQjnwALTZrhXdfD,56,145173,1,1WlS2GoDR8Bj0DaJ9QJhHT,2024-02-01,"french rap, pop urbaine",french rap
+2024-02-09,1,Ceux qu'on Ã©tait,Pierre Garnier & Star Academy,unknown_track,69,174106,0,unknown_album,2024-02-07,unknown,unknown
+2024-02-11,17,Bénigni,"Booba, USKY",3rSMid8v3gkBTYnNCMGNWh,59,173975,1,4QmsgYLE2ytcwxGgkUMy2T,2024-02-08,"french rap, french r&b, pop urbaine",french rap
+2024-02-12,36,La symphonie des éclairs,Zaho de Sagazan,4QIH0XYnCLoCl1WZIV08Pn,67,198789,0,5GoDO8a03bxSSxMCeYKfaW,2023-03-31,"french pop, chanson, variété française",french pop
+2024-02-17,1,Ceux qu'on était,Pierre Garnier,5Pzh42xn3oAXHh4U7tVHMr,80,174106,0,0s4v36LmZVmcutSEXwt3uD,2024-02-07,"variété française, french pop, chanson",variété française
+2024-02-18,22,Téléphérique,Werenoi,3Y2MzFJoFDRs3HMJXuUTZ3,61,195618,1,1g5NH7uMyGKDHL9DxMDLdS,2024-02-16,french rap,french rap
+2024-02-18,45,Intro Morphée,Werenoi,5yb0mL14I6JYUQasWI4j0e,60,200535,1,1g5NH7uMyGKDHL9DxMDLdS,2024-02-16,french rap,french rap
+2024-02-18,46,Témoin,Werenoi,1h7zplvfkerbAsKmZstZA9,58,164418,1,1g5NH7uMyGKDHL9DxMDLdS,2024-02-16,french rap,french rap
+2024-02-24,36,TEXAS HOLD 'EM,Beyoncé,0Z7nGFVCLfixWctgePsRk9,77,235636,1,6cBlaud5JVmPjkjxnwIMLx,2024-02-10,unknown,unknown
+2024-02-25,11,ENCORE LES PROBLÈMES,"Kalash Criminel, Freeze corleone",0XZSX2sk2SkyRrGZ3h3vKH,0,184404,1,2E1Y3j0l33CwrOp5kc8qx5,2024-02-23,french rap,french rap
+2024-02-25,31,Ceux qu'on était - Version acoustique,Pierre Garnier,03Nu6igh7gtptMbgJrcdrk,0,200813,0,4JdvSrnVF0r39NGMm1Xree,2024-02-23,"variété française, french pop, chanson",variété française
+2024-03-03,17,Aimée pour de vrai,"Helena, Star Academy",3MFphLI59LK2MqvVY9ZMTZ,57,188960,0,5A3ws0VOAm5S1bFZpJBotM,2024-03-01,"french pop, variété française, chanson",french pop
+2024-03-06,13,SOLO (feat. La Fève),"Tiakola, La Fève",4vCIgfkvwQNcInoewVa1uF,59,200782,1,2DWSieXN6ldWJczKBB3BCS,2024-03-03,"french rap, pop urbaine, french r&b",french rap
+2024-03-06,19,#BÂTIMENT1,Tiakola,5YLfD5P6wnlAtKG6l4kObB,58,129522,1,2DWSieXN6ldWJczKBB3BCS,2024-03-03,"french rap, pop urbaine, french r&b",french rap
+2024-03-06,30,P&LOVÉ,Tiakola,2hnN2kFtYzf0jpyrEzBmkh,57,182055,1,2DWSieXN6ldWJczKBB3BCS,2024-03-03,"french rap, pop urbaine, french r&b",french rap
+2024-03-26,50,Beau (feat. Julien Doré),"Joseph Kamel, Julien Doré",7xZrirKz1fymGxGVPtRRRk,68,176653,0,5y08xFNtrldDoRVDAH30Uu,2023-10-27,"french pop, variété française, chanson",french pop
+2024-03-31,49,II MOST WANTED,"Beyoncé, Miley Cyrus",1UP7PXne1lIYZB5G5aiRGL,49,208521,0,6BzxX6zkDsYKFJ04ziU5xQ,2024-03-27,unknown,unknown
+2024-04-19,47,Pedro,"Jaxomy, Agatino Romero, Raffaella Carrà",48lxT5qJF0yYyf2z4wB4xW,83,144846,0,5y6RXjI5VPR0RyInghTbf1,2024-03-29,unknown,unknown
+2024-05-05,37,Mélanine,"Heuss L'enfoiré, Werenoi",7GCU3DlRW3s65f6JjNBrM4,54,180923,1,0ovXNQjta5DdP31OAMlKXO,2024-05-03,"french rap, pop urbaine",french rap
+2024-05-12,34,Quillé,"Naza, Ninho",05tF2Drqpc0hbHyh071354,54,180107,1,1V6CDWdhrcfLbRECo7ERLF,2024-05-10,"pop urbaine, french rap, french r&b",pop urbaine
+2024-05-19,30,L’AMOUR DE MA VIE,Billie Eilish,6fPan2saHdFaIHuTSatORv,58,333986,0,7aJuG4TFXa2hmE4z1yxc3n,2024-05-17,unknown,unknown
+2024-05-19,45,Colisée (feat. SDM),"Lacrim, SDM",3RzWvMggSzFMIueWIaDwEU,32,168746,1,4R1vR0X2fyl34QydA2VeWE,2024-05-17,french rap,french rap
+2024-06-02,34,Le baptême,SCH,0WtqU8HpSQgERzQlQQjzds,39,129586,1,4xR5GFngZglie60Cc3DvoS,2024-05-31,"french rap, pop urbaine",french rap
+2024-06-04,47,Tout gâché,Leto,2p7qT06zGjnvptWFPGgyLi,59,150029,1,05YqDGZ0w5GCfvLb7TMoKT,2024-05-31,"french rap, pop urbaine",french rap
+2024-06-16,44,CŒUR DE ICE,"Naps, Gazo",1KPuYzyP2wKwFXQEF1voqj,26,204080,1,16q1SBIfIoTnp6jxlRugUe,2024-06-14,"french rap, pop urbaine, chicha",french rap
+2024-06-22,50,Mes Lovés,"Ponko, Hamza",1dpuodugAA3ZVyV0oXHUu4,25,188717,1,4hufR5ALDudDZxiReG2JiT,2024-06-21,french rap,french rap
+2024-07-09,49,No lo sé,Lacrim,7CVQNimiTPLHTu4ZM7pv7s,64,165813,1,6peJVbUHOoIA7mAzUmQypA,2024-06-14,french rap,french rap
+2024-07-21,36,CORDILLÈRE,"Maes, Werenoi",2rVrFAV4XPF0gonpDwvFQI,52,198946,1,3pa4I96zdjB4CRR7e0gjyK,2024-07-18,"french rap, pop urbaine",french rap
+2024-08-15,28,J’crois qu’ils ont pas compris,Leto,3KmGOpeFaltoCpzRAyrZJg,63,130000,1,05YqDGZ0w5GCfvLb7TMoKT,2024-07-19,"french rap, pop urbaine",french rap
+2024-08-17,4,Bande organisée 2,"Jul, 13 Organisé, Alonzo, SCH, Kofs, Soso Maness, Houari, Elams, Solda, Naps",3wh4HFS6a3v8Zu1vZadEwA,51,376493,1,77qDPmjrdp1m055rJ3vpSr,2024-08-15,"french rap, pop urbaine",french rap
+2024-08-31,46,ON N'EST JAMAIS MIEUX COMPRIS QUE PAR SOI-MÊME,Damso,7syLTsRspqS6HXCaOrOLfT,53,200186,1,5YkdGNYVnai3pDHlDHLwsX,2024-08-29,"french rap, pop urbaine, french r&b",french rap
+2024-09-07,47,Racks - Booska Nouvelle École,Yorssy,0FOSpvSUvyglu3sox8JJp9,68,149508,0,3NFL8bpjHx9UWQoGfMaspT,2024-08-02,french rap,french rap
+2024-09-08,46,Sous le soleil,"13 Organisé, Sat, L'Algérino, Jul, Fahar, Alonzo, Le Rat Luciano, Menzo, Don Choa, As, Vincenzo, Soprano, DJ Djel",3UtrfePxGzPeufOLkXuyON,53,480160,1,5ijEA7Uw0jSWlGJcqEqoEs,2024-09-06,french rap,french rap
+2024-09-08,47,BIGLAF,La Fève,5irK6xxnLIgC0KVzqII4O8,52,96023,1,1TDKG6UHfzhfH2JKdqkBCg,2024-09-06,"french rap, new wave",french rap
+2024-09-17,18,UNE HISTOIRE ÉTRANGE,Laylow,1LqDW54jByEjfZJMadiLJU,59,277506,1,1LtG5P8cNErCsn1DZMVbrz,2021-07-16,"french rap, moroccan rap",french rap
+2024-09-22,10,Nightcall,"Kavinsky, Angèle, Phoenix",2KejCKgm7l3uefW9cFt8cH,59,179306,0,05OLq8nG4L5WYZXTfXVYM7,2024-09-20,"synthwave, french house",synthwave
+2024-09-22,38,RESTE-LÀ,"Tiakola, RnBoi, Monsieur Nov",6yg2N05MAebATBiYQytC6N,54,242333,1,7bwHY8zkw9nqxxw1WIQ7Qa,2024-09-20,"french rap, pop urbaine, french r&b",french rap
+2024-09-25,50,Minimum ça,Dr. Yaro,4mNttG8qiVh4BKrMUrUhCI,66,149811,0,60rg9NAmtNCkIcculZeX5n,2024-08-09,"pop urbaine, shatta",pop urbaine
+2024-09-29,33,MAINTENANT ÇA VA,SDM,2Qx8co0MySfDKmSjpTYFSt,54,147767,1,22NwdsP47PnWsA58u3z7S9,2024-09-26,"french rap, french r&b, pop urbaine",french rap
+2024-10-06,41,Pétunias,Werenoi,3Byu179ofnuChb4zF1fMhu,19,210247,1,1g5NH7uMyGKDHL9DxMDLdS,2024-02-16,french rap,french rap
+2024-10-14,48,UnRappeurÇaRap #1,"Ninho, Niska",3q0XkoVwowF4itkx9EMt6y,52,184156,1,0x37rZGffTPSOVC8nGptOl,2024-10-11,"french rap, pop urbaine",french rap
+2024-10-14,50,Où aller,GIMS,6m6DLvkfxlezevfiD8qD4B,49,235746,0,4MynMBod1pU36kVTWCy2ki,2018-03-23,"french rap, french r&b, french pop, pop urbaine",french rap
+2024-10-20,18,En pétard,"Werenoi, PLK",09euCRsvlEzWORyg4rFmcZ,52,165000,1,3Q0XRPlQJrYTPpbGz5LSvA,2024-10-18,french rap,french rap
+2024-10-20,35,UnRappeurÇaRap #2,"Ninho, Niska",1cYHVzytCqQjEDA9xP6ZDG,55,157280,1,0FXyBTrs4VUFrUFPsh17aU,2024-10-17,"french rap, pop urbaine",french rap
+2024-10-20,49,Moteur brûlant,Werenoi,4sZPnzG8nf1u04lagQ2etr,50,162484,1,3Q0XRPlQJrYTPpbGz5LSvA,2024-10-18,french rap,french rap
+2024-10-21,44,APT.,"ROSÉ, Bruno Mars",5vNRhkKd0yEAg8suGBpjeY,76,169917,0,2IYQwwgxgOIn7t3iF6ufFD,2024-10-18,k-pop,k-pop
+2024-10-27,37,4 Kampé,Joé Dwèt Filé,7dzuYJwwtNnfcptmbD58aJ,54,214971,0,7ns1gjXstFSrBTFe81id88,2024-10-25,"kompa, zouk, french r&b, pop urbaine, kizomba, shatta",kompa
+2024-11-02,50,São Paulo (feat. Anitta) - Single Version,"The Weeknd, Anitta",2HXQL06smXD4evuW7MLY4X,72,301623,1,28TLpNqlJzeOqm9N4OY3BS,2024-10-31,unknown,unknown
+2024-11-12,49,Bonbon à la menthe,"Jok'air, Mallaury",30RmEyZdIYdYpSTkMtgtKt,65,317404,1,0AXwsQqbAnJ4Ndi9vxpduV,2019-03-29,"french rap, french r&b",french rap
+2024-11-14,3,Ça parle mal,Bouss,7ifFhxRIvYbe4IuzIkY2Qi,76,176248,1,5liaAwKXqnLAhpBconEDR6,2024-06-21,french rap,french rap
+2024-11-17,6,Schéma,Damso,0cAdtf6J8dsPFi04OVpKzx,59,187813,1,69NQGw0ZEDnhsASkg9MzXr,2024-11-15,"french rap, pop urbaine, french r&b",french rap
+2024-11-17,11,Conséquences,Damso,6Iw0IFL3iruOaAsZPUU7o3,58,207893,1,69NQGw0ZEDnhsASkg9MzXr,2024-11-15,"french rap, pop urbaine, french r&b",french rap
+2024-11-17,13,24h plus tôt,Damso,2Mv0GikoJ4MwwfSaYyERKS,58,256280,1,69NQGw0ZEDnhsASkg9MzXr,2024-11-15,"french rap, pop urbaine, french r&b",french rap
+2024-11-22,19,Mauvais Garçon,Helena,0doFYnqgcStWu1Emh8DTVo,54,162706,0,78tVFMGbPWdm1S86JyC017,2024-11-20,"french pop, variété française, chanson",french pop

@@ -1,0 +1,89 @@
+﻿date,position,song,artist,track_id,popularity,duration_ms,is_explicit,album_id,release_date,genres,main_genre
+2023-05-18,8,Abcdario,Eden MuÃ±oz & Junior H,0qCPD6ilr9nXkI4KVZgcns,77,220650,0,7BgImTrFzm2nQQW59IeFGD,2023-05-13,"banda, corrido, norteño, corridos bélicos, corridos tumbados",banda
+2023-05-18,13,FrÃ¡gil,Yahritza Y Su Esencia & Grupo Frontera,4JdSXF2p71cr8uCY3UiJM0,89,160517,0,6iZUwDpa27jeAvKxs8UYI2,2023-04-07,"sad sierreño, música mexicana, banda, corridos tumbados, corrido",sad sierreño
+2023-05-18,15,AcrÃ³stico,Shakira,7txjUEY6McJDJKqIo1Rxjp,81,170785,0,4ZQmQzeicvUGkLxFTI2Dvd,2023-05-11,latin pop,latin pop
+2023-05-18,21,Rosa Pastel,Peso Pluma & Jasiel NuÃ±ez,4yjeRuoVickg1G87LWeRes,86,204253,1,4jox3ip1I39DFC2B7R5qLH,2023-04-20,"corrido, corridos tumbados, corridos bélicos, música mexicana, sad sierreño, banda, electro corridos",corrido
+2023-05-18,25,Igualito a Mi ApÃ¡,Fuerza Regida,17js0w8GTkTUFGFM6PYvBd,88,166821,1,7idxAlo8GuUKWV7RhOlptp,2022-12-30,"corrido, corridos tumbados, corridos bélicos, música mexicana, sierreño, banda, electro corridos, sad sierreño",corrido
+2023-05-18,26,AsÃ­ Lo Quiso Dios,Eslabon Armado,6X5WZbJzXtk6aO03HlxuZ9,82,205299,0,5aDEezKnOqyQo0qvTFhpkM,2023-04-28,"corridos tumbados, sad sierreño, corrido, sierreño, música mexicana, corridos bélicos",corridos tumbados
+2023-05-18,29,BESO,ROSALÃA & Rauw Alejandro,609E1JCInJncactoMmkDon,96,194543,0,50uChhk7AKkzDKytDixjYW,2023-03-24,latin,latin
+2023-05-18,36,El GavilÃ¡n,Luis R Conriquez & Tony Aguirre & Peso Pluma,4ygQ5wSuzzNRevVjup1qV2,87,175295,0,5yRjJl7zzslQpbCX76s6Vi,2022-10-21,"corrido, corridos bélicos, corridos tumbados, electro corridos, dembow belico, banda, sierreño, sad sierreño, música mexicana",corrido
+2023-05-18,41,QuÃ© AgonÃ­a,Yuridia,4H6o1bxKRGzmsE0vzo968m,80,152923,0,4l8OrF24fhXsCFF6wvP5fE,2022-10-20,latin pop,latin pop
+2023-05-18,44,Di Que SÃ­,Grupo Marca Registrada,3J6d00TsKXTJV9zSJwEOd9,57,190553,0,5I5DtMQDh1PnflVUtTLMN7,2023-05-12,"corrido, corridos bélicos, corridos tumbados, electro corridos, norteño, música mexicana, banda, sad sierreño, dembow belico, sierreño",corrido
+2023-05-18,49,La Jumpa,ArcÃ¡ngel,2mnXxnrX5vCGolNkaFvVeM,87,255693,1,2AvuFDqTlnxvYhyVaLU6NY,2022-12-01,"reggaeton, trap latino, urbano latino",reggaeton
+2023-05-20,50,QuÃ© Onda Perdida,Grupo Firme & Gerardo Coronel,6IV5Y1eWaQZ1jV5apkUMS4,84,239637,0,7b01UUiyCasivZJP3Suj4C,2023-03-30,"banda, corrido, norteño, sierreño, grupera, ranchera, música mexicana",banda
+2023-06-04,42,MÃ¡s Te Va a Doler,Kenia OS,5zKXodTRdBV2Mv12UmM3Tc,64,194230,0,7GXA6EaThSEbjVVdaBvuZg,2023-06-02,reggaeton mexa,reggaeton mexa
+2023-06-10,31,DEMBOW BÃLICO,Tito Double P & Joel De La P & Luis R Conriquez,0FkD2FHEZrZIofVkY6XPFK,68,126522,1,0tBIOtAGyBryVpVVU4umOL,2023-06-03,"corrido, corridos tumbados, corridos bélicos, electro corridos, dembow belico, música mexicana",corrido
+2023-06-16,49,Feliz CumpleaÃ±os Ferxxo,Feid,2CeKVsFFXG4QzA415QygGb,90,155960,0,7pijRxgRaBirPz6wDaJIp9,2022-09-14,"reggaeton, urbano latino",reggaeton
+2023-06-19,48,CCC,Michelle Maciel & Eden MuÃ±oz,7uuqrSuCjWxPTCVyOeGMyt,81,126081,0,0BdTCfBqngPThmKfdWaXll,2023-05-04,"electro corridos, corrido, corridos tumbados, corridos bélicos, banda, dembow belico",electro corridos
+2023-06-25,46,GAVILÃN II,Peso Pluma,775hCSePn3GW4h9nZ636kq,70,225480,1,4jox3ip1I39DFC2B7R5qLH,2023-06-22,"corrido, corridos tumbados, corridos bélicos, música mexicana, sad sierreño, banda, electro corridos",corrido
+2023-07-05,48,Copa VacÃ­a,Shakira & Manuel Turizo,2iVgM5C7m1G4CJGbms301G,82,173547,0,4qtiO9UGqajxnKC0z0Mxn7,2023-06-29,latin pop,latin pop
+2023-07-09,31,PICARDÃA,Rauw Alejandro,05OnZaYopHpb0z7ktT2FIF,0,215172,1,6E7Awtyx6opYTbPXx6ApzB,2023-07-07,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2023-07-16,27,La 701,Panter BÃ©lico,7hOjsjkiAxFRHNUlLJSO1i,72,180101,0,67BJDrtPa43KdZ8fAFrCP8,2023-07-07,"corrido, corridos bélicos, corridos tumbados, electro corridos, dembow belico, banda, sierreño, sad sierreño, música mexicana",corrido
+2023-08-07,43,No Es Por AcÃ¡,Carin Leon,6fplYq951Ltp6nIiTFcnCY,78,167692,0,6TsExCpZJTDj7Fd0ez2knv,2023-05-19,"banda, norteño, sierreño, corrido, ranchera, grupera, sad sierreño",banda
+2023-08-13,26,MI EX TENÃA RAZÃN,KAROL G,54zcJnb3tp9c5OVKREZ1Is,62,154374,0,0FqAaUEyKCyUNFE1uQPZ7i,2023-08-10,"reggaeton, latin, urbano latino",reggaeton
+2023-08-17,47,VAGABUNDO,Sebastian Yatra & Manuel Turizo & BeÃ©le,1MB8kTH7VKvAMfL9SHgJmG,90,215600,0,0Rl1vI3oOOh3rylfBLiemc,2023-05-12,"colombian pop, reggaeton",colombian pop
+2023-08-24,38,La Tierra del Corrido - Spotify Singles,Fuerza Regida & Los Tucanes De Tijuana & Eden MuÃ±oz,1oZqJaE23GEn4SOFQcnTPB,61,211472,1,0ZbkzVai25cBAjmy7uoUkW,2023-08-22,"corrido, corridos tumbados, corridos bélicos, música mexicana, sierreño, banda, electro corridos, sad sierreño",corrido
+2023-08-27,40,Mood Malandro,CÃ³digo FN & Gabito Ballesteros,0zhymr6RqNuvp0RMIvdpdA,63,191558,0,6x60IHS4WQeKN2xSxPSJbr,2023-08-24,"corrido, corridos bélicos, corridos tumbados, electro corridos, norteño, banda, dembow belico, sad sierreño, sierreño",corrido
+2023-08-28,50,SÃ­mbolo Sexual,Panter BÃ©lico,1HruIuiCO9N3UsDnypp4QT,81,180208,0,5PEGCaUeB26YYT8jvlwqmF,2023-06-30,"corrido, corridos bélicos, corridos tumbados, banda",corrido
+2023-08-30,48,PÃLVORA,Mora,3pQr8EhSzvKN3ZZlaL4Pae,0,185326,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-08-30,50,FANTASÃAS,Mora,2v1EKQQn4UYC6qB13Vphaf,0,191847,1,0SoJvPHbKVhvmVJOp3kzp3,2023-08-28,"urbano latino, trap latino, reggaeton",urbano latino
+2023-09-05,30,Por Mi MÃ©xico (Remix),Lefty Sm & Santa Fe Klan,2m3Fqmw1mfs39KklPmjq79,69,405000,1,3p22kEU3PqsIrYWJpa9Bko,2023-08-24,"mexican hip hop, latin hip hop",mexican hip hop
+2023-09-10,24,BIPOLAR,Peso Pluma & Jasiel NuÃ±ez & Junior H,3wlIAXSDtlD9iU8ysld06Z,72,265045,1,6obRcLVFuI4x6jan7GNkYJ,2023-09-07,"corrido, corridos tumbados, corridos bélicos, música mexicana, sad sierreño, banda, electro corridos",corrido
+2023-09-13,45,SegÃºn QuiÃ©n,Maluma,4bw8mcDUSRWfQo63ZTYRnU,72,142334,1,3Fk8yQvPlCHgwR2pNhEIRA,2023-08-25,"reggaeton, latin, urbano latino",reggaeton
+2023-09-30,44,CCC - Remix,Michelle Maciel & Eden MuÃ±oz & Panter BÃ©lico,1SlPNQ3vAF56AiHr6Ul6jM,78,147877,0,4omrnMxKG5Nf7wqFTni9Eo,2023-08-31,"electro corridos, corrido, corridos tumbados, corridos bélicos, banda, dembow belico",electro corridos
+2023-10-04,41,La VÃ­ctima,Xavi,5XVdHRf4CAJ2Jm0uMIy5qY,78,156345,1,30KJEN3ICjhYsZ1NgunRCr,2023-08-17,"corridos tumbados, corrido, corridos bélicos, sad sierreño, música mexicana, banda, sierreño",corridos tumbados
+2023-10-04,43,Si No EstÃ¡s,iÃ±igo quintero,2HafqoJbgXdtjwCOvNEF14,85,184061,0,66k6EGkPtYoN44anGIsEPW,2022-09-23,unknown,unknown
+2023-10-07,16,MIÃNTELE,Junior H,77ewVGidVJETHhGtlNelrg,0,176749,1,7Lv6VzSqIz1sAssK2JUskG,2023-10-05,"corridos tumbados, corrido, corridos bélicos, sad sierreño, sierreño, música mexicana, banda",corridos tumbados
+2023-10-07,35,PIÃNSALO,Junior H,4ZOkfHC38nxSeSqzGE5HFr,0,240669,1,7Lv6VzSqIz1sAssK2JUskG,2023-10-05,"corridos tumbados, corrido, corridos bélicos, sad sierreño, sierreño, música mexicana, banda",corridos tumbados
+2023-10-20,48,ChupÃ³n,Various Artists,3phvfPBnIy3jS1gn613TPW,79,201084,0,4K0lDYwwH1vDHSsyYU36JH,2023-08-25,unknown,unknown
+2023-12-21,47,Lo Tienes Todo,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,29vIEdxgMT9H1fnBMecWjA,80,164386,0,0JoUcdNtc8iAKHGFj7Ppf9,2023-11-17,"banda, norteño, grupera, corrido",banda
+2023-12-25,35,Santa Claus LlegÃ³ a La Ciudad,Luis Miguel,0IrKbfhVKW0xpPEzRDeSUb,75,115893,0,0tu9kY2tDMuuuI6GtSDH9i,2006-11-06,"mariachi, bolero, latin pop, ranchera, villancicos",mariachi
+2023-12-27,21,Feliz Navidad,JosÃ© Feliciano,0oPdaY4dXtc3ZsaG17V972,88,182066,0,3No96PtEFyRfX1oELmZTPu,2002-09-24,"christmas, bolero, villancicos",christmas
+2023-12-30,47,FIRST LOVE,Oscar Ortiz & Edgardo NuÃ±ez,3QQAeMQbbjZXVFbF8DgFWT,71,169440,0,4NNAc6EF4agYuWUqZ5OZr0,2023-12-07,"electro corridos, dembow belico, corrido, corridos tumbados, corridos bélicos, banda",electro corridos
+2024-01-03,40,El AÃ±o Viejo,Tony Camargo,5PZlMcW7VUlti8IRdApRIn,62,182720,0,71sqz38xfGvclndbAzc4Gc,2001-11-07,"villancicos, tropical music",villancicos
+2024-01-03,46,PongÃ¡monos De Acuerdo,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,1OZpgVRQKkxcoeEocqTMRZ,79,161906,0,50JOxUvIxX7M3glXWM2Ubi,2015-03-23,"banda, norteño, grupera, corrido",banda
+2024-01-04,45,ALVRGZO,Alex Favela & CÃ³digo FN & Oscar Ortiz,4DnhYGcizQepwr7vvvntih,79,162187,1,6ZbXdOGGsxEqOWM0WFOaF5,2023-12-01,"electro corridos, dembow belico, corrido, corridos tumbados, corridos bélicos",electro corridos
+2024-01-14,4,Igual Que Un Ãngel (with Peso Pluma),Kali Uchis,6XaJfhwof7qIgbbXO5tIQI,75,260370,0,5U20AVSsUvycGtWip4XQfo,2024-01-12,unknown,unknown
+2024-01-21,42,Regalo De Dios,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,51qYdMBxt9mFbtZBzq1Yfi,80,185933,0,0JoUcdNtc8iAKHGFj7Ppf9,2023-11-17,"banda, norteño, grupera, corrido",banda
+2024-01-28,15,La IntenciÃ³n,Christian Nodal & Peso Pluma,05tGmdz9dVZ4yGqz4YJdPK,71,249464,0,3tKHDHYrbcCFDC1yDeLOx2,2024-01-27,"banda, ranchera, mariachi, norteño, música mexicana, grupera",banda
+2024-01-28,50,La Suma,Javier Rosas Y Su ArtillerÃ­a Pesada & Lupe Borbon y su Blindaje 7,1tzj4DDVNp6X2ltpdTGtZW,74,198976,0,6cpIPgg4Bv4Oc29R7uCqOR,2023-11-15,"corrido, corridos bélicos, banda, norteño, sierreño",corrido
+2024-02-17,50,CONTIGO (with TiÃ«sto),KAROL G & TiÃ«sto,4UkUxO2WlKLc0Q1iEutGGh,73,192786,0,2mKcYIgv7ItYDQXke3uprl,2024-02-15,"reggaeton, latin, urbano latino",reggaeton
+2024-03-01,49,TÃ NAME,Fuerza Regida,3FqUPvubYeRCMsdJ02QyZR,82,152078,0,5WPTc1Xa8REVDQ5YazhNgv,2024-02-09,"corrido, corridos tumbados, corridos bélicos, música mexicana, sierreño, banda, electro corridos, sad sierreño",corrido
+2024-03-02,44,CÃ³mo Te Atreves,Morat,7M6CFruBrM5x7u0lTMtm6r,78,240560,0,50eHcXc4qede9mUKCYOuoz,2016-06-17,"colombian pop, latin pop",colombian pop
+2024-03-11,49,Ya Pedo QuiÃ©n Sabe,Grupo Frontera & Christian Nodal,4Zi9mV1mTF5ZcqwvhV95vQ,70,191284,0,4j58S9wNTTLgllMslsSMhk,2024-03-07,"cumbia norteña, banda, norteño, música mexicana, corrido, corridos tumbados, grupera, tejano, corridos bélicos, ranchera",cumbia norteña
+2024-03-24,5,CorazÃ³n de Piedra,Xavi,3VeR05PCure0YL3pHl5aI9,0,193568,0,1bWcE0tKOJgn4kgpNKSHU0,2024-03-21,"corridos tumbados, corrido, corridos bélicos, sad sierreño, música mexicana, banda, sierreño",corridos tumbados
+2024-03-29,46,(Entre ParÃ©ntesis),Shakira,68viiGZoRbLCjsy5xD4VrU,74,168896,0,3fonA82Hl7huJiQCwKkzGA,2024-03-22,latin pop,latin pop
+2024-04-28,33,caÃ­da del cielo <3,Rels B,0Njk7qwCya5tSeXMZzoBUw,66,133220,1,6MxVqDR6nACRxGSePfK9y4,2024-04-26,"urbano latino, trap latino",urbano latino
+2024-04-28,36,DetrÃ¡s del DJ,Rels B,0w5lDKKX6YvfAXrytalvpR,66,119354,1,6MxVqDR6nACRxGSePfK9y4,2024-04-26,"urbano latino, trap latino",urbano latino
+2024-05-13,50,JÃ¡lale alv,Bb trickz & Kevin AMF,57uiO4cG6bK5yq51BJTvyE,73,109866,0,2fg0Ah2oDL1ne1zECvOdPY,2024-05-02,unknown,unknown
+2024-05-19,48,POR QUÃ SERÃ,Grupo Frontera,7cXGHxIoogqDTvbuLj0dsO,71,209492,0,4j58S9wNTTLgllMslsSMhk,2024-05-10,"cumbia norteña, banda, norteño, música mexicana, corrido, corridos tumbados, grupera, tejano, corridos bélicos, ranchera",cumbia norteña
+2024-06-05,46,DespÃ­dase bien,Carin Leon,1llaUCfG1g5WzKt6JafYyk,69,231375,1,5wkYyTtAUS2Wi6pHYpdsSU,2024-05-30,"banda, norteño, sierreño, corrido, ranchera, grupera, sad sierreño",banda
+2024-06-12,42,Pocos AÃ±os Mil Errores,Kevin AMF & Jaque Mate & Carlos Manjarrez,05eWLa61PMRibhFtIHsD0D,66,198354,0,3Ss2agKWd4oBWEBcdKsZPe,2024-05-28,"electro corridos, dembow belico, corrido, corridos tumbados, reggaeton mexa, dembow, corridos bélicos",electro corridos
+2024-07-04,47,MÃ³naco,LAGOS,3HgvO4B5LLmdPOT2d8cSZd,77,192313,0,0t8H6Wc8P63LO0zj7kwZuj,2021-05-28,unknown,unknown
+2024-07-17,49,MINIMI,Bryan MartÃ­nez,758S4LdiMkRdauciXJI1v7,69,150000,0,3T2NudFA3qcifGwgzWkQHY,2024-07-03,"dembow belico, electro corridos, corridos bélicos, corrido, cumbia norteña",dembow belico
+2024-07-22,45,Tengo Claro,Banda MS de Sergio LizÃ¡rraga & Alfredo Olivas,2UAE43Y8K321CDAbnIXDD0,73,191681,0,6r2fG8QS313bzSxFEi7wnr,2024-07-05,"banda, norteño, grupera, música mexicana, ranchera, corrido",banda
+2024-08-04,20,Lo Que Hay X AquÃ­,La Receta,4KYCSg9y5P8BVbtSY3vGGf,75,158545,0,2aGLQMoG98H1SoSlwmBvEN,2024-05-16,"corrido, corridos bélicos, música mexicana, corridos tumbados",corrido
+2024-08-24,28,DOS DÃAS,Tito Double P,5lKFO0PrOC9jmOlPEdjHsL,0,153928,1,27GWSFRITD8JJcSGMgEfTN,2024-08-22,"corrido, corridos tumbados, corridos bélicos, electro corridos, dembow belico, música mexicana",corrido
+2024-08-24,42,AY MAMÃ,Tito Double P,2lAUq68F2bt7Kc218n9FPp,0,163031,1,27GWSFRITD8JJcSGMgEfTN,2024-08-22,"corrido, corridos tumbados, corridos bélicos, electro corridos, dembow belico, música mexicana",corrido
+2024-09-09,46,Rey Sin Reina,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,0BiDnJFB3TlRB6aji7jUz3,61,150523,0,38uizvY4xqOiAq750FDmW2,2024-09-05,"banda, norteño, grupera, corrido",banda
+2024-09-16,50,El Final De Nuestra Historia,La Arrolladora Banda El LimÃ³n De Rene Camacho,31REg67eoHJSvMLUcEmGNj,61,197280,0,284VuwH1jFbRK08Nnz41uk,2012-01-01,"banda, norteño, grupera",banda
+2024-09-17,48,Belleza De Cantina,Cardenales De Nuevo LeÃ³n,4ZplewvZRLFcfBa5uyBbhd,76,183946,0,4knvBWQwoePhytbeXYTGc0,2002-01-01,"norteño, banda, cumbia norteña, grupera, ranchera, corrido",norteño
+2024-09-18,48,MÃ©xico En La Piel,Luis Miguel,5BPq1UQa1NSN647R6IzD3n,68,209213,0,41VfVz6sKvbm1yCbqAlwfM,2005-09-06,"mariachi, bolero, latin pop, ranchera, villancicos",mariachi
+2024-09-20,46,DespuÃ©s De La 1,Cris Mj & FloyyMenor,6PhRhocBXP4y7NpciGmzra,77,177600,1,2lIzIH2mQQ0ItgkJKefQMp,2024-09-12,"reggaeton chileno, chilean trap, chilean mambo, reggaeton",reggaeton chileno
+2024-09-26,47,AbrÃ¡zame,Ãngela Aguilar & Felipe Botello y El Sonoro Rugir,5RvmmRCoZY1Yupl3PXgZm4,71,199200,0,2YZnqChmcKcsTS6tTg0fuL,2024-08-30,"mariachi, ranchera, banda, música mexicana",mariachi
+2024-09-28,35,Ya No Pienso en Ti - Spotify Singles,JosÃ© JosÃ©,0MlstFQR7Ak6k60xelYcz8,61,187350,0,1Hi1oyOSYXYCmNDtoW6SzA,2024-09-25,"bolero, bacardi",bolero
+2024-10-13,46,Abran Paso,AlemÃ¡n & Gera MX,5ryLHMXzsxUdtThQ9gyxXr,57,236002,0,4pMFJL9AAor8UG0uAkIbl5,2024-10-11,"mexican hip hop, latin hip hop, electro corridos",mexican hip hop
+2024-10-14,46,Hecha Pa' MÃ­,Grupo Frontera,1uGUbgZuO1kD1JZ0UeFupN,72,195845,0,3Z9jjBDBjKUkf7CXPm5aSF,2024-10-03,"cumbia norteña, banda, norteño, música mexicana, corrido, corridos tumbados, grupera, tejano, corridos bélicos, ranchera",cumbia norteña
+2024-10-22,43,APT.,ROSÃ & Bruno Mars,5vNRhkKd0yEAg8suGBpjeY,85,169917,0,2IYQwwgxgOIn7t3iF6ufFD,2024-10-18,k-pop,k-pop
+2024-10-27,49,Siento que merezco mÃ¡s,LATIN MAFIA,4Z6pPinNzkGtbgAlE88263,59,165720,0,0DMDbZtZT028siJ0GEdLrQ,2024-10-24,latin r&b,latin r&b
+2024-11-03,48,Como Pacman,AlemÃ¡n & Gera MX,5z9OwCciXDZyvlZ001pJN8,52,148152,0,64esOhbm4ceNKRyjm4iQhj,2024-11-01,"mexican hip hop, latin hip hop, electro corridos",mexican hip hop
+2024-11-08,50,Cero EmpatÃ­a,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,18OMTIWpHGvhTcQjg83CtQ,71,189524,0,3UhsBsZzqW0rktyx1rfwQE,2024-10-24,"banda, norteño, grupera, corrido",banda
+2024-11-10,40,EN MI MUNDO,Jasiel NuÃ±ez,0lQogzZgV4XwuUTasz3nPL,59,307565,0,0OrStwHqaIFS8JdPSwApqA,2024-11-07,"corridos tumbados, corrido, sad sierreño, corridos bélicos, música mexicana",corridos tumbados
+2024-11-17,7,QuÃ© PasarÃ­a...,Rauw Alejandro,0l0vcZMU7AOeQmUIREoI2U,72,191018,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,24,TÃº Con Ãl,Rauw Alejandro,2eQFYGegTZaObk2kuBz83Z,69,289131,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,36,DÃ©jame Entrar,Rauw Alejandro,5tZgkV8FTe3rtl8OcSeQAb,66,254705,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,37,RevolÃº,Rauw Alejandro,4lqJsJd7kqWVvamQ4aFHA8,67,215511,1,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-17,39,KhÃ©?,Rauw Alejandro,1YYfyJ2yCvGFCxwjsIqEK9,67,206066,0,0aX0UXrHG2ceYIxTQcqJdA,2024-11-15,"reggaeton, urbano latino, trap latino, latin",reggaeton
+2024-11-19,45,AMIRI,Jasiel NuÃ±ez,3dpBkXMbRdDQ6ZhcxFufQp,71,123096,1,0OrStwHqaIFS8JdPSwApqA,2024-11-07,"corridos tumbados, corrido, sad sierreño, corridos bélicos, música mexicana",corridos tumbados
+2024-11-19,46,Vibra Perfecta,JuliÃ³n Ãlvarez y su NorteÃ±o Banda,25anKrtqXPngMi3IoF5UhC,74,183315,0,12gF2dVVtalHzmn5z9wNiy,2024-10-24,"banda, norteño, grupera, corrido",banda
+2024-11-27,49,Â¿QuÃ© Te Parece?,Grupo Frontera & Oscar Maydon,6oCQOBXMHc1z2JRx1Dv6tG,68,182323,0,4wJ3OuXAYBT7KgZpQoMMG8,2024-11-21,"cumbia norteña, banda, norteño, música mexicana, corrido, corridos tumbados, grupera, tejano, corridos bélicos, ranchera",cumbia norteña
