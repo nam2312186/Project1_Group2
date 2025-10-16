@@ -304,6 +304,51 @@ Việc phân tích đặc điểm của từng nguồn giúp nhóm:
 \input{source_3.tex}
 % \subsection{Nguồn 2 + 3: Phần tiếp theo nhóm trình bài bên Phần 2 của báo cáo }
 
+
+\section{Kiến trúc lưu trữ}
+
+\subsection{Lý do lựa chọn MongoDB làm hệ quản trị cơ sở dữ liệu}
+
+Trong dự án, nhóm lựa chọn \textbf{MongoDB} làm nền tảng lưu trữ chính cho toàn bộ dữ liệu phân tích (bao gồm Billboard Hot 100, Spotify Top 50 và các đặc trưng âm thanh từ API ReccoBeats).  
+Việc sử dụng MongoDB thay cho các hệ quản trị quan hệ truyền thống (như MySQL hay PostgreSQL) được dựa trên các lý do kỹ thuật sau:
+
+
+\begin{figure}[H] % môi trường figure để quản lý hình
+    \centering % căn giữa
+    \includegraphics[width=0.5\textwidth]{../graphics/data_top50/mongoDB_logo.png} % tên file hình
+    \caption{Logo MongoDB} % chú thích
+    \label{fig:example} % nhãn để tham chiếu
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Cấu trúc dữ liệu phi quan hệ (NoSQL) linh hoạt:}  
+    Bộ dữ liệu âm nhạc có cấu trúc đa dạng, gồm nhiều cấp thông tin lồng nhau như \textit{thông tin bài hát}, \textit{nghệ sĩ}, \textit{đặc trưng âm thanh (audio features)}, \textit{thứ hạng theo tuần}, v.v.  
+    MongoDB cho phép lưu trữ trực tiếp các đối tượng dạng \textit{JSON document} mà không cần thiết kế bảng và ràng buộc phức tạp như mô hình quan hệ.  
+    Việc này giúp dễ dàng thêm mới hoặc thay đổi thuộc tính mà không phải chỉnh sửa toàn bộ cấu trúc dữ liệu.
+
+    \item \textbf{Hiệu năng cao trong truy vấn và phân tích dữ liệu phi cấu trúc:}  
+    MongoDB được tối ưu cho các truy vấn đọc nhanh và xử lý dữ liệu lớn (Big Data) thông qua cơ chế \textit{document indexing} và \textit{aggregation pipeline}.  
+    Điều này đặc biệt phù hợp với yêu cầu phân tích hàng nghìn bản ghi về bài hát, thể loại, và chỉ số năng lượng âm nhạc theo tuần, theo quốc gia.
+
+    \item \textbf{Khả năng mở rộng và tích hợp dễ dàng:}  
+    MongoDB hỗ trợ mở rộng theo chiều ngang (\textit{horizontal scaling}) bằng sharding, cho phép hệ thống hoạt động ổn định khi khối lượng dữ liệu tăng nhanh.  
+    Đồng thời, MongoDB tích hợp tốt với các công cụ trong hệ sinh thái dữ liệu hiện đại như \textbf{Python (pymongo, pandas)}, \textbf{Streamlit}, \textbf{LangChain}, và các dịch vụ đám mây như \textbf{MongoDB Atlas}.
+
+    \item \textbf{Phù hợp cho ứng dụng trực quan và trí tuệ nhân tạo:}  
+    Dữ liệu lưu trong MongoDB có thể được truy xuất trực tiếp từ các ứng dụng Streamlit để hiển thị dashboard phân tích (như biểu đồ xu hướng Billboard theo mùa, biểu đồ năng lượng bài hát).  
+    Ngoài ra, MongoDB còn đóng vai trò là kho dữ liệu nền cho mô-đun \textit{Chatbot AI}, cho phép truy vấn động và trả lời gợi ý nhạc theo ngữ cảnh người dùng.
+
+    \item \textbf{Dễ triển khai trên môi trường đám mây:}  
+    Việc triển khai MongoDB Atlas giúp nhóm lưu trữ dữ liệu trên môi trường \textit{cloud-based}, đảm bảo tính sẵn sàng, an toàn và có thể truy cập từ bất kỳ ứng dụng nào trong mạng nội bộ hoặc Internet.  
+    Điều này giảm thiểu chi phí vận hành, tránh các vấn đề cấu hình server thủ công như khi dùng MySQL on-premise.
+\end{enumerate}
+
+Tổng hợp các yếu tố trên cho thấy MongoDB là lựa chọn tối ưu cho dự án phân tích dữ liệu âm nhạc, nơi dữ liệu có cấu trúc linh hoạt, khối lượng lớn, và yêu cầu truy xuất nhanh phục vụ cho các ứng dụng phân tích, gợi ý nhạc và chatbot thông minh.
+\subsection{Cách hiện thực}
+
+
+
+
 \section{Phụ lục}
 
 \subsection{Timeline công việc và bảng phân công nhiệm vụ}

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1760257089.26183 "d:/DOWNLOAD/HK251/DATH-KTDL/API-spotify/latex/version_1/report_V1.tex" "report_V1.pdf" "report_V1" 1760257096.89313 0
+["pdflatex"] 1760625133.04953 "d:/DOWNLOAD/HK251/DATH-KTDL/API-spotify/Project1_Group2/latex/version_1/report_V1.tex" "report_V1.pdf" "report_V1" 1760625156.18735 0
   "../codespace.sty" 1760257072 1830 b28eecf8a9f215e9d9430958a9673655 ""
   "../graphics/data2/1.png" 1760257072 50669 f4627d6c95e83530f5dab55d1ff29991 ""
   "../graphics/data2/10.png" 1760257072 80766 ec6ffc71d8b2498fdc1cf185faa97c1e ""
@@ -87,6 +87,7 @@
   "../graphics/data_top50/figure/script/Screenshot 2025-10-02 192420.png" 1760257073 35208 139af3d24f23b412f72bcde27e763a72 ""
   "../graphics/data_top50/figure/script/raw_audio/Screenshot 2025-09-30 230213.png" 1760257073 31465 c7d273128d88ecf21bfc8e274cc6eb7f ""
   "../graphics/data_top50/figure/script/raw_meta/Screenshot 2025-09-30 225603.png" 1760257073 57001 206b4207134e9c1a68daf5fb7041ad74 ""
+  "../graphics/data_top50/mongoDB_logo.png" 1760624367 11611 e91c8813bea617ed204e4883de19b8a5 ""
   "../graphics/data_top50/raw.png" 1760257073 31133 22887d4a74bb6b951189cce447baed67 ""
   "../graphics/hcmut.png" 1760257073 100724 34813e7945d25073d2021fd11a318249 ""
   "../graphics/spotify_logo.png" 1760257073 5640 1c60fca1215cf95b6fa64d850e2ae06f ""
@@ -346,12 +347,12 @@
   "C:/Users/nhutn/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/nhutn/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1750428951 2269 2de6c7a5fd634dfef00a960544463a38 ""
   "C:/Users/nhutn/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1750428951 20785 198a9cb2e04238d92c320d0d9edbd76a ""
-  "d:/DOWNLOAD/HK251/DATH-KTDL/API-spotify/latex/version_1/report_V1.tex" 1760257073 21731 c0b88c260cf8c460d48d99d0f7040877 ""
-  "report_V1.aux" 1760257096 23952 913c834d4019ee43902d02fa452be319 "pdflatex"
-  "report_V1.lof" 1760257096 6004 70a2baef3d9e1c97b63be503324a8c18 "pdflatex"
-  "report_V1.out" 1760257096 9308 a8d3584ec79391f1d353f796ca544000 "pdflatex"
-  "report_V1.tex" 1760257073 21731 c0b88c260cf8c460d48d99d0f7040877 ""
-  "report_V1.toc" 1760257096 4317 6ad4930414173526416201843822117a "pdflatex"
+  "d:/DOWNLOAD/HK251/DATH-KTDL/API-spotify/Project1_Group2/latex/version_1/report_V1.tex" 1760625112 25687 bcfa95d77023910a56fe41f312cac408 ""
+  "report_V1.aux" 1760625153 24651 19e25788c36928daadb3be2157e7b68a "pdflatex"
+  "report_V1.lof" 1760625153 6098 057c6f6f4806f701756cee96ce6f4673 "pdflatex"
+  "report_V1.out" 1760625153 9988 8980b2f6add8c15028dc9fcdbe86722b "pdflatex"
+  "report_V1.tex" 1760625112 25687 bcfa95d77023910a56fe41f312cac408 ""
+  "report_V1.toc" 1760625153 4621 e2fbed3c1f341ca1f7873d3b17401535 "pdflatex"
   "source_1.tex" 1760257073 59198 6edd2aa7797bda04d7cc5c21068cc4ec ""
   "source_2.tex" 1760257073 9668 00ca4473bb86ffdc8250bf04b8ddaf45 ""
   "source_3.tex" 1760257073 71366 085877bac4d3bed734e1019e5cd27813 ""
