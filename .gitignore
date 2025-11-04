@@ -10,4 +10,11 @@ __pycache__/
 # Ignore environment config
 .env
 
-
+# Ignore LaTeX build outputs
+latex/
+latex/**/*
+*.pdf
+*.log
+*.aux
+*.fls
+*.fdb_latexmk
