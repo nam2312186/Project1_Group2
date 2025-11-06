@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 # 1️⃣ Cấu hình giao diện
 # -----------------------------
 st.set_page_config(page_title="🇺🇸 United States Dashboard", layout="wide")
-st.title("🇺🇸 Music Trends Dashboard – United States")
+st.title("Music Trends Dashboard – United States")
 st.caption("Chọn nguồn dữ liệu để xem dashboard tương ứng")
 
 # -----------------------------
@@ -57,10 +57,10 @@ with tab1:
         """,
         height=0,
     )
-
+    
     # ===== MỤC LỤC =====
     st.markdown("""
-    ### 🧭 **Mục lục nhanh**
+    ### 🧭 **Mục lục**
     - [📊 Tổng quan dữ liệu](#section-tong-quan)
     - [🎧 Phân tích xu hướng thể loại](#section-the-loai)
     - [🌟 Nghệ sĩ & Bài hát nổi bật](#section-nghe-si)
@@ -188,7 +188,6 @@ with tab1:
     else:
         st.error("⚠️ Dữ liệu hiện chưa có trường 'week' hoặc 'rank'.")
 
-    st.success("✅ Dashboard sẵn sàng! Dùng Mục lục để cuộn nhanh giữa các phần.")
 
 # ====================================================================
 # TAB 2️⃣ — Spotify Top 50 (2024)
