@@ -1,3 +1,20 @@
+import importlib.util
+import sys, os
+
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# pages_dir = os.path.join(current_dir, )
+
+spec = importlib.util.spec_from_file_location(
+    "by_country", os.path.join("pages/2_By_Country.py")
+)
+
+module = importlib.util.module_from_spec(spec)
+sys.modules["by_country"] = module
+spec.loader.exec_module(module)
+
+render_country_dashboard = module.render_country_dashboard
+
+
 import streamlit as st
 import pandas as pd
 from pymongo import MongoClient
@@ -193,19 +210,5 @@ with tab1:
 # TAB 2️⃣ — Spotify Top 50 (2024)
 # ====================================================================
 with tab2:
-    collection_spotify = db["spotify_top50_2024"]
-
-    @st.cache_data
-    def load_spotify_data():
-        data = list(collection_spotify.find({}, {"_id": 0}))
-        return pd.DataFrame(data)
-
-    df_spotify = load_spotify_data()
-
-    st.header("🎧 Spotify Top 50 (2024)")
-    st.write("Hiển thị dữ liệu Spotify 2024 cho Hoa Kỳ (đang cập nhật...)")
-
-    if not df_spotify.empty:
-        st.dataframe(df_spotify.head(20))
-    else:
-        st.warning("Chưa có dữ liệu Spotify Top 50 (2024) trong MongoDB.")
+        st.header("🎵 Spotify Top 50 – USA (2024)")
+        render_country_dashboard("USA")

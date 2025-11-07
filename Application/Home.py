@@ -1,15 +1,42 @@
+import importlib.util
+import sys, os
 import streamlit as st
 import pandas as pd
 import pycountry
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
+from pymongo import MongoClient
 
+# =============================
+# 🧩 Import động module By_Country (render quốc gia khác Mỹ)
+# =============================
+current_dir = os.path.dirname(os.path.abspath(__file__))
+pages_dir = os.path.join(current_dir, "pages")
+
+spec = importlib.util.spec_from_file_location(
+    "by_country", os.path.join(pages_dir, "2_By_Country.py")
+)
+module = importlib.util.module_from_spec(spec)
+sys.modules["by_country"] = module
+spec.loader.exec_module(module)
+render_country_dashboard = module.render_country_dashboard
+
+# =========================
+# ⚙️ 1️⃣ Cấu hình giao diện
+# =========================
 st.set_page_config(page_title="🌍 Music Analytics Home", layout="wide")
-st.title("🌎 Spotify & Billboard Dashboard ")
+st.title(" Spotify & Billboard Dashboard")
 st.markdown("🎧 Click vào quốc gia có màu xanh Spotify để xem phân tích chi tiết!")
 
 # =========================
-# 1️⃣ Dữ liệu quốc gia có dashboard
+# 🌐 2️⃣ Kết nối MongoDB
+# =========================
+uri = "mongodb+srv://doanbk251:nhom210diem@cluster0.yly7ncp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+client = MongoClient(uri)
+db = client["spotify_project"]
+
+# =========================
+# 🗺️ 3️⃣ Danh sách quốc gia
 # =========================
 available_countries = {
     "United States": "1_United_States",
@@ -23,12 +50,7 @@ available_countries = {
     "United Kingdom": "9_United_Kingdom"
 }
 
-def get_iso3(name):
-    try:
-        return pycountry.countries.lookup(name).alpha_3
-    except:
-        return None
-
+# 🌍 Tất cả quốc gia hiển thị (để hover đầy đủ)
 all_countries = ["United States", "Argentina", "France","Italy","Japan","Mexico","South Korea","Spain","United Kingdom",
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
     "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -62,6 +84,20 @@ all_countries = ["United States", "Argentina", "France","Italy","Japan","Mexico"
     "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe","Russian Federation"
 ]
 
+def get_iso3(name):
+    try:
+        return pycountry.countries.lookup(name).alpha_3
+    except:
+        custom = {
+            "South Korea": "KOR",
+            "United States": "USA",
+            "United Kingdom": "GBR",
+            "Russia": "RUS",
+            "Russian Federation": "RUS"
+        }
+        return custom.get(name, None)
+
+# 🗺️ Tạo DataFrame cho bản đồ
 df_map = pd.DataFrame({
     "country": all_countries,
     "iso_code": [get_iso3(c) for c in all_countries],
@@ -69,19 +105,22 @@ df_map = pd.DataFrame({
 })
 
 # ======================================
-# 2️⃣ Vẽ bản đồ
+# 6 Tổng quan toàn cầu
+# =====================================
+st.markdown("---")
+
+st.page_link("pages/0_Global_Overview.py", label="🌍 Xem Tổng Quan Toàn Cầu")
 
 # ======================================
-import plotly.graph_objects as go
-from streamlit_plotly_events import plotly_events
-
+# 4️⃣ Vẽ bản đồ tương tác
+# ======================================
 fig = go.Figure(
     data=go.Choropleth(
         locations=df_map["iso_code"],
         z=[1 if s == "Has Data" else 0 for s in df_map["status"]],
         text=df_map["country"],
         hoverinfo="text",
-        colorscale=[[0, "#f2f2f2"], [1, "#1DB954"]],
+        colorscale=[[0, "#e6e6e6"], [1, "#1DB954"]],
         showscale=False
     )
 )
@@ -93,50 +132,30 @@ fig.update_layout(
     height=550
 )
 
-
-# ======================================
-# 3️⃣ Bắt sự kiện click bằng pointNumber
-# ======================================
 selected_point = plotly_events(fig, click_event=True, hover_event=False)
 
+
+
+# ======================================
+# 5️⃣ Bắt sự kiện click (phân trang)
+# ======================================
 if selected_point:
     try:
-        point_idx = selected_point[0]["pointNumber"]
-        clicked_country = df_map.iloc[point_idx]["country"]
-        if clicked_country in available_countries:
-            st.success(f"🌎 Bạn đã chọn: {clicked_country}")
-            st.switch_page(f"pages/{available_countries[clicked_country]}.py")
+        idx = selected_point[0]["pointNumber"]
+        clicked_country = df_map.iloc[idx]["country"]
+
+        if clicked_country == "United States":
+            st.success(f"🇺🇸 Đang mở trang {clicked_country} ...")
+            st.switch_page("pages/1_United_States.py")
+
+        elif clicked_country in available_countries:
+            st.session_state["selected_country"] = clicked_country
+            st.success(f"🎵 Đang mở dashboard cho {clicked_country} ...")
+            st.switch_page("pages/2_By_Country.py")
+
         else:
-            st.warning(f"⚠️ {clicked_country} chưa có dữ liệu!")
+            st.warning(f"⚠️ {clicked_country} hiện chưa có dữ liệu khả dụng!")
     except Exception as e:
         st.error(f"Lỗi xử lý click: {e}")
 
-# ===========================================
-# 🌎 Nút Xem Tổng Quan Toàn Cầu (đậm & nổi bật)
-# ===========================================
-st.markdown("""
-<style>
-.big-link a {
-    display: inline-block;
-    background-color: #1DB954;       /* Spotify green */
-    color: white !important;
-    font-size: 30px;
-    font-weight: 700;
-    padding: 12px 26px;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    transition: all 0.25s ease-in-out;
-}
-.big-link a:hover {
-    background-color: #17a64a;
-    transform: scale(1.05);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.35);
-}
-</style>
-""", unsafe_allow_html=True)
 
-st.markdown('<div class="big-link">', unsafe_allow_html=True)
-st.page_link("pages/0_Global_Overview.py", label="🌎 Xem Chi Tiết Tổng Quan Toàn Cầu")
-st.markdown('</div>', unsafe_allow_html=True)
