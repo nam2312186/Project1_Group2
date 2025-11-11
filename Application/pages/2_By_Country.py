@@ -286,7 +286,7 @@ def render_country_dashboard(country_name=None):
     # 1️⃣ Thanh chọn quốc gia (chỉ hiển thị nếu chạy độc lập)
     # =========================
     available_countries = [
-        "France", "Italy", "Japan", "Mexico", "South Korea", "Spain", "Argentina"
+        "United_States","France", "Italy", "Japan", "Mexico", "South Korea", "Spain", "Argentina"
     ]
     if country_name is None:
         country_name = st.selectbox("🌍 Chọn quốc gia để phân tích", available_countries, index=0)

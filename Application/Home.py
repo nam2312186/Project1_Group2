@@ -25,7 +25,7 @@ render_country_dashboard = module.render_country_dashboard
 # ⚙️ 1️⃣ Cấu hình giao diện
 # =========================
 st.set_page_config(page_title="🌍 Music Analytics Home", layout="wide")
-st.title(" Spotify & Billboard Dashboard")
+st.title("🎵 Spotify & Billboard Dashboard")
 st.markdown("🎧 Click vào quốc gia có màu xanh Spotify để xem phân tích chi tiết!")
 
 # =========================
@@ -36,19 +36,43 @@ client = MongoClient(uri)
 db = client["spotify_project"]
 
 # =========================
-# 🗺️ 3️⃣ Danh sách quốc gia
+# 📅 3️⃣ Nút chọn năm
 # =========================
-available_countries = {
-    "United States": "1_United_States",
-    "Argentina": "2_Argentina",
-    "France": "3_France",
-    "Italy": "4_Italy",
-    "Japan": "5_Japan",
-    "Mexico": "6_Mexico",
-    "South Korea": "7_South_Korea",
-    "Spain": "8_Spain",
-    "United Kingdom": "9_United_Kingdom"
-}
+st.markdown("### 📆 Chọn năm dữ liệu")
+year = st.radio("Chọn năm:", [2024, 2025], horizontal=True, label_visibility="collapsed")
+
+# =========================
+# 🗺️ 4️⃣ Lấy danh sách quốc gia có dữ liệu tự động
+# =========================
+def get_available_countries(year: int):
+    """Trích từ MongoDB các collection tương ứng với năm"""
+    all_collections = db.list_collection_names()
+    available = {}
+
+    if year == 2024:
+        # Các collection top50_xxx
+        for col in all_collections:
+            if col.startswith("top50_"):
+                # tách tên quốc gia
+                country_code = col.replace("top50_", "")
+                # chuẩn hoá lại tên (vì dùng cho display)
+                display_name = country_code.replace("_", " ").title()
+                # map các từ đặc biệt
+                special = {
+                    "Usa": "United States",
+                    "Uk": "United Kingdom",
+                    "South Korea": "South Korea",
+                }
+                display_name = special.get(display_name, display_name)
+                available[display_name] = col
+    else:
+        # Năm 2025 chỉ có top100_usa_2025
+        if "top100_usa_2025" in all_collections:
+            available["United States"] = "top100_usa_2025"
+    return available
+
+
+available_countries = get_available_countries(year)
 
 # 🌍 Tất cả quốc gia hiển thị (để hover đầy đủ)
 all_countries = ["United States", "Argentina", "France","Italy","Japan","Mexico","South Korea","Spain","United Kingdom",
@@ -105,14 +129,14 @@ df_map = pd.DataFrame({
 })
 
 # ======================================
-# 6 Tổng quan toàn cầu
-# =====================================
+#  Liên kết trang tổng quan toàn cầu
+# ======================================
 st.markdown("---")
-
 st.page_link("pages/0_Global_Overview.py", label="🌍 Xem Tổng Quan Toàn Cầu")
 
+
 # ======================================
-# 4️⃣ Vẽ bản đồ tương tác
+# 5️⃣ Vẽ bản đồ tương tác
 # ======================================
 fig = go.Figure(
     data=go.Choropleth(
@@ -120,42 +144,46 @@ fig = go.Figure(
         z=[1 if s == "Has Data" else 0 for s in df_map["status"]],
         text=df_map["country"],
         hoverinfo="text",
-        colorscale=[[0, "#e6e6e6"], [1, "#1DB954"]],
+        colorscale=[[0, "#9A9494"], [1, "#1DB954"]],
         showscale=False
     )
 )
 
-fig.update_geos(showcountries=True, countrycolor="gray", showcoastlines=True, coastlinecolor="lightgray")
+fig.update_geos(
+    showcountries=True,
+    countrycolor="gray",
+    showcoastlines=True,
+    coastlinecolor="lightgray"
+)
 fig.update_layout(
-    title="Countries with Spotify/Billboard Data",
+    title=f"🌍 Countries with Spotify Data ({year})",
     margin=dict(l=0, r=0, t=50, b=0),
     height=550
 )
 
 selected_point = plotly_events(fig, click_event=True, hover_event=False)
 
-
-
 # ======================================
-# 5️⃣ Bắt sự kiện click (phân trang)
+# 6️⃣ Bắt sự kiện click (phân trang)
 # ======================================
 if selected_point:
     try:
         idx = selected_point[0]["pointNumber"]
         clicked_country = df_map.iloc[idx]["country"]
 
-        if clicked_country == "United States":
-            st.success(f"🇺🇸 Đang mở trang {clicked_country} ...")
-            st.switch_page("pages/1_United_States.py")
+        if clicked_country == "United States" and year == 2025:
+            st.success(" Đang mở dữ liệu Top 100 của năm 2025 ...")
+            st.session_state["selected_country"] = clicked_country
+            st.session_state["selected_year"] = 2025
+            st.switch_page("pages/1_United_States_2025.py")
 
         elif clicked_country in available_countries:
             st.session_state["selected_country"] = clicked_country
-            st.success(f"🎵 Đang mở dashboard cho {clicked_country} ...")
+            st.session_state["selected_year"] = year
+            st.success(f"🎵 Đang mở dashboard cho {clicked_country} ({year}) ...")
             st.switch_page("pages/2_By_Country.py")
 
         else:
-            st.warning(f"⚠️ {clicked_country} hiện chưa có dữ liệu khả dụng!")
+            st.warning(f"⚠️ {clicked_country} chưa có dữ liệu cho năm {year}!")
     except Exception as e:
         st.error(f"Lỗi xử lý click: {e}")
-
-

@@ -6,10 +6,10 @@ import os
 uri = "mongodb+srv://doanbk251:nhom210diem@cluster0.yly7ncp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri)
 db = client["spotify_project"]  # tên database
-collection = db["billboard_features_2025"]  # tên collection
+collection = db["top100_usa_2025"]  # tên collection
 
 # 2️⃣ Đường dẫn tới file CSV
-csv_path = r"D:\Daihoc\Nam3\ĐAHKTDL\Code\Project_Spotify\analysis_data_2025_US\Output\step3\billboard_features.csv"
+csv_path = r"D:\Daihoc\Nam3\DAHKTDL\Code\Project_Spotify\analysis_data_2025_US\Output\step3\billboard_features.csv"
 
 # 3️⃣ Đọc file CSV
 if not os.path.exists(csv_path):
