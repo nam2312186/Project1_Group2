@@ -14,7 +14,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 pages_dir = os.path.join(current_dir, "pages")
 
 spec = importlib.util.spec_from_file_location(
-    "by_country", os.path.join(pages_dir, "2_By_Country.py")
+    "by_country", os.path.join(pages_dir, "2_By_Country_2024.py")
 )
 module = importlib.util.module_from_spec(spec)
 sys.modules["by_country"] = module

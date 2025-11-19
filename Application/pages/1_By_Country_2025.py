@@ -5,6 +5,8 @@ import pandas as pd
 from pymongo import MongoClient
 import plotly.express as px
 import streamlit.components.v1 as components
+from datetime import datetime, timedelta
+
 
 # =============================
 # 🧩 Import module By_Country (phòng khi cần)
@@ -82,6 +84,7 @@ if "week" in df.columns:
         max_value=max_date.to_pydatetime(),
         value=(min_date.to_pydatetime(), max_date.to_pydatetime()),
         format="YYYY-MM-DD",
+        step=timedelta(days=7)
     )
 
     st.caption(f"📅 Dữ liệu trong khoảng **{start_date.strftime('%d/%m/%Y')} → {end_date.strftime('%d/%m/%Y')}**")
