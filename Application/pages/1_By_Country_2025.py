@@ -10,7 +10,7 @@ import streamlit.components.v1 as components
 # 🧩 Import module By_Country (phòng khi cần)
 # =============================
 spec = importlib.util.spec_from_file_location(
-    "by_country", os.path.join("pages/2_By_Country.py")
+    "by_country", os.path.join("pages/2_By_Country_2024.py")
 )
 module = importlib.util.module_from_spec(spec)
 sys.modules["by_country"] = module
@@ -20,7 +20,7 @@ render_country_dashboard = module.render_country_dashboard
 # -----------------------------
 # 1️⃣ Cấu hình giao diện
 # -----------------------------
-st.set_page_config(page_title="🇺🇸 United States Dashboard", layout="wide")
+st.set_page_config(page_title="By Country 2025", layout="wide")
 st.title("🎶 Music Trends Dashboard – United States (Billboard Hot 100, 2025)")
 st.caption("Dữ liệu được lấy từ collection **top100_usa_2025** trong MongoDB Atlas")
 

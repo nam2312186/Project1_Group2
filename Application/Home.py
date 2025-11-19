@@ -14,7 +14,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 pages_dir = os.path.join(current_dir, "pages")
 
 spec = importlib.util.spec_from_file_location(
-    "by_country", os.path.join(pages_dir, "2_By_Country.py")
+    "by_country", os.path.join(pages_dir, "2_By_Country_2024.py")
 )
 module = importlib.util.module_from_spec(spec)
 sys.modules["by_country"] = module
@@ -25,8 +25,8 @@ render_country_dashboard = module.render_country_dashboard
 # ⚙️ 1️⃣ Cấu hình giao diện
 # =========================
 st.set_page_config(page_title="🌍 Music Analytics Home", layout="wide")
-st.title("🎵 Spotify & Billboard Dashboard")
-st.markdown("🎧 Click vào quốc gia có màu xanh Spotify để xem phân tích chi tiết!")
+st.title("🎵 Spotify 2024-2025 Dashboard ✨")
+
 
 # =========================
 # 🌐 2️⃣ Kết nối MongoDB
@@ -133,6 +133,7 @@ df_map = pd.DataFrame({
 # ======================================
 st.markdown("---")
 st.page_link("pages/0_Global_Overview.py", label="🌍 Xem Tổng Quan Toàn Cầu")
+st.markdown("🎧 Click vào quốc gia có màu xanh Spotify để xem phân tích chi tiết!")
 
 
 # ======================================
@@ -175,15 +176,35 @@ if selected_point:
             st.success(" Đang mở dữ liệu Top 100 của năm 2025 ...")
             st.session_state["selected_country"] = clicked_country
             st.session_state["selected_year"] = 2025
-            st.switch_page("pages/1_United_States_2025.py")
+            st.switch_page("pages/1_By_Country_2025.py")
 
         elif clicked_country in available_countries:
             st.session_state["selected_country"] = clicked_country
             st.session_state["selected_year"] = year
             st.success(f"🎵 Đang mở dashboard cho {clicked_country} ({year}) ...")
-            st.switch_page("pages/2_By_Country.py")
+            st.switch_page("pages/2_By_Country_2024.py")
 
         else:
             st.warning(f"⚠️ {clicked_country} chưa có dữ liệu cho năm {year}!")
     except Exception as e:
         st.error(f"Lỗi xử lý click: {e}")
+
+
+# ======================================
+# 7️⃣ Nút phản hồi người dùng
+# ======================================
+FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSckKNZyu6UUw7vSK3qvWbQT8cSoSXOi3ev7k6pcURneaUxpLQ/viewform"  # TODO: thay bằng link Google Form thật
+
+st.markdown("---")
+st.subheader("💌 Phản hồi về ứng dụng")
+st.write("Nếu bạn có góp ý hoặc muốn đánh giá mức độ hài lòng, hãy bấm nút bên dưới:")
+
+# Nếu Streamlit của bạn hỗ trợ link_button (phiên bản mới):
+try:
+    st.link_button("📝 Gửi phản hồi (Google Form)", FEEDBACK_URL)
+except Exception:
+    # Fallback dùng markdown nếu phiên bản Streamlit cũ
+    st.markdown(f"[📝 Gửi phản hồi (Google Form)]({FEEDBACK_URL})")
+
+
+st.subheader("😊 🤝 Cảm ơn bạn đã quan tâm đến Dashboard Spotify của chúng tôi! 🎵🌍")
