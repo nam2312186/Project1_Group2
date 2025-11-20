@@ -50,26 +50,37 @@ def get_available_countries(year: int):
     available = {}
 
     if year == 2024:
-        # Các collection top50_xxx
+        # ⚓ Map tay các nước đặc biệt
+        manual_map = {
+            "top50_usa": "United States",
+            "top50_uk": "United Kingdom",
+        }
+
         for col in all_collections:
-            if col.startswith("top50_"):
-                # tách tên quốc gia
+            if col in manual_map:
+                # 2 thằng đặc biệt: USA & UK
+                display_name = manual_map[col]
+                available[display_name] = col
+            elif col.startswith("top50_"):
+                # Các nước còn lại: argentina, france, italy,...
                 country_code = col.replace("top50_", "")
-                # chuẩn hoá lại tên (vì dùng cho display)
                 display_name = country_code.replace("_", " ").title()
-                # map các từ đặc biệt
+
+                # Có thể giữ lại special nếu muốn
                 special = {
-                    "Usa": "United States",
-                    "Uk": "United Kingdom",
                     "South Korea": "South Korea",
                 }
                 display_name = special.get(display_name, display_name)
+
                 available[display_name] = col
+
     else:
         # Năm 2025 chỉ có top100_usa_2025
         if "top100_usa_2025" in all_collections:
             available["United States"] = "top100_usa_2025"
+
     return available
+
 
 
 available_countries = get_available_countries(year)

@@ -5,19 +5,17 @@ import pandas as pd
 from pymongo import MongoClient
 import plotly.express as px
 import streamlit.components.v1 as components
-from datetime import datetime, timedelta
-
 
 # =============================
 # 🧩 Import module By_Country (phòng khi cần)
 # =============================
-spec = importlib.util.spec_from_file_location(
-    "by_country", os.path.join("pages/2_By_Country_2024.py")
-)
-module = importlib.util.module_from_spec(spec)
-sys.modules["by_country"] = module
-spec.loader.exec_module(module)
-render_country_dashboard = module.render_country_dashboard
+# spec = importlib.util.spec_from_file_location(
+#     "by_country", os.path.join("pages/2_By_Country_2024.py")
+# )
+# module = importlib.util.module_from_spec(spec)
+# sys.modules["by_country"] = module
+# spec.loader.exec_module(module)
+# render_country_dashboard = module.render_country_dashboard
 
 # -----------------------------
 # 1️⃣ Cấu hình giao diện
@@ -84,7 +82,6 @@ if "week" in df.columns:
         max_value=max_date.to_pydatetime(),
         value=(min_date.to_pydatetime(), max_date.to_pydatetime()),
         format="YYYY-MM-DD",
-        step=timedelta(days=7)
     )
 
     st.caption(f"📅 Dữ liệu trong khoảng **{start_date.strftime('%d/%m/%Y')} → {end_date.strftime('%d/%m/%Y')}**")
