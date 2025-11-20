@@ -1,0 +1,62 @@
+Số dòng: 3900
+Số cột: 17
+
+Tên cột: week, rank, title, artist, spotify_id, danceability, energy, tempo, valence, speechiness, acousticness, instrumentalness, liveness, loudness, key, mode, genre
+
+Kiểu dữ liệu:
+week                 object
+rank                  int64
+title                object
+artist               object
+spotify_id           object
+danceability        float64
+energy              float64
+tempo               float64
+valence             float64
+speechiness         float64
+acousticness        float64
+instrumentalness    float64
+liveness            float64
+loudness            float64
+key                 float64
+mode                float64
+genre                object
+dtype: object
+
+Giá trị Null:
+week                   0
+rank                   0
+title                  0
+artist                 0
+spotify_id             0
+danceability         766
+energy               766
+tempo                766
+valence              766
+speechiness          766
+acousticness         766
+instrumentalness     766
+liveness             766
+loudness             766
+key                  766
+mode                 766
+genre               1393
+dtype: int64
+
+Số dòng trùng lặp: 0
+
+Thống kê mô tả:
+              week         rank         title         artist              spotify_id  ...     liveness     loudness          key         mode    genre
+count         3900  3900.000000          3900           3900                    3900  ...  3134.000000  3134.000000  3134.000000  3134.000000     2507
+unique          39          NaN           568            301                     562  ...          NaN          NaN          NaN          NaN       39
+top     2025-01-05          NaN  Lose Control  Morgan Wallen  45J4avUb9Ni0bnETYaYFVJ  ...          NaN          NaN          NaN          NaN  country
+freq           100          NaN            39            285                      65  ...          NaN          NaN          NaN          NaN      683
+mean           NaN    50.500000           NaN            NaN                     NaN  ...     0.165128    -7.553143     5.315571     0.644544      NaN
+std            NaN    28.869772           NaN            NaN                     NaN  ...     0.121740     5.911541     3.610678     0.478728      NaN
+min            NaN     1.000000           NaN            NaN                     NaN  ...     0.030700   -54.341000     0.000000     0.000000      NaN
+25%            NaN    25.750000           NaN            NaN                     NaN  ...     0.096800    -7.777000     2.000000     0.000000      NaN
+50%            NaN    50.500000           NaN            NaN                     NaN  ...     0.124000    -6.147000     6.000000     1.000000      NaN
+75%            NaN    75.250000           NaN            NaN                     NaN  ...     0.180000    -4.897000     8.000000     1.000000      NaN
+max            NaN   100.000000           NaN            NaN                     NaN  ...     0.934000    -2.014000    11.000000     1.000000      NaN
+
+[11 rows x 17 columns]

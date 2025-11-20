@@ -77,7 +77,7 @@ def _preprocess(df_raw: pd.DataFrame) -> pd.DataFrame:
 
 # Các country KHÔNG muốn xuất hiện trong dropdown chọn tay
 EXCLUDED_DROPDOWN_COUNTRIES = {
-    "United States",   # loại Mỹ khỏi dropdown, nhưng vẫn render được nếu truyền tham số
+   # loại Mỹ khỏi dropdown, nhưng vẫn render được nếu truyền tham số
     "World"
 }
 
@@ -95,7 +95,10 @@ def get_db():
 # ============================================================
 def render_country_dashboard(country_name: str | None = None):
     db = get_db()  # ✅ luôn có db từ đầu
+    
 
+    if country_name ==  "United States":
+        country_name = "USA"
     # 1) Nếu có chọn từ Home → dùng
     if country_name is None and "selected_country" in st.session_state:
         country_name = st.session_state["selected_country"]
@@ -120,9 +123,9 @@ def render_country_dashboard(country_name: str | None = None):
 
             # fallback nếu vì lý do gì đó không lấy được
             if not available:
-                available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina"]
+                available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina", "USA"]
         except Exception:
-            available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina"]
+            available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina", "USA"]
 
         country_name = st.selectbox("🌍 Chọn quốc gia để phân tích", available, index=0)
 
@@ -149,6 +152,51 @@ def render_country_dashboard(country_name: str | None = None):
         return
 
     df = _preprocess(df_raw)
+
+
+
+    # ============================
+    # 📚 MỤC LỤC ĐẦU TRANG
+    # ============================
+    st.markdown("""
+    ### 📋 Mục lục
+    - <a href="#overview">📊 Tổng quan dữ liệu</a>
+    - <a href="#genre_trend">🎧 Xu hướng thể loại</a>
+    - <a href="#top_artists_songs">🌟 Nghệ sĩ & Bài hát nổi bật</a>
+    - <a href="#trend">🔥 Biến động độ hot theo thời gian</a>
+    - <a href="#longevity">📈 Độ bền & Thứ hạng</a>
+    - <a href="#boxplot">🎚️ Phân bố đặc trưng âm nhạc</a>
+    - <a href="#raw_data">📋 Dữ liệu gốc</a>
+    <br>
+    """, unsafe_allow_html=True)
+
+
+
+    # -----------------------------
+    # Smooth Scroll cho mục lục
+    # -----------------------------
+    import streamlit.components.v1 as components
+
+    components.html("""
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        for (let link of links) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+    </script>
+    """, height=0)
+
 
     # -----------------------------
     # 5️⃣ Bộ lọc thời gian chung (đặt ngay đầu trang)
@@ -197,6 +245,8 @@ def render_country_dashboard(country_name: str | None = None):
         if {"song", "popularity"}.issubset(df.columns) else float("nan")
     )
 
+    st.markdown('<div id="overview"></div>', unsafe_allow_html=True)
+
     st.subheader("📊 Tổng quan dữ liệu")
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("🎵 Số bài hát (unique)", songs_count)
@@ -210,6 +260,8 @@ def render_country_dashboard(country_name: str | None = None):
     # =========================
     # 3️⃣ Xu hướng thể loại
     # =========================
+
+    st.markdown('<div id="genre_trend"></div>', unsafe_allow_html=True)
     st.subheader("🎧 Xu hướng thể loại")
 
     feature = st.selectbox(
@@ -268,6 +320,8 @@ def render_country_dashboard(country_name: str | None = None):
     # ============================================================
     # 4) Nghệ sĩ & Bài hát nổi bật
     # ============================================================
+
+    st.markdown('<div id="top_artists_songs"></div>', unsafe_allow_html=True)
     st.subheader("🌟 Nghệ sĩ & Bài hát nổi bật")
     choice = st.radio(
         "Chọn tiêu chí hiển thị:",
@@ -371,6 +425,8 @@ def render_country_dashboard(country_name: str | None = None):
 
     # 🔥 Popularity Trend
     if "date" in df.columns:
+        st.markdown('<div id="trend"></div>', unsafe_allow_html=True)
+
         st.subheader("🔥 Biến động độ hot theo thời gian")
         songs_available = df["song"].value_counts().head(50).index.tolist()
         selected_songs = st.multiselect(
@@ -395,6 +451,9 @@ def render_country_dashboard(country_name: str | None = None):
 
     # 📈 Longevity vs Rank
     if {"position", "date", "song"}.issubset(df.columns):
+
+        st.markdown('<div id="longevity"></div>', unsafe_allow_html=True)
+
         st.subheader("📈 Độ bền & Thứ hạng (Longevity vs Peak Rank)")
         song_stats = (
             df.groupby("song")
@@ -428,6 +487,9 @@ def render_country_dashboard(country_name: str | None = None):
 
     # 🎚️ Boxplot đặc trưng
     if {"energy", "danceability", "valence", "tempo"}.issubset(df.columns):
+
+
+        st.markdown('<div id="boxplot"></div>', unsafe_allow_html=True)
         st.subheader("🎚️ Phân bố các đặc trưng âm nhạc")
         melted = df.melt(
             value_vars=["energy", "danceability", "valence", "tempo"],
@@ -443,6 +505,8 @@ def render_country_dashboard(country_name: str | None = None):
     # ============================================================
     # 8) Bảng dữ liệu gốc + bộ lọc & link Spotify
     # ============================================================
+
+    st.markdown('<div id="raw_data"></div>', unsafe_allow_html=True)
     st.subheader("📋 Dữ liệu Gốc")
 
     show_cols = [

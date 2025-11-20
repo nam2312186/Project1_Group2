@@ -1,0 +1,62 @@
+Số dòng: 3900
+Số cột: 17
+
+Tên cột: week, rank, title, artist, spotify_id, danceability, energy, tempo, valence, speechiness, acousticness, instrumentalness, liveness, loudness, key, mode, genre
+
+Kiểu dữ liệu:
+week                datetime64[ns]
+rank                         Int64
+title                       object
+artist                      object
+spotify_id                  object
+danceability               float64
+energy                     float64
+tempo                      float64
+valence                    float64
+speechiness                float64
+acousticness               float64
+instrumentalness           float64
+liveness                   float64
+loudness                   float64
+key                        float64
+mode                       float64
+genre                       object
+dtype: object
+
+Giá trị Null (sau clean):
+week                0
+rank                0
+title               0
+artist              0
+spotify_id          0
+danceability        0
+energy              0
+tempo               0
+valence             0
+speechiness         0
+acousticness        0
+instrumentalness    0
+liveness            0
+loudness            0
+key                 0
+mode                0
+genre               0
+dtype: int64
+
+Số dòng trùng lặp (sau clean): 0
+
+Thống kê mô tả:
+                                 week       rank         title         artist  ...     loudness          key         mode    genre
+count                            3900     3900.0          3900           3900  ...  3900.000000  3900.000000  3900.000000     3900
+unique                            NaN       <NA>           568            301  ...          NaN          NaN          NaN       40
+top                               NaN       <NA>  Lose Control  Morgan Wallen  ...          NaN          NaN          NaN  Unknown
+freq                              NaN       <NA>            39            285  ...          NaN          NaN          NaN     1393
+mean    2025-05-17 23:59:59.999999744       50.5           NaN            NaN  ...    -7.553143     5.315571     0.644544      NaN
+min               2025-01-05 00:00:00        1.0           NaN            NaN  ...   -54.341000     0.000000     0.000000      NaN
+25%               2025-03-09 00:00:00      25.75           NaN            NaN  ...    -7.553143     2.000000     0.000000      NaN
+50%               2025-05-18 00:00:00       50.5           NaN            NaN  ...    -6.826000     5.315571     1.000000      NaN
+75%               2025-07-27 00:00:00      75.25           NaN            NaN  ...    -5.202000     7.000000     1.000000      NaN
+max               2025-09-28 00:00:00      100.0           NaN            NaN  ...    -2.014000    11.000000     1.000000      NaN
+std                               NaN  28.869772           NaN            NaN  ...     5.299126     3.236624     0.429133      NaN
+
+[11 rows x 17 columns]
