@@ -558,6 +558,12 @@ def _split_artists(s: str):
             parts.append(c)
     return parts
 
+# Các country KHÔNG muốn xuất hiện trong dropdown chọn tay
+EXCLUDED_DROPDOWN_COUNTRIES = {
+    "World","w"
+}
+
+
 
 def _preprocess(df_raw: pd.DataFrame) -> pd.DataFrame:
     """Làm sạch & chuẩn hoá để dữ liệu 'mịn':
@@ -598,16 +604,34 @@ def render_country_dashboard(country_name: str | None = None):
         country_name = st.session_state["selected_country"]
 
     # 2) Dropdown chỉ hiện khi chạy độc lập
-    #    👉 Bỏ United States khỏi danh sách chọn tay
+    #    👉 Danh sách country lấy ĐỘNG từ MongoDB, rồi loại bỏ những nước trong EXCLUDED_DROPDOWN_COUNTRIES
     if country_name is None:
-        available = [
-            "France", "Italy", "Japan",
-            "Mexico", "South Korea", "Spain", "Argentina", "USA"
-        ]
+        try:
+            collections = db.list_collection_names()
+
+            countries_from_mongo = []
+            for col in collections:
+                if col.startswith("top50_"):
+                    raw = col.replace("top50_", "")        # ví dụ: 'south_korea'
+                    name = raw.replace("_", " ").title()   # -> 'South Korea'
+                    countries_from_mongo.append(name)
+
+            # Loại bỏ các country không muốn hiện trong dropdown
+            available = sorted({
+                c for c in countries_from_mongo
+                if c not in EXCLUDED_DROPDOWN_COUNTRIES
+            })
+
+            # Nếu vì lý do gì đó không lấy được gì từ Mongo → tránh dropdown rỗng
+            if not available:
+                available = ["France", "Italy", "Japan", "Mexico", "South Korea", "Spain", "Argentina"]
+
+        except Exception as e:
+            # st.warning(f"Không lấy được danh sách country từ MongoDB, dùng danh sách mặc định. (Chi tiết: {e})")
+            available = ["France", "Italy", "Japan", "Mexico", "South Korea", "Spain", "Argentina"]
+
         country_name = st.selectbox("🌍 Chọn quốc gia để phân tích", available, index=0)
 
-    # Nếu hàm được gọi trực tiếp với "United States" vẫn cho chạy bình thường
-    st.title(f"🌍 Spotify Top 50 – {country_name} Dashboard")
 
     # -----------------------------
     # MongoDB
