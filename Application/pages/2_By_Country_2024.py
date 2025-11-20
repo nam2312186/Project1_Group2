@@ -602,7 +602,7 @@ def render_country_dashboard(country_name: str | None = None):
     if country_name is None:
         available = [
             "France", "Italy", "Japan",
-            "Mexico", "South Korea", "Spain", "Argentina"
+            "Mexico", "South Korea", "Spain", "Argentina", "USA"
         ]
         country_name = st.selectbox("🌍 Chọn quốc gia để phân tích", available, index=0)
 
