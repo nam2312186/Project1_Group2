@@ -116,7 +116,7 @@ all_countries = ["United States", "Argentina", "France","Italy","Japan","Mexico"
     "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
     "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
     "Uganda", "Ukraine", "United Arab Emirates", "Uruguay", "Uzbekistan",
-    "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe","Russian Federation"
+    "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe","Russian Federation", "North Korea", "Syria"
 ]
 
 def get_iso3(name):
@@ -125,10 +125,13 @@ def get_iso3(name):
     except:
         custom = {
             "South Korea": "KOR",
+            "North Korea": "PRK",
             "United States": "USA",
             "United Kingdom": "GBR",
             "Russia": "RUS",
-            "Russian Federation": "RUS"
+            "Russian Federation": "RUS",
+            "Congo (Brazzaville)": "COG",
+            "Congo (Kinshasa)": "COD"
         }
         return custom.get(name, None)
 
