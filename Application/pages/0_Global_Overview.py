@@ -292,7 +292,7 @@ with t_overview:
                 if not df_chart_genre.empty:
                     genre_counts = df_chart_genre["main_genre"].value_counts().head(10)
                     fig_g = px.bar(x=genre_counts.index, y=genre_counts.values, 
-                                   title="🎵 Top Thể loại nhạc đang thịnh hành (Đã lọc unknown)",
+                                   title="🎵 Top Thể loại nhạc đang thịnh hành",
                                    labels={'x': 'Thể loại', 'y': 'Số lượng'},
                                    color=genre_counts.values,
                                    color_continuous_scale="Turbo")
@@ -316,7 +316,7 @@ with t_overview:
 # ==============================================================================
 if data_type == "Single":
     with t_features:
-        st.subheader("🎚️ Phân tích Đặc tính Âm thanh (Audio DNA)")
+        st.subheader("Phân tích Đặc tính Âm thanh (Audio DNA)")
         
         features_list = ["danceability", "energy", "valence", "acousticness", "speechiness", "liveness"]
         
@@ -343,7 +343,7 @@ if data_type == "Single":
                 ))
                 fig_radar.update_layout(
                     polar=dict(radialaxis=dict(visible=True, range=[0, 1])),
-                    title="🕸️ Radar Chart: So sánh đặc tính",
+                    title=" Radar Chart: So sánh đặc tính",
                     legend=dict(y=-0.1, orientation="h"),
                     margin=dict(t=40, b=20)
                 )
@@ -356,13 +356,13 @@ if data_type == "Single":
                 corr_cols = features_list + ["popularity", "tempo"]
                 corr = df[corr_cols].corr()
                 fig_corr = px.imshow(corr, text_auto=".2f", color_continuous_scale="RdBu_r", 
-                                     title="🔗 Ma trận tương quan")
+                                     title="Ma trận tương quan")
                 st.plotly_chart(fig_corr, use_container_width=True, key=f"corr_{start_date}")
 
         st.markdown("---")
 
         # --- PHẦN 2: GENRE FINGERPRINTS (LỌC BỎ UNKNOWN) ---
-        st.subheader("🧬 Hồ sơ Âm nhạc theo Thể loại (Genre Fingerprints)")
+        st.subheader(" Hồ sơ Âm nhạc theo Thể loại (Genre Fingerprints)")
         st.caption("So sánh sự khác biệt về đặc tính âm thanh giữa các dòng nhạc đang thịnh hành.")
         
         if not df.empty and "main_genre" in df.columns:
@@ -388,7 +388,7 @@ if data_type == "Single":
                         x="main_genre", 
                         y=feat_compare, 
                         color="main_genre",
-                        title=f"Phân phối {feat_compare.capitalize()} giữa Top 10 Thể loại (Đã lọc unknown)",
+                        title=f"Phân phối {feat_compare.capitalize()} giữa Top 10 Thể loại",
                         points="outliers"
                     )
                     fig_box.update_layout(showlegend=False, xaxis_title="Thể loại", yaxis_title=feat_compare.capitalize())
@@ -403,7 +403,7 @@ if data_type == "Single":
         st.markdown("---")
 
         # --- PHẦN 3: DURATION TRENDS ---
-        st.subheader("⏱️ Hiệu ứng TikTok: Xu hướng Thời lượng bài hát")
+        st.subheader("Xu hướng Thời lượng bài hát")
         st.caption("Phân tích độ dài bài hát để xem xu hướng Short-form content.")
         
         if not df.empty and "duration_ms" in df.columns:
@@ -463,7 +463,7 @@ if data_type == "Single":
             
             short_songs = df[df["duration_min_val"] < 3].shape[0]
             percent_short = (short_songs / len(df)) * 100
-            st.metric("Tỷ lệ bài hát dưới 3 phút", f"{percent_short:.1f}%", delta="Trend nhạc ngắn")
+            st.metric("Tỷ lệ bài hát dưới 3 phút", f"{percent_short:.1f}%")
 
 # ==============================================================================
 # TAB: ARTIST ANALYSIS
@@ -681,7 +681,7 @@ with t_artist:
                         fig_r = go.Figure()
                         fig_r.add_trace(go.Scatterpolar(r=v_glo, theta=avail, fill='toself', name='Thị trường', opacity=0.3))
                         fig_r.add_trace(go.Scatterpolar(r=v_art, theta=avail, fill='toself', name=selected_artist, line_color='#1DB954'))
-                        fig_r.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 1])), title=f"🧬 Audio DNA ({selected_artist})")
+                        fig_r.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 1])), title=f"Audio DNA ({selected_artist})")
                         st.plotly_chart(fig_r, use_container_width=True)
                     else:
                         st.info("Không đủ dữ liệu Audio Features để vẽ Radar Chart.")
@@ -1096,14 +1096,16 @@ with t_time:
     tab2_name = "🎵 Lịch sử Bài hát" if "song" in df.columns else "💿 Lịch sử Phát hành"
     ts_tab1, ts_tab2 = st.tabs(["🌏 Xu hướng Thị trường (Global)", tab2_name])
 
-  # --------------------------------------------------------------------------
+# --------------------------------------------------------------------------
     # 1. GLOBAL TRENDS (Thị trường thay đổi thế nào?)
     # --------------------------------------------------------------------------
     with ts_tab1:
-        st.markdown("### 🌏 Bức tranh toàn cảnh thị trường qua các năm")
-
-        # === LOGIC RIÊNG CHO ALBUM (Sử dụng dữ liệu Stream/Genre/Behavior) ===
+        
+        # ======================================================================
+        # TRƯỜNG HỢP 1: DỮ LIỆU ALBUM (Stream, Listeners, Genre)
+        # ======================================================================
         if data_type == "Album":
+            st.markdown("### 🌏 Bức tranh toàn cảnh thị trường Album")
             if "Release Year" in df.columns and not df.empty:
                 # Chuẩn bị dữ liệu: Gom nhóm theo Năm phát hành
                 trend_df = df.groupby("Release Year").agg({
@@ -1111,228 +1113,250 @@ with t_time:
                     "Monthly Listeners (Millions)": "sum",
                     "Skip Rate (%)": "mean",
                     "Avg Stream Duration (Min)": "mean",
-                    "Album": "count" # Đếm số lượng album
+                    "Album": "count"
                 }).reset_index().sort_values("Release Year")
 
-                # BIỂU ĐỒ 1: TĂNG TRƯỞNG QUY MÔ (STREAM & NGƯỜI NGHE)
+                # BIỂU ĐỒ 1: TĂNG TRƯỞNG QUY MÔ
                 st.markdown("#### 📈 1. Quy mô thị trường: Stream & Người nghe")
                 fig_growth = go.Figure()
-                # Trục trái: Streams
                 fig_growth.add_trace(go.Scatter(
                     x=trend_df["Release Year"], y=trend_df["Total Streams (Millions)"],
                     mode='lines+markers', name='Tổng Stream (Triệu)',
                     line=dict(color='#1DB954', width=3), marker=dict(size=8)
                 ))
-                # Trục phải: Listeners
                 fig_growth.add_trace(go.Scatter(
                     x=trend_df["Release Year"], y=trend_df["Monthly Listeners (Millions)"],
-                    mode='lines+markers', name='Người nghe hàng tháng (Triệu)',
+                    mode='lines+markers', name='Người nghe (Triệu)',
                     line=dict(color='#E91E63', width=3, dash='dot'),
                     yaxis='y2'
                 ))
-                
                 fig_growth.update_layout(
-                    title="",
                     xaxis_title="Năm phát hành",
                     yaxis=dict(title="Tổng Stream (Triệu)"),
                     yaxis2=dict(title="Người nghe (Triệu)", overlaying='y', side='right'),
-                    hovermode="x unified",
-                    legend=dict(orientation="h", y=1.1)
+                    hovermode="x unified", legend=dict(orientation="h", y=1.1)
                 )
                 st.plotly_chart(fig_growth, use_container_width=True)
-
+                
                 st.markdown("---")
-
-                # BIỂU ĐỒ 2 & 3 (LAYOUT 2 CỘT)
+                
+                # CỘT 1 & 2: GENRE VÀ HÀNH VI
                 c_t1, c_t2 = st.columns(2)
-
-                # Cột 1: SỰ THAY ĐỔI CỦA THỂ LOẠI NHẠC (GENRE EVOLUTION)
                 with c_t1:
-                    st.markdown("#### 🌊 2. Sự dịch chuyển xu hướng dòng nhạc")
+                    st.markdown("#### 🌊 2. Xu hướng dòng nhạc (Genre)")
                     if "Genre" in df.columns:
-                        # Đếm số lượng album của mỗi Genre theo từng năm
                         genre_trend = df.groupby(["Release Year", "Genre"]).size().reset_index(name="Count")
-                        
-                        # Lọc lấy các Genre chính (Top 5-7 để đỡ rối)
                         top_genres = df["Genre"].value_counts().head(7).index.tolist()
                         genre_trend_filtered = genre_trend[genre_trend["Genre"].isin(top_genres)]
-
-                        fig_genre = px.area(
-                            genre_trend_filtered, 
-                            x="Release Year", y="Count", color="Genre",
-                            title="Thị phần Album theo Thể loại qua các năm",
-                            labels={"Count": "Số lượng Album"},
-                            color_discrete_sequence=px.colors.qualitative.Bold
-                        )
+                        fig_genre = px.area(genre_trend_filtered, x="Release Year", y="Count", color="Genre",
+                                            title="Thị phần Album theo Thể loại")
                         st.plotly_chart(fig_genre, use_container_width=True)
-                    else:
-                        st.info("Không có dữ liệu Genre.")
-
-                # Cột 2: HÀNH VI NGƯỜI DÙNG (SKIP RATE & DURATION)
-                with c_t2:
-                    st.markdown("#### ⏳ 3. Hành vi tiêu thụ Âm nhạc")
-                    fig_behav = go.Figure()
-                    
-                    # Avg Duration
-                    fig_behav.add_trace(go.Bar(
-                        x=trend_df["Release Year"], y=trend_df["Avg Stream Duration (Min)"],
-                        name="Thời lượng nghe TB (Phút)", marker_color='#535353', opacity=0.6
-                    ))
-                    
-                    # Skip Rate (Line)
-                    fig_behav.add_trace(go.Scatter(
-                        x=trend_df["Release Year"], y=trend_df["Skip Rate (%)"],
-                        name="Tỷ lệ Bỏ qua (%)", mode='lines+markers',
-                        line=dict(color='#FF5722', width=3), yaxis='y2'
-                    ))
-
-                    fig_behav.update_layout(
-                        title="Tương quan: Thời lượng nghe vs Tỷ lệ Skip",
-                        xaxis_title="Năm",
-                        yaxis=dict(title="Phút"),
-                        yaxis2=dict(title="Skip Rate (%)", overlaying='y', side='right', range=[0, 100]),
-                        legend=dict(orientation="h", y=1.1)
-                    )
-                    st.plotly_chart(fig_behav, use_container_width=True)
-                    
-                    st.caption("💡 *Insight: Nếu cột xám (Thời lượng) giảm và đường cam (Skip) tăng -> Xu hướng nghe nhạc 'Mì ăn liền' (Short-form).*")
-
-            else:
-                st.warning("⚠️ Không tìm thấy cột 'Release Year' để vẽ chuỗi thời gian cho Album.")
-
-        # === LOGIC CŨ CHO SINGLE (Giữ nguyên phần Audio Features nếu là Single) ===
-        else:
-            # Kiểm tra có cột date không
-            date_col = "date" 
-            if not df.empty and date_col in df.columns:
-                # ... (GIỮ NGUYÊN CODE CŨ CỦA PHẦN SINGLE Ở ĐÂY NẾU BẠN MUỐN) ...
-                # Nếu bạn đã có code cũ cho Single ở đây, hãy paste lại.
-                # Nếu không, tôi có thể viết lại phần Single luôn cho bạn.
                 
-                # Ví dụ code Single cơ bản:
+                with c_t2:
+                    st.markdown("#### ⏳ 3. Hành vi (Duration & Skip)")
+                    fig_behav = go.Figure()
+                    fig_behav.add_trace(go.Bar(x=trend_df["Release Year"], y=trend_df["Avg Stream Duration (Min)"], name="Thời lượng TB (Phút)", marker_color='#535353', opacity=0.6))
+                    fig_behav.add_trace(go.Scatter(x=trend_df["Release Year"], y=trend_df["Skip Rate (%)"], name="Tỷ lệ Skip (%)", mode='lines+markers', line=dict(color='#FF5722', width=3), yaxis='y2'))
+                    fig_behav.update_layout(yaxis=dict(title="Phút"), yaxis2=dict(title="Skip %", overlaying='y', side='right'), legend=dict(orientation="h", y=1.1))
+                    st.plotly_chart(fig_behav, use_container_width=True)
+            else:
+                st.warning("⚠️ Không tìm thấy cột 'Release Year' của Album.")
+
+        # ======================================================================
+        # TRƯỜNG HỢP 2: DỮ LIỆU SINGLE (Audio Features, Popularity) - [PHẦN BẠN CẦN]
+        # ======================================================================
+        else: 
+            st.markdown("### 🎵 Sự tiến hóa của Gu Âm nhạc (Audio Features)")
+            
+            # Kiểm tra cột ngày tháng (thường là 'date')
+            date_col = "date"
+            if date_col in df.columns and not df.empty:
+                
+                # Gom nhóm theo THÁNG để biểu đồ đỡ bị nhiễu (Resample by Month)
                 df_trend = df.copy()
                 df_trend['month_year'] = df_trend[date_col].dt.to_period('M').astype(str)
-                common_feats = ["energy", "valence", "danceability", "acousticness"]
-                available_feats = [f for f in common_feats if f in df_trend.columns]
+                
+                # Các chỉ số Audio Features cần vẽ
+                features_to_plot = ["danceability", "energy", "valence", "acousticness"]
+                available_feats = [f for f in features_to_plot if f in df.columns]
                 
                 if available_feats:
-                    monthly_stats = df_trend.groupby('month_year')[available_feats].mean().reset_index()
-                    fig_evol = go.Figure()
-                    for feature in available_feats:
-                        fig_evol.add_trace(go.Scatter(x=monthly_stats['month_year'], y=monthly_stats[feature], mode='lines', name=feature.capitalize()))
-                    fig_evol.update_layout(title="Audio Features theo thời gian", hovermode="x unified")
-                    st.plotly_chart(fig_evol, use_container_width=True)
-                else:
-                    st.warning("Không đủ dữ liệu Audio Features.")
-            else:
-                st.info("Chưa chọn dữ liệu Single.")
+                    # Tính trung bình theo tháng
+                    monthly_stats = df_trend.groupby('month_year')[available_feats + ['popularity']].mean().reset_index()
+                    
+                    # BIỂU ĐỒ 1: AUDIO FEATURES EVOLUTION (Line Chart)
+                    st.markdown("#### 🌊 1. Sóng nhạc: 'Chất' nhạc thay đổi thế nào?")
+                    fig_feat = go.Figure()
+                    
+                    colors = {'danceability': '#1DB954', 'energy': '#FF5722', 'valence': '#FFC107', 'acousticness': '#00BCD4'}
+                    
+                    for feat in available_feats:
+                        fig_feat.add_trace(go.Scatter(
+                            x=monthly_stats['month_year'], 
+                            y=monthly_stats[feat],
+                            mode='lines',
+                            name=feat.capitalize(),
+                            line=dict(width=2, color=colors.get(feat, 'white'))
+                        ))
+                    
+                    fig_feat.update_layout(
+                        title="",
+                        xaxis_title="Thời gian (Tháng)",
+                        yaxis_title="Giá trị (0-1)",
+                        hovermode="x unified",
+                        legend=dict(orientation="h", y=1.1),
+                        height=400
+                    )
+                    st.plotly_chart(fig_feat, use_container_width=True)
+                    
+                    st.info("""
+                    💡 **Giải thích chỉ số:**
+                    - **Energy (Cam):** Độ sôi động, mạnh mẽ.
+                    - **Valence (Vàng):** Độ vui vẻ, tích cực.
+                    - **Danceability (Xanh lá):** Độ thích hợp để nhảy.
+                    - **Acousticness (Xanh dương):** Độ mộc (nhạc cụ mộc).
+                    """)
+                    
+                    st.markdown("---")
 
-    # --------------------------------------------------------------------------
-    # 2. DETAIL HISTORY (Phân tách logic cho Album và Single)
-    # --------------------------------------------------------------------------
+                    # BIỂU ĐỒ 2: POPULARITY TREND (Area Chart)
+                    st.markdown("#### 🔥 2. Xu hướng Độ phổ biến (Popularity)")
+                    fig_pop = px.area(
+                        monthly_stats, 
+                        x='month_year', 
+                        y='popularity', 
+                        title="Độ phổ biến trung bình của Top 50 qua các tháng",
+                        labels={'month_year': 'Thời gian', 'popularity': 'Popularity Score'},
+                        color_discrete_sequence=['#E91E63']
+                    )
+                    fig_pop.update_layout(height=350)
+                    st.plotly_chart(fig_pop, use_container_width=True)
+                    
+                else:
+                    st.warning("⚠️ Dữ liệu Single không có các cột Audio Features (energy, danceability...).")
+            else:
+                st.info("⚠️ Không tìm thấy cột thời gian ('date') trong dữ liệu Single.")
+
 # --------------------------------------------------------------------------
-    # 2. DETAIL HISTORY (LỊCH SỬ PHÁT HÀNH - ĐÃ TỐI ƯU HÓA)
+    # 2. DETAIL HISTORY (LỊCH SỬ CHI TIẾT - TỰ ĐỘNG THEO LOẠI DỮ LIỆU)
     # --------------------------------------------------------------------------
     with ts_tab2:
-        # Kiểm tra xem có dữ liệu Album và Ngày phát hành không
-        if "Album" in df.columns and ("Release Date" in df.columns or "Release Year" in df.columns):
+        
+        # ======================================================================
+        # TRƯỜNG HỢP A: DỮ LIỆU SINGLE (BÀI HÁT LEO TOP)
+        # ======================================================================
+        if data_type == "Single":
+            st.markdown("### 📉 Hành trình leo Top của Bài hát")
             
-            # --- BƯỚC 1: XỬ LÝ DỮ LIỆU (QUAN TRỌNG: GOM NHÓM ĐỂ LOẠI BỎ TRÙNG LẶP) ---
-            # Gom nhóm theo Tên Album để tính tổng Stream toàn cầu cho Album đó
-            # Giả sử mỗi Album có 1 ngày phát hành duy nhất
-            df_unique_album = df.groupby("Album").agg({
-                "Total Streams (Millions)": "sum",       # Cộng dồn stream các nước
-                "Release Date": "first",                 # Lấy ngày đầu tiên tìm thấy
-                "Genre": "first",                        # Lấy Genre đại diện
-                "Artist": "first",
-                "totalTracks": "max"                     # Lấy số track
-            }).reset_index()
-
-            # Lọc bỏ các giá trị lỗi thời gian (nếu có)
-            df_unique_album = df_unique_album.dropna(subset=["Release Date"])
-            df_unique_album = df_unique_album.sort_values("Release Date")
-
-            st.markdown("### 🗓️ Dòng thời gian: Những cột mốc Âm nhạc")
-            st.caption("Biểu đồ chỉ hiển thị mỗi Album một lần (tổng hợp số liệu toàn cầu), giúp nhìn rõ các 'siêu phẩm' ra mắt khi nào.")
-
-            # --- BIỂU ĐỒ 1: TIMELINE BONG BÓNG (DẠNG LOLLIPOP HOẶC SCATTER SẠCH) ---
-            # X: Ngày phát hành, Y: Tổng Stream, Size: Tổng Stream
-            
-            fig_timeline = px.scatter(
-                df_unique_album,
-                x="Release Date",
-                y="Total Streams (Millions)",
-                size="Total Streams (Millions)",  # Bong bóng to = Album hot
-                color="Genre",                    # Màu theo thể loại
-                hover_name="Album",
-                text="Album",                     # Hiển thị tên Album cạnh bong bóng
-                title="",
-                labels={"Release Date": "Thời điểm ra mắt", "Total Streams (Millions)": "Tổng lượt nghe (Triệu)"},
-                size_max=50,                      # Kích thước tối đa
-                color_discrete_sequence=px.colors.qualitative.Prism
-            )
-
-            # Tinh chỉnh giao diện để tên không bị chồng chéo quá nhiều
-            fig_timeline.update_traces(textposition='top center')
-            fig_timeline.update_layout(height=500, xaxis_title="Năm phát hành", yaxis_title="Độ thành công (Stream)")
-            st.plotly_chart(fig_timeline, use_container_width=True)
-
-            st.markdown("---")
-
-            # --- BIỂU ĐỒ 2 & 3: PHÂN TÍCH MÙA VỤ & TẦN SUẤT ---
-            c_h1, c_h2 = st.columns([1, 1])
-
-            with c_h1:
-                st.markdown("#### 🍂 Phân tích Mùa vụ (Seasonality)")
-                st.caption("Nghệ sĩ/Thị trường thường ra mắt sản phẩm vào tháng nào?")
+            if "song" in df.columns and "date" in df.columns and "position" in df.columns:
                 
-                # Trích xuất tháng
-                df_unique_album['Month'] = df_unique_album['Release Date'].dt.month_name()
-                df_unique_album['Month_Num'] = df_unique_album['Release Date'].dt.month
+                # 1. Tạo Selectbox chọn bài hát
+                # Lấy danh sách bài hát có trong khoảng thời gian lọc
+                available_songs = df["song"].unique()
                 
-                # Đếm số lượng album theo tháng
-                month_counts = df_unique_album.groupby(['Month_Num', 'Month']).size().reset_index(name='Count')
-                month_counts = month_counts.sort_values('Month_Num')
+                if len(available_songs) > 0:
+                    c_sel1, c_sel2 = st.columns([2, 1])
+                    with c_sel1:
+                        selected_song_ts = st.selectbox("🔍 Chọn bài hát để soi chi tiết:", sorted(available_songs))
+                    
+                    # Lọc dữ liệu bài hát đó
+                    song_ts_df = df[df["song"] == selected_song_ts].sort_values("date")
+                    
+                    # 2. Tính toán KPI nhanh cho bài hát này
+                    best_rank = song_ts_df["position"].min()
+                    days_on_chart = len(song_ts_df)
+                    avg_pop = song_ts_df["popularity"].mean()
+                    curr_rank = song_ts_df.iloc[-1]["position"]
+                    
+                    with c_sel2:
+                        st.info(f"""
+                        **Thành tích:**
+                        - 🥇 Rank cao nhất: **#{best_rank}**
+                        - 📅 Số ngày trụ hạng: **{days_on_chart}**
+                        """)
 
-                fig_season = px.bar(
-                    month_counts,
-                    x='Month',
-                    y='Count',
-                    text='Count',
-                    title="Số lượng Album phát hành theo Tháng",
-                    color='Count',
-                    color_continuous_scale='Viridis'
+                    # 3. VẼ BIỂU ĐỒ KÉP (RANK vs POPULARITY)
+                    # Rank càng nhỏ càng tốt (trục nghịch đảo), Pop càng cao càng tốt
+                    fig_dual = go.Figure()
+
+                    # Đường Rank (Trục Y bên Trái)
+                    fig_dual.add_trace(go.Scatter(
+                        x=song_ts_df['date'], 
+                        y=song_ts_df['position'], 
+                        name="Thứ hạng (Rank)", 
+                        mode='lines+markers', 
+                        line=dict(color='#1DB954', width=3), 
+                        marker=dict(size=6)
+                    ))
+
+                    # Đường Popularity (Trục Y bên Phải)
+                    fig_dual.add_trace(go.Scatter(
+                        x=song_ts_df['date'], 
+                        y=song_ts_df['popularity'], 
+                        name="Độ phổ biến (Popularity)", 
+                        mode='lines', 
+                        line=dict(color='#E91E63', width=2, dash='dot'), 
+                        yaxis='y2' # Gán vào trục phải
+                    ))
+                    
+                    fig_dual.update_layout(
+                        title=f"Diễn biến thứ hạng: {selected_song_ts}",
+                        xaxis_title="Thời gian",
+                        
+                        # Cấu hình trục Rank (Đảo ngược: số 1 nằm trên cùng)
+                        yaxis=dict(title="Thứ hạng (#)", autorange="reversed", gridcolor='rgba(255,255,255,0.1)'),
+                        
+                        # Cấu hình trục Popularity
+                        yaxis2=dict(title="Popularity Score", overlaying='y', side='right', range=[0, 105], showgrid=False),
+                        
+                        hovermode="x unified", 
+                        legend=dict(orientation="h", y=1.1),
+                        height=500
+                    )
+                    st.plotly_chart(fig_dual, use_container_width=True)
+
+                else:
+                    st.warning("Không có bài hát nào trong khoảng thời gian này.")
+            else:
+                st.error("⚠️ Dữ liệu Single thiếu các cột cần thiết: 'song', 'date', hoặc 'position'.")
+
+        # ======================================================================
+        # TRƯỜNG HỢP B: DỮ LIỆU ALBUM (LỊCH SỬ PHÁT HÀNH)
+        # ======================================================================
+        elif data_type == "Album":
+            # Kiểm tra cột dữ liệu Album
+            if "Album" in df.columns and ("Release Date" in df.columns or "Release Year" in df.columns):
+                
+                # GOM NHÓM DỮ LIỆU (như code cũ đã tối ưu)
+                df_unique_album = df.groupby("Album").agg({
+                    "Total Streams (Millions)": "sum",
+                    "Release Date": "first",
+                    "Genre": "first",
+                    "Artist": "first",
+                }).reset_index()
+
+                df_unique_album = df_unique_album.dropna(subset=["Release Date"]).sort_values("Release Date")
+
+                st.markdown("### 🗓️ Dòng thời gian phát hành Album")
+                
+                # Biểu đồ Bong bóng Timeline
+                fig_timeline = px.scatter(
+                    df_unique_album,
+                    x="Release Date",
+                    y="Total Streams (Millions)",
+                    size="Total Streams (Millions)",
+                    color="Genre",
+                    hover_name="Album",
+                    text="Album",
+                    size_max=50,
+                    color_discrete_sequence=px.colors.qualitative.Prism,
+                    title=""
                 )
-                fig_season.update_layout(xaxis_title="", yaxis_title="Số lượng Album")
-                st.plotly_chart(fig_season, use_container_width=True)
-
-            with c_h2:
-                st.markdown("#### 📅 Xu hướng phát hành theo Năm")
-                st.caption("Nhịp độ sản xuất âm nhạc tăng hay giảm?")
-                
-                df_unique_album['Year'] = df_unique_album['Release Date'].dt.year
-                year_counts = df_unique_album.groupby('Year')['Total Streams (Millions)'].mean().reset_index()
-                
-                fig_velocity = px.line(
-                    year_counts,
-                    x='Year',
-                    y='Total Streams (Millions)',
-                    markers=True,
-                    title="Sức hút trung bình của Album qua các năm",
-                    line_shape='spline' # Đường cong mềm mại
-                )
-                fig_velocity.update_traces(line_color='#FF6F61', line_width=3)
-                fig_velocity.update_layout(xaxis_title="Năm", yaxis_title="Stream TB / Album")
-                st.plotly_chart(fig_velocity, use_container_width=True)
-                
-            # --- INSIGHT TEXT ---
-            # Tìm tháng có nhiều album nhất
-            if not month_counts.empty:
-                peak_month = month_counts.loc[month_counts['Count'].idxmax()]['Month']
-                st.info(f"💡 **Insight:** Tháng **{peak_month}** là thời điểm sôi động nhất với nhiều Album được ra mắt.")
-
-        else:
-            st.warning("⚠️ Không tìm thấy dữ liệu 'Release Date' hoặc 'Album' để vẽ lịch sử.")
+                fig_timeline.update_traces(textposition='top center')
+                fig_timeline.update_layout(height=500, xaxis_title="Ngày phát hành", yaxis_title="Tổng Stream (Triệu)")
+                st.plotly_chart(fig_timeline, use_container_width=True)
+            else:
+                st.warning("⚠️ Dữ liệu Album thiếu cột 'Release Date' hoặc 'Album'.")
 # ==============================================================================
 # TAB: OTHER INSIGHTS
 # ==============================================================================
