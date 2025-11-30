@@ -1,0 +1,126 @@
+==========================================
+DATA DICTIONARY – SPOTIFY & BILLBOARD PROJECT
+==========================================
+
+I. TỔNG QUAN DỮ LIỆU
+Dữ liệu dự án gồm 3 nguồn chính:
+1. Spotify Top 50 (năm 2024)
+2. Spotify Global Streaming Tracker (năm 2024)
+3. Billboard Hot 100 (năm 2025 – USA)
+
+Tất cả dữ liệu được lưu trong MongoDB Atlas:
+Database: spotify_project
+Collections:
+- top50_<country>_2024
+- billboard_hot100_usa_2025
+- spotify_global_2024
+- audio_features (Recobeats enrich)
+- track_metadata (Spotify API metadata)
+
+---------------------------------------
+II. ĐỊNH NGHĨA TRƯỜNG (FIELDS DEFINITION)
+---------------------------------------
+
+A. TRƯỜNG CHUNG CHO SPOTIFY TRACKS
+1. track_name: Tên bài hát
+2. artist: Nghệ sĩ chính
+3. artist_list: Danh sách nghệ sĩ (solo/collab)
+4. country: Quốc gia thu thập playlist
+5. position: Xếp hạng trong Top 50
+6. date: Ngày thu dữ liệu
+7. explicit: 1 = có lời nhạy cảm, 0 = sạch
+8. popularity: Chỉ số phổ biến Spotify
+9. spotify_track_id: ID bài hát trên Spotify
+10. spotify_album_id: ID album
+11. duration_ms: Độ dài bài hát
+
+B. AUDIO FEATURES (từ Recobeats/Spotify)
+1. danceability: Khả năng nhảy
+2. energy: Mức độ năng lượng
+3. valence: Độ vui tươi  
+4. tempo: Nhịp độ BPM
+5. loudness: Độ lớn âm thanh (dB)
+6. acousticness: Mức acoustic
+7. speechiness: Tỷ lệ lời nói
+8. instrumentalness: Mức nhạc cụ
+9. liveness: Mức độ live
+10. mode: Major / Minor
+
+C. BILLBOARD HOT 100 (2025 – USA)
+1. song: tên bài hát
+2. artist: nghệ sĩ
+3. week: tuần xếp hạng
+4. rank: thứ hạng tuần
+5. last_week_rank: hạng tuần trước
+6. peak_rank: hạng cao nhất
+7. weeks_on_chart: số tuần trụ BXH
+8. spotify_track_id: enum mapping qua Spotify
+9. genres: nhiều thể loại
+10. is_new: 1 nếu mới xuất hiện trong tuần đó
+
+-------------------------------
+III. LOGIC FEATURE ENGINEERING
+-------------------------------
+1. longevity = weeks_on_chart
+2. is_top10 = rank <= 10
+3. season = phân theo tháng:
+   - Winter (12-2)
+   - Spring (3-5)
+   - Summer (6-8)
+   - Fall (9-11)
+4. collab = số nghệ sĩ >= 2
+5. genre_primary = genre đầu tiên
+6. popularity_score = popularity chuẩn hóa 0–100
+
+-------------------------------------
+IV. CÁC BẢNG/PHÂN TÍCH TRONG DASHBOARD
+-------------------------------------
+
+A. HOME PAGE
+- World map: highlight những nước có dữ liệu
+- Chọn năm 2024/2025
+- Nếu 2025: chỉ có USA
+
+B. BY COUNTRY – SPOTIFY 2024
+Các phân tích:
+1. Genre Trends theo quốc gia
+2. Biến động Popularity theo tuần
+3. Solo vs Collab
+4. Explicit vs Clean
+5. Top Artists
+6. Top Songs
+7. Audio Feature Boxplot
+8. Longevity vs Peak Rank
+9. Trendline của Tempo/Energy/Valence
+
+C. BILLBOARD 2025 – USA
+1. Weekly filter 05/01 → 28/09/2025
+2. Genre profiling theo tuần
+3. Range Rank Movement
+4. Seasonal audio features
+5. Top 10 artists
+6. Hit stability curve
+7. Peak Rank Correlation
+
+---------------------------
+V. INSIGHT RÚT RA TỪ BÁO CÁO
+---------------------------
+1. Các quốc gia có thị hiếu âm nhạc khác nhau rõ rệt.
+2. Nhật / Hàn: explicit rate thấp, ưu tiên nội địa.
+3. Argentina / Mexico: explicit rate cao, Latin trending mạnh.
+4. Billboard: đầu năm reset, nhiều bài mới vào chart.
+5. Tempo và energy cao vào mùa hè.
+6. Valence thấp vào mùa đông (nhiều ballad).
+7. Peak Rank tương quan mạnh với longevity.
+8. Popularity tăng cao khi collab với nghệ sĩ lớn.
+
+---------------------------
+VI. QUY TẮC TRUY VẤN
+---------------------------
+- Muốn lọc theo quốc gia: query theo field “country”
+- Muốn lọc theo ngày: filter field “date”
+- Muốn lấy audio features: join theo spotify_track_id
+- BillBoard chỉ có USA
+- Truy vấn theo tuần: field “week”
+
+
