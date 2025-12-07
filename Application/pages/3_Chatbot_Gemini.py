@@ -34,7 +34,7 @@ from knowledge.embedding_utils import search_similar_chunks
 #   CẤU HÌNH GIAO DIỆN
 # =========================
 st.set_page_config(page_title="Chatbot Gemini", layout="wide")
-st.title("💬 Chatbot Gemini – Spotify & Billboard Assistant")
+st.title("💬 Chatbot Gemini Spotify Assistant")
 
 st.caption(
     "Trang này có 2 kiểu chatbot:\n \n"
@@ -83,13 +83,13 @@ st.markdown(
         white-space: pre-wrap;
     }
     .message-bubble.user {
-        background-color: #1DB954;   /* Spotify green */
-        color: #ffffff;
+        background-color: #8DC86E;   
+        color: #520962;
         border-bottom-right-radius: 4px;
     }
     .message-bubble.assistant {
-        background-color: #72D3FF;
-        color: #111827;
+        background-color: #7CB7D7;
+        color: #8E4A01;
         border-bottom-left-radius: 4px;
     }
     .message-meta {
