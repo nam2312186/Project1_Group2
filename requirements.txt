@@ -1,0 +1,11 @@
+streamlit
+streamlit-plotly-events
+pandas
+numpy
+plotly
+pycountry
+pymongo
+google-generativeai
+sentence-transformers
+scikit-learn
+pillow

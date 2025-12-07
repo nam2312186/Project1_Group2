@@ -166,23 +166,32 @@ SYSTEM_PROMPT_TXT = """
 Bạn là chatbot KIẾN THỨC cho dự án dashboard Spotify & Billboard (2024–2025).
 
 Nhiệm vụ:
-- Giải thích về cấu trúc dữ liệu, data dictionary, các trường (fields), KPI,
-  feature engineering và ý nghĩa biểu đồ trong dashboard.
-- Trả lời dựa trên tài liệu nội bộ (được đưa vào phần 'context'), không bịa số liệu.
-- KHÔNG tự bịa số liệu cụ thể như: số streams, thứ hạng chính xác, tuần xuất hiện,
-  nếu tài liệu không nói rõ.
-- Nếu người dùng hỏi số liệu cụ thể (top, rank, tuần, lọc theo...), hãy gợi ý rằng
-  họ nên dùng chế độ "chatbot TRUY VẤN".
+- Giải thích khái niệm, các trường dữ liệu, KPI, logic phân tích trong dashboard.
+- Trả lời dựa trên nội dung tài liệu nội bộ (context được cung cấp) và kiến thức về dữ liệu âm nhạc.
+- Không bịa số liệu cụ thể như stream, thứ hạng, tuần xuất hiện.
+- Không nhắc đến các mục như “Mục 7”, “biểu đồ số”, “section”, “hình minh hoạ”, vì người dùng chatbot không xem được report.
+- Khi cần nói về biểu đồ hoặc trực quan hoá, hãy nói chung chung theo kiểu:
+  “Trong dashboard, trường này thường được sử dụng để phân tích xu hướng.  
+   Nếu bạn muốn xem trực quan hơn, bạn có thể mở dashboard để xem nhé!”
 
-Trả lời bằng tiếng Việt, rõ ràng, thân thiện, gắn với bối cảnh MongoDB + Spotify + Billboard.
+Quy tắc định dạng:
+- Trả lời bằng văn bản thuần, không sử dụng Markdown phức tạp như bảng, code block, tiêu đề ###, ký tự đặc biệt.
+- Có thể sử dụng bullet dạng “•” cho dễ đọc.
+- Viết thân thiện, rõ ràng, mạch lạc, giúp người dùng dễ hiểu.
+
+Nếu câu hỏi liên quan đến số liệu, top, rank, lọc dữ liệu, hãy gợi ý chuyển sang chatbot TRUY VẤN.
+
+Trả lời bằng tiếng Việt.
 """.strip()
+
+
 
 # =========================
 #   HÀM VẼ BONG BÓNG CHAT
 # =========================
 def render_message(role: str, msg: str):
-    safe_msg = html.escape(msg).replace("\n", "<br>")
     if role == "user":
+        safe_msg = html.escape(msg).replace("\n", "<br>")
         avatar_html = '<div class="avatar user">🧑</div>'
         bubble_html = f"""
             <div class="message-bubble user">
@@ -192,6 +201,8 @@ def render_message(role: str, msg: str):
         """
         row_html = f'<div class="message-row user">{bubble_html}{avatar_html}</div>'
     else:
+        # Bot: nội dung chỉ là văn bản thường, không markdown phức tạp nữa
+        safe_msg = html.escape(msg).replace("\n", "<br>")
         avatar_html = '<div class="avatar assistant">🤖</div>'
         bubble_html = f"""
             <div class="message-bubble assistant">
@@ -317,7 +328,7 @@ if "chat_history" not in st.session_state:
             "assistant",
             "Xin chào, tôi là chatbot hỗ trợ dự án Spotify & Billboard.\n"
             "• Hỏi về khái niệm, trường dữ liệu, KPI, insight → tôi dùng tài liệu txt (embeddings) để trả lời.\n"
-            "• Hỏi về số liệu/top/rank/bài hát cụ thể → tôi sẽ chuyển sang chatbot TRUY VẤN (placeholder).\n"
+            "• Hỏi về số liệu/top/rank/bài hát cụ thể → tôi sẽ chuyển sang chatbot TRUY VẤN.\n"
             "• Tôi luôn sẵn sàng giúp bạn! 😊",
         )
     ]
