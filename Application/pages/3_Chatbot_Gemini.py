@@ -1,13 +1,34 @@
 # pages/3_Chatbot_Gemini.py
+"""
+Chatbot Page 3 – Router 2 loại chatbot:
+- Chatbot KIẾN THỨC (txt + embeddings): dùng data_dictionary.txt + Gemini.
+- Chatbot TRUY VẤN (MongoDB): hiện tại chỉ in "chatbot truy vấn",
+  sau này bạn/bạn của bạn chèn code Text-to-MLQ vào đây.
+
+UI kiểu Messenger: bong bóng user/bot, avatar 2 bên.
+"""
 
 import os
-import re
-from collections import Counter
+import sys
+import html
+from typing import List, Tuple
+from pathlib import Path
 
 import streamlit as st
 import google.generativeai as genai
-from pymongo import MongoClient
-import pandas as pd
+
+# =========================
+#   FIX ĐƯỜNG IMPORT CHO PAGES
+# =========================
+# File này nằm ở: Application/pages/3_Chatbot_Gemini.py
+# → Thêm thư mục Application/ vào sys.path để import knowledge.*
+PAGES_DIR = Path(__file__).resolve().parent           # .../Application/pages
+APP_DIR = PAGES_DIR.parent                            # .../Application
+
+if str(APP_DIR) not in sys.path:
+    sys.path.insert(0, str(APP_DIR))
+
+from knowledge.embedding_utils import search_similar_chunks
 
 # =========================
 #   CẤU HÌNH GIAO DIỆN
@@ -16,17 +37,92 @@ st.set_page_config(page_title="Chatbot Gemini", layout="wide")
 st.title("💬 Chatbot Gemini – Spotify & Billboard Assistant")
 
 st.caption(
-    "Chatbot dùng Google Gemini + MongoDB.\n"
-    "Bạn có thể:\n"
-    "- Hỏi tự do về dashboard, báo cáo.\n"
-    "- Dùng lệnh dữ liệu, ví dụ:\n"
-    "  • /data count_songs country=usa\n"
-    "  • /data top_artists country=uk limit=10\n"
-    "  • /data top_billboard limit=10\n"
+    "Trang này có 2 kiểu chatbot:\n \n"
+    "1️⃣ Chatbot KIẾN THỨC (từ file data_dictionary.txt + embeddings).\n \n"
+    "2️⃣ Chatbot TRUY VẤN số liệu từ MongoDB (text → MLQ).\n\n"
+    "Hiện tại đang thử nghiệm có gì lỗi mong bạn thông cảm! 😊"
+)
+
+# 🎨 CSS – khung chat kiểu Messenger, gọn, không khoảng trắng dư
+st.markdown(
+    """
+    <style>
+    .chat-outer {
+        max-width: 900px;
+        margin: 0.75rem auto;
+        min-height: 0px;
+        max-height: 0px;
+        border: 1px solid #e5e7eb;   /* viền nhẹ */
+        border-radius: 12px;
+        background: #148BDB;
+        padding: 0.75rem;
+        overflow-y: auto;            /* scroll trong box */
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+    .message-row {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 0.1rem;
+    }
+    .message-row.user {
+        justify-content: flex-end;
+    }
+    .message-row.assistant {
+        justify-content: flex-start;
+    }
+    .message-bubble {
+        padding: 0.45rem 0.8rem;
+        border-radius: 16px;
+        max-width: 70%;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+    .message-bubble.user {
+        background-color: #1DB954;   /* Spotify green */
+        color: #ffffff;
+        border-bottom-right-radius: 4px;
+    }
+    .message-bubble.assistant {
+        background-color: #72D3FF;
+        color: #111827;
+        border-bottom-left-radius: 4px;
+    }
+    .message-meta {
+        font-size: 0.7rem;
+        color: #6b7280;
+        margin-bottom: 0.1rem;
+    }
+    .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin: 0 0.35rem;
+        flex-shrink: 0;
+    }
+    .avatar.user {
+        background-color: #16a34a;
+        color: white;
+    }
+    .avatar.assistant {
+        background-color: #e5e7eb;
+        color: #111827;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
 # =========================
-#   LẤY API KEY TỪ ENV
+#   KHAI BÁO GEMINI
 # =========================
 API_KEY = os.getenv("GEMINI_API_KEY")
 if not API_KEY:
@@ -38,227 +134,249 @@ MODEL_NAME = "gemini-flash-latest"
 model = genai.GenerativeModel(MODEL_NAME)
 
 # =========================
-#   KẾT NỐI MONGODB
-# =========================
-MONGO_URI = os.getenv("MONGO_URI")
-if not MONGO_URI:
-    st.error(
-        "❌ Thiếu MONGO_URI trong biến môi trường.\n"
-        "Ví dụ: set MONGO_URI=mongodb+srv://user:pass@cluster/spotify_project"
-    )
-    st.stop()
-
-client = MongoClient(MONGO_URI)
-db = client["spotify_project"]  # đổi nếu bạn đặt tên khác
-
-# =========================
-#   ĐỌC FILE KIẾN THỨC
+#   ĐỌC FILE KIẾN THỨC (TXT)
 # =========================
 def load_knowledge() -> str:
-    candidate_paths = [
-        r"D:\Daihoc\Nam3\DAHKTDL\Code\Project_Spotify\Application\knowledge\data_dictionary.txt",
-        "knowledge/data_dictionary.txt",
-        "./knowledge/data_dictionary.txt",
-    ]
-    for path in candidate_paths:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8") as f:
-                return f.read()
+    """
+    Đọc Application/knowledge/data_dictionary.txt (dùng __file__).
+    Chỉ để kiểm tra file có tồn tại hay không (embeddings đã build từ file này).
+    """
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # Application/pages
+    knowledge_path = os.path.abspath(
+        os.path.join(base_dir, "..", "knowledge", "data_dictionary.txt")
+    )
+    if os.path.exists(knowledge_path):
+        with open(knowledge_path, "r", encoding="utf-8") as f:
+            return f.read()
     return ""
 
 
 KNOWLEDGE = load_knowledge()
 
-SYSTEM_PROMPT = f"""
-Bạn là chatbot hỗ trợ hệ thống dashboard phân tích âm nhạc Spotify & Billboard
-của sinh viên Bách Khoa. Bạn có 2 khả năng:
+if KNOWLEDGE:
+    st.success("")
+else:
+    st.warning(
+        "⚠ Chưa tìm thấy `data_dictionary.txt`. "
+        "Hãy kiểm tra lại đường dẫn Application/knowledge/data_dictionary.txt."
+    )
 
-1. Trả lời dựa trên tài liệu nội bộ (data dictionary, báo cáo).
-2. Khi người dùng dùng lệnh /data ..., ứng dụng sẽ tự truy vấn MongoDB và
-   hiển thị kết quả; sau đó bạn có thể giải thích ý nghĩa.
+# Prompt hệ thống cho chatbot kiến thức (không nhét full txt vào đây nữa)
+SYSTEM_PROMPT_TXT = """
+Bạn là chatbot KIẾN THỨC cho dự án dashboard Spotify & Billboard (2024–2025).
 
-Tài liệu nội bộ:
+Nhiệm vụ:
+- Giải thích về cấu trúc dữ liệu, data dictionary, các trường (fields), KPI,
+  feature engineering và ý nghĩa biểu đồ trong dashboard.
+- Trả lời dựa trên tài liệu nội bộ (được đưa vào phần 'context'), không bịa số liệu.
+- KHÔNG tự bịa số liệu cụ thể như: số streams, thứ hạng chính xác, tuần xuất hiện,
+  nếu tài liệu không nói rõ.
+- Nếu người dùng hỏi số liệu cụ thể (top, rank, tuần, lọc theo...), hãy gợi ý rằng
+  họ nên dùng chế độ "chatbot TRUY VẤN".
 
-==== START OF INTERNAL DATA DOCUMENTATION ====
-{KNOWLEDGE}
-==== END OF INTERNAL DATA DOCUMENTATION ====
+Trả lời bằng tiếng Việt, rõ ràng, thân thiện, gắn với bối cảnh MongoDB + Spotify + Billboard.
+""".strip()
 
-Luôn trả lời bằng tiếng Việt, dễ hiểu, ngắn gọn; ưu tiên bối cảnh dashboard,
-MongoDB, Spotify, Billboard.
+# =========================
+#   HÀM VẼ BONG BÓNG CHAT
+# =========================
+def render_message(role: str, msg: str):
+    safe_msg = html.escape(msg).replace("\n", "<br>")
+    if role == "user":
+        avatar_html = '<div class="avatar user">🧑</div>'
+        bubble_html = f"""
+            <div class="message-bubble user">
+              <div class="message-meta">Bạn</div>
+              <div>{safe_msg}</div>
+            </div>
+        """
+        row_html = f'<div class="message-row user">{bubble_html}{avatar_html}</div>'
+    else:
+        avatar_html = '<div class="avatar assistant">🤖</div>'
+        bubble_html = f"""
+            <div class="message-bubble assistant">
+              <div class="message-meta">Bot</div>
+              <div>{safe_msg}</div>
+            </div>
+        """
+        row_html = f'<div class="message-row assistant">{avatar_html}{bubble_html}</div>'
+
+    st.markdown(row_html, unsafe_allow_html=True)
+
+# =========================
+#   ROUTER: PHÂN LOẠI Ý ĐỊNH
+# =========================
+def classify_intent(msg: str) -> str:
+    """
+    Trả về:
+    - "query"     → câu hỏi về số liệu cụ thể, top, rank, bài hát cụ thể, thống kê...
+    - "knowledge" → câu hỏi chung về khái niệm, cấu trúc dữ liệu, ý nghĩa KPI...
+    """
+    m = msg.lower().strip()
+
+    # Lệnh /data chắc chắn là truy vấn
+    if m.startswith("/data"):
+        return "query"
+
+    # Hỏi trực tiếp về bài hát / ca khúc cụ thể
+    song_keywords = ["bài hát", "bai hat", "ca khúc", "ca khuc", "song "]
+    ask_keywords = ["biết", "biet", "có trong", "co trong", "nằm trong", "nam trong", "xuất hiện", "xuat hien"]
+    if any(sk in m for sk in song_keywords) and any(ak in m for ak in ask_keywords):
+        # ví dụ: "bạn biết bài hát apt ko", "bài hát này có trong dữ liệu không"
+        return "query"
+
+    # Các từ khóa về thống kê / số liệu
+    query_keywords = [
+        "bao nhiêu", "bao nhieu", "số lượng", "so luong",
+        "thống kê", "thong ke",
+        "top ", "top10", "top 10", "top 5",
+        "xếp hạng", "xep hang", "rank", "ranking",
+        "tuần nào", "tuan nao", "ngày nào", "ngay nao",
+        "mấy tuần", "may tuan", "weeks_on_chart",
+        "peak rank", "peak_rank",
+        "lớn nhất", "lon nhat", "nhỏ nhất", "nho nhat",
+        "trung bình", "trung binh",
+        "danh sách", "danh sach", "liệt kê", "liet ke",
+        "lọc theo", "loc theo", "filter", "where ",
+        "lượt stream", "luot stream",
+        "truy cập", "truy cap",
+        "truy vấn", "truy van",
+        "số ca khúc", "so ca khuc",
+    ]
+    if any(kw in m for kw in query_keywords):
+        return "query"
+
+    # Mặc định: câu hỏi kiến thức
+    return "knowledge"
+
+# =========================
+#   CHATBOT KIẾN THỨC (RAG)
+# =========================
+def answer_from_txt(user_msg: str, history: List[Tuple[str, str]]) -> str:
+    """
+    Chatbot kiến thức:
+    - Dùng embeddings (kb_embeddings.json) để chọn vài đoạn tài liệu liên quan nhất.
+    - Gửi các đoạn đó + câu hỏi + một ít history cho Gemini.
+    """
+
+    try:
+        # 1. Tìm các chunk liên quan nhất từ embeddings
+        top_chunks = search_similar_chunks(user_msg, top_k=3)
+        context_text = "\n\n---\n\n".join(ch["text"] for ch in top_chunks)
+
+        # 2. Gom một ít history gần nhất cho mạch hội thoại
+        history_text = ""
+        for role, msg in history[-4:]:
+            prefix = "Người dùng" if role == "user" else "Trợ lý"
+            history_text += f"{prefix}: {msg}\n"
+
+        # 3. Tạo prompt đầy đủ cho Gemini
+        full_prompt = f"""{SYSTEM_PROMPT_TXT}
+
+Dưới đây là một số đoạn tài liệu nội bộ (data_dictionary/ mô tả dashboard) liên quan đến câu hỏi:
+
+{context_text}
+
+Lịch sử hội thoại gần đây:
+{history_text}
+
+Câu hỏi của người dùng:
+{user_msg}
+
+Hãy trả lời dựa trên các đoạn tài liệu trên. Nếu không chắc chắn, hãy nói rõ là bạn
+không có đủ thông tin, đừng tự bịa số liệu cụ thể (streams, rank, tuần,...).
 """
 
-if KNOWLEDGE:
-    st.success("📚 Đã nạp `data_dictionary.txt`.")
-else:
-    st.warning("⚠ Chưa tìm thấy `data_dictionary.txt` – chatbot sẽ chỉ hiểu theo prompt tổng quát.")
+        response = model.generate_content(full_prompt)
+        return response.text.strip()
+    except Exception as e:
+        return f"⚠️ Lỗi khi xử lý chatbot kiến thức (RAG): `{e}`"
 
 # =========================
-#   HÀM TRUY VẤN MONGO
+#   CHATBOT TRUY VẤN (PLACEHOLDER)
 # =========================
-
-def normalize_country(country: str) -> str:
-    """Chuẩn hóa tên country -> đúng collection top50_<country>_2024."""
-    return country.strip().lower().replace(" ", "_")
-
-
-def get_spotify_collection_2024(country: str):
+def answer_from_query_bot(user_msg: str, history: List[Tuple[str, str]]) -> str:
     """
-    Trả về collection Top 50 2024 cho 1 quốc gia.
-    Giả sử tên collection là top50_<country>_2024, ví dụ:
-    - top50_usa_2024
-    - top50_uk_2024
+    Chatbot truy vấn – TẠM THỜI CHỈ PLACEHOLDER.
+
+    Sau này bạn/bạn của bạn có thể:
+    - Thêm code phân tích câu hỏi → sinh MLQ / pipeline MongoDB.
+    - Thực hiện truy vấn, trả về bảng/biểu đồ + giải thích.
+
+    Hiện tại hàm này chỉ trả đúng chuỗi "chatbot truy vấn".
     """
-    c = normalize_country(country)
-    coll_name = f"top50_{c}_2024"
-    return db[coll_name]
-
-
-def data_count_songs(country: str):
-    coll = get_spotify_collection_2024(country)
-    count = coll.count_documents({})
-    return count
-
-
-def data_top_artists(country: str, limit: int = 10):
-    coll = get_spotify_collection_2024(country)
-    docs = list(coll.find({}, {"artist": 1, "artists": 1, "_id": 0}))
-    names = []
-    for d in docs:
-        if "artists" in d and isinstance(d["artists"], list):
-            names.extend(d["artists"])
-        elif "artist" in d:
-            names.append(d["artist"])
-    counter = Counter(names)
-    top = counter.most_common(limit)
-    df = pd.DataFrame(top, columns=["artist", "count"])
-    return df
-
-
-def data_top_billboard(limit: int = 10):
-    """
-    Lấy Top N bài hát từ collection Billboard 2025 Mỹ.
-    Giả sử collection: top100_usa_2025, field:
-    - song, artist, peak_rank, weeks_on_chart
-    """
-    coll = db["top100_usa_2025"]
-    cursor = coll.find(
-        {},
-        {"song": 1, "artist": 1, "peak_rank": 1, "weeks_on_chart": 1, "_id": 0},
-    ).sort("peak_rank", 1).limit(limit)
-    df = pd.DataFrame(list(cursor))
-    return df
-
-# =========================
-#   PARSE LỆNH /data
-# =========================
-
-def parse_data_command(msg: str):
-    """
-    Nhận chuỗi /data ... và trả về dict:
-    {"action": "count_songs" / "top_artists" / "top_billboard", ...}
-    """
-    # /data count_songs country=usa
-    # /data top_artists country=uk limit=10
-    # /data top_billboard limit=10
-    msg = msg.strip()
-    if not msg.lower().startswith("/data"):
-        return None
-
-    # tách phần sau /data
-    try:
-        _, rest = msg.split(" ", 1)
-    except ValueError:
-        return None
-
-    parts = rest.strip().split()
-    if not parts:
-        return None
-
-    action = parts[0]
-    params = {"action": action}
-
-    for p in parts[1:]:
-        if "=" in p:
-            k, v = p.split("=", 1)
-            params[k.lower()] = v
-
-    return params
+    return "chatbot truy vấn"
 
 # =========================
 #   SESSION STATE
 # =========================
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []  # list[(role, msg)]
+    # Khởi tạo với 1 lời chào để trang nhìn đỡ trống
+    st.session_state.chat_history: List[Tuple[str, str]] = [
+        (
+            "assistant",
+            "Xin chào, tôi là chatbot hỗ trợ dự án Spotify & Billboard.\n"
+            "• Hỏi về khái niệm, trường dữ liệu, KPI, insight → tôi dùng tài liệu txt (embeddings) để trả lời.\n"
+            "• Hỏi về số liệu/top/rank/bài hát cụ thể → tôi sẽ chuyển sang chatbot TRUY VẤN (placeholder).\n"
+            "• Tôi luôn sẵn sàng giúp bạn! 😊",
+        )
+    ]
 
-st.subheader("🗨️ Chat với bot")
+st.subheader("💬 Chat với bot")
 
-col1, col2 = st.columns([1, 3])
-with col1:
-    if st.button("🧹 Xóa lịch sử chat"):
-        st.session_state.chat_history = []
-        st.rerun()
+# =========================
+#   KHUNG HIỂN THỊ CHAT
+# =========================
+st.markdown('<div class="chat-outer">', unsafe_allow_html=True)
 
-# Hiển thị lịch sử
+# Lịch sử cũ
 for role, msg in st.session_state.chat_history:
-    if role == "user":
-        st.markdown(f"**👤 Bạn:** {msg}")
-    else:
-        st.markdown(f"**🤖 Bot:** {msg}")
+    render_message(role, msg)
+
+# Placeholder cho message mới trong lần run hiện tại
+new_user_placeholder = st.empty()
+bot_placeholder = st.empty()
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 # =========================
-#   Ô NHẬP TIN NHẮN
+#   THANH DƯỚI: NÚT XÓA + Ô NHẬP
 # =========================
-user_msg = st.chat_input("Nhập câu hỏi (hoặc lệnh /data ...)")
+bottom_bar = st.container()
+with bottom_bar:
+    col_clear, col_input = st.columns([1, 9])
 
+    with col_clear:
+        if st.button("🧹 Xóa lịch sử", help="Xóa lịch sử chat", key="clear_chat"):
+            st.session_state.chat_history = []
+            st.rerun()
+
+    with col_input:
+        user_msg = st.chat_input("Nhập câu hỏi (về dữ liệu / kiến thức ...)")
+
+# =========================
+#   XỬ LÝ TIN NHẮN MỚI
+# =========================
 if user_msg:
-    st.session_state.chat_history.append(("user", user_msg))
+    # 1. Hiện ngay tin nhắn user ở placeholder (real-time feel)
+    with new_user_placeholder:
+        render_message("user", user_msg)
 
-    # 1) Nếu là lệnh /data → truy vấn MongoDB
-    data_cmd = parse_data_command(user_msg)
-    if data_cmd:
-        try:
-            action = data_cmd.get("action")
+    # 2. Router intent
+    intent = classify_intent(user_msg)
 
-            if action == "count_songs":
-                country = data_cmd.get("country", "usa")
-                count = data_count_songs(country)
-                answer = f"Số bài hát trong Top 50 năm 2024 của {country.upper()} là: **{count}**."
-
-            elif action == "top_artists":
-                country = data_cmd.get("country", "usa")
-                limit = int(data_cmd.get("limit", 10))
-                df = data_top_artists(country, limit)
-                st.markdown(f"**Top {limit} nghệ sĩ xuất hiện nhiều nhất trong Top 50 {country.upper()} 2024:**")
-                st.dataframe(df, use_container_width=True)
-                answer = "Mình đã hiển thị bảng Top nghệ sĩ cho bạn ở phía trên."
-
-            elif action == "top_billboard":
-                limit = int(data_cmd.get("limit", 10))
-                df = data_top_billboard(limit)
-                st.markdown(f"**Top {limit} bài hát Billboard Hot 100 USA 2025 theo peak_rank:**")
-                st.dataframe(df, use_container_width=True)
-                answer = "Mình đã hiển thị bảng Top bài hát Billboard cho bạn ở phía trên."
-
-            else:
-                answer = "Mình chưa hiểu lệnh /data này. Các lệnh hỗ trợ: count_songs, top_artists, top_billboard."
-
-        except Exception as e:
-            answer = f"⚠️ Lỗi khi truy vấn MongoDB: `{e}`"
-
-        st.session_state.chat_history.append(("assistant", answer))
-        st.rerun()
-
-    # 2) Không phải /data → cho Gemini trả lời
+    # 3. Gọi chatbot phù hợp
+    if intent == "knowledge":
+        with st.spinner("📖 Tôi đang phản hồi vui lòng chờ trong giây lát"):
+            answer = answer_from_txt(user_msg, st.session_state.chat_history)
     else:
-        history_text = SYSTEM_PROMPT + "\n\n"
-        for role, msg in st.session_state.chat_history[-15:]:
-            history_text += f"{role}: {msg}\n"
+        with st.spinner("📊 Đang chuyển sang chatbot truy vấn (placeholder)..."):
+            answer = answer_from_query_bot(user_msg, st.session_state.chat_history)
 
-        try:
-            response = model.generate_content(history_text)
-            answer = response.text
-        except Exception as e:
-            answer = f"⚠️ Lỗi API Gemini: `{e}`"
+    # 4. Hiện bot trả lời
+    with bot_placeholder:
+        render_message("assistant", answer)
 
-        st.session_state.chat_history.append(("assistant", answer))
-        st.rerun()
+    # 5. Lưu vào lịch sử cho các lần chat tiếp theo
+    st.session_state.chat_history.append(("user", user_msg))
+    st.session_state.chat_history.append(("assistant", answer))

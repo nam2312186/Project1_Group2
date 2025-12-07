@@ -25,7 +25,37 @@ render_country_dashboard = module.render_country_dashboard
 # ⚙️ 1️⃣ Cấu hình giao diện
 # =========================
 st.set_page_config(page_title="🌍 Music Analytics Home", layout="wide")
-st.title("🎵 Spotify 2024-2025 Dashboard ✨")
+
+# =========================
+# 🎵 Tiêu đề + Nút Chatbot
+# =========================
+
+col_title, col_chat = st.columns([10, 5])
+
+with col_title:
+    st.title("🎵 Spotify 2024-2025 Dashboard ✨")
+
+with col_chat:
+    # Đẩy khối xuống ngang hàng với title
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Đường dẫn tới ảnh chatbot
+    chatbot_icon_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "assets",
+        "chatbot.jpg",
+    )
+
+    # Hiển thị ảnh (icon chatbot)
+    st.image(chatbot_icon_path, width=110)
+
+    # Dòng chữ "Chat với bot" ngay dưới ảnh, là link sang Page 3
+    st.page_link(
+        "pages/3_Chatbot_Gemini.py",
+        label="🤖 Chat với bot",
+        icon=None,
+    )
+
 
 
 # =========================
