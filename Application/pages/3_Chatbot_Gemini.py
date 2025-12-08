@@ -18,6 +18,14 @@ from agent.router import route_query
 import streamlit as st
 import google.generativeai as genai
 
+# Import các module tự viết
+from knowledge.embedding_utils import search_similar_chunks
+
+from agent.core import process_user_query 
+
+# 👇 QUAN TRỌNG: Import hàm lấy key xoay vòng từ config
+from agent.config import get_resilient_llm
+
 # =========================
 #   FIX ĐƯỜNG IMPORT CHO PAGES
 # =========================
@@ -29,7 +37,7 @@ APP_DIR = PAGES_DIR.parent                            # .../Application
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
-from knowledge.embedding_utils import search_similar_chunks
+
 
 # =========================
 #   CẤU HÌNH GIAO DIỆN
@@ -122,21 +130,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# =========================
-#   KHAI BÁO GEMINI
-# =========================
-# API_KEY = os.getenv("AIzaSyCuttcW56fBgRbz6C4W6b72FxBc3yGtNm0")
-API_KEY = "AIzaSyCimazJT46huIJ5foOZQTF-xx4Hf10mUV4"
 
-if not API_KEY:
-    st.error("❌ Thiếu GEMINI_API_KEY trong biến môi trường.")
-    st.stop()
-
-genai.configure(api_key=API_KEY)
-MODEL_NAME = "gemini-flash-latest"
-model = genai.GenerativeModel(MODEL_NAME)
-
-# =========================
+# # =========================
 #   ĐỌC FILE KIẾN THỨC (TXT)
 # =========================
 def load_knowledge() -> str:
@@ -189,6 +184,89 @@ Trả lời bằng tiếng Việt.
 
 
 
+def answer_from_txt(user_msg: str, history: List[Tuple[str, str]]) -> str:
+    """
+    Chatbot kiến thức sử dụng LangChain + Cơ chế xoay vòng Key.
+    Đã fix lỗi 'list object has no attribute strip'.
+    """
+    try:
+        # 1. Tìm các chunk liên quan (Bước này không tốn API Key Gemini)
+        top_chunks = search_similar_chunks(user_msg, top_k=3)
+        context_text = "\n\n---\n\n".join(ch["text"] for ch in top_chunks)
+
+        # 2. Xử lý lịch sử chat
+        history_text = ""
+        for role, msg in history[-4:]:
+            prefix = "Người dùng" if role == "user" else "Trợ lý"
+            history_text += f"{prefix}: {msg}\n"
+
+        # 3. Tạo prompt đầy đủ
+        full_prompt = f"""{SYSTEM_PROMPT_TXT}
+
+Dưới đây là một số đoạn tài liệu nội bộ liên quan:
+{context_text}
+
+Lịch sử hội thoại gần đây:
+{history_text}
+
+Câu hỏi của người dùng:
+{user_msg}
+
+Hãy trả lời dựa trên các đoạn tài liệu trên. Nếu không chắc chắn, hãy nói rõ là bạn không có đủ thông tin.
+"""
+
+        # 4. VÒNG LẶP RETRY VÀ XOAY KEY
+        max_retries = 35 
+        
+        for attempt in range(max_retries):
+            try:
+                # --- LẤY KEY MỚI MỖI LẦN THỬ ---
+                llm = get_resilient_llm()
+                
+                # Gọi LLM
+                response = llm.invoke(full_prompt)
+                
+                # --- FIX LỖI: XỬ LÝ NỘI DUNG TRẢ VỀ ---
+                content = response.content
+                
+                final_text = ""
+                if isinstance(content, list):
+                    # Nếu là List, ghép các phần tử lại thành chuỗi
+                    for part in content:
+                        if isinstance(part, str):
+                            final_text += part
+                        elif isinstance(part, dict) and "text" in part:
+                            final_text += part["text"]
+                        else:
+                            final_text += str(part)
+                else:
+                    # Nếu là String thì dùng luôn
+                    final_text = str(content)
+                
+                return final_text.strip()
+                # --------------------------------------
+                
+            except Exception as e:
+                error_msg = str(e)
+                # Danh sách các lỗi cần đổi Key
+                retry_errors = [
+                    "429", "Quota", "ResourceExhausted", 
+                    "400", "403", "Key not found", "API_KEY_INVALID", 
+                    "Invalid argument"
+                ]
+                
+                if any(err in error_msg for err in retry_errors):
+                    print(f"⚠️ Knowledge Bot: Key lỗi (Lần {attempt+1}). Đang đổi key khác...")
+                    continue 
+                else:
+                    return f"⚠️ Lỗi xử lý Chatbot Kiến thức: {error_msg}"
+
+        return "⚠️ Hệ thống đang quá tải (Đã thử hết tất cả API Key). Vui lòng thử lại sau."
+
+    except Exception as e:
+        return f"⚠️ Lỗi hệ thống RAG: `{e}`"
+
+
 # =========================
 def render_message(role: str, msg: str):
     # --- ĐOẠN FIX LỖI QUAN TRỌNG ---
@@ -236,48 +314,6 @@ def render_message(role: str, msg: str):
 
     st.markdown(row_html, unsafe_allow_html=True)
 
-# =========================
-#   CHATBOT KIẾN THỨC (RAG)
-# =========================
-def answer_from_txt(user_msg: str, history: List[Tuple[str, str]]) -> str:
-    """
-    Chatbot kiến thức:
-    - Dùng embeddings (kb_embeddings.json) để chọn vài đoạn tài liệu liên quan nhất.
-    - Gửi các đoạn đó + câu hỏi + một ít history cho Gemini.
-    """
-
-    try:
-        # 1. Tìm các chunk liên quan nhất từ embeddings
-        top_chunks = search_similar_chunks(user_msg, top_k=3)
-        context_text = "\n\n---\n\n".join(ch["text"] for ch in top_chunks)
-
-        # 2. Gom một ít history gần nhất cho mạch hội thoại
-        history_text = ""
-        for role, msg in history[-4:]:
-            prefix = "Người dùng" if role == "user" else "Trợ lý"
-            history_text += f"{prefix}: {msg}\n"
-
-        # 3. Tạo prompt đầy đủ cho Gemini
-        full_prompt = f"""{SYSTEM_PROMPT_TXT}
-
-Dưới đây là một số đoạn tài liệu nội bộ (data_dictionary/ mô tả dashboard) liên quan đến câu hỏi:
-
-{context_text}
-
-Lịch sử hội thoại gần đây:
-{history_text}
-
-Câu hỏi của người dùng:
-{user_msg}
-
-Hãy trả lời dựa trên các đoạn tài liệu trên. Nếu không chắc chắn, hãy nói rõ là bạn
-không có đủ thông tin, đừng tự bịa số liệu cụ thể (streams, rank, tuần,...).
-"""
-
-        response = model.generate_content(full_prompt)
-        return response.text.strip()
-    except Exception as e:
-        return f"⚠️ Lỗi khi xử lý chatbot kiến thức (RAG): `{e}`"
 
 # =========================
 #   CHATBOT TRUY VẤN (PLACEHOLDER)

@@ -6,14 +6,15 @@ from typing import List, Tuple
 # Lưu ý: Không cần import build_fresh_agent vì Router chạy độc lập, nhẹ nhàng hơn.
 
 ROUTER_PROMPT = """
-Bạn là một Router Agent thông minh. Nhiệm vụ của bạn là phân loại câu hỏi hiện tại của người dùng vào 1 trong 2 nhóm: **DATABASE** hoặc **KNOWLEDGE**.
+Bạn là một Router Agent thông minh. Nhiệm vụ của bạn là phân loại câu hỏi hiện tại của người dùng vào 1 trong 2 nhóm: **DATABASE** tức là chat bot truy vấn hoặc **KNOWLEDGE** tức là chat bot kiến thức.
 
 HÃY SỬ DỤNG LỊCH SỬ HỘI THOẠI ĐỂ HIỂU NGỮ CẢNH (nếu câu hỏi ngắn gọn hoặc mơ hồ).
 
 1. **DATABASE**: 
    - Truy xuất số liệu, thống kê, danh sách, so sánh, thông tin cụ thể về bài hát/nghệ sĩ.
    - Ngữ cảnh: Nếu người dùng đang hỏi về số liệu và hỏi tiếp "còn bài kia thì sao?", "top 10 thì sao?".
-   - Các câu hỏi phân tích bài hát, nghệ sĩ, xu hướng cần dữ liệu cụ thể.
+   - Các câu hỏi phân tích bài hát, nghệ sĩ, xu hướng cần dữ liệu cụ thể, có thể chỉ hỏi về bạn có biết về bài hát nghệ sĩ,... này không nhưng ngụ ý là cần dữ liệu về nó.
+   - Tìm kiếm một bài hát, nghệ sĩ nào đó dựa trên tiêu chí có thể cụ thể có thể mơ hồ ( như là tôi muốn nghe một bái hát sôi động của nghệ sĩ nam nổi tiếng,...)
 
 2. **KNOWLEDGE**: 
    - Định nghĩa, khái niệm, giải thích ý nghĩa KPI, quy trình, thông tin chung.
@@ -45,7 +46,7 @@ def route_query(user_query: str, chat_history: List[Tuple[str, str]] = []) -> st
         history_text = "\n".join(history_lines)
 
     # 2. CƠ CHẾ RETRY XOAY KEY (Giống agent/core.py)
-    max_retries = 37 # Thử tối đa 3 key khác nhau nếu lỗi
+    max_retries = 38 # Thử tối đa 3 key khác nhau nếu lỗi
     
     for attempt in range(max_retries):
         try:
@@ -70,16 +71,30 @@ def route_query(user_query: str, chat_history: List[Tuple[str, str]] = []) -> st
             else:
                 return "knowledge"
                 
+        # except Exception as e:
+        #     error_msg = str(e)
+        #     # Kiểm tra lỗi Quota để đổi key
+        #     if "429" in error_msg or "Quota" in error_msg or "ResourceExhausted" in error_msg:
+        #         print(f"⚠️ Router: Key lỗi (Lần {attempt+1}). Đang đổi key khác...")
+        #         continue # Thử lại vòng lặp với key mới
+        #     else:
+        #         # Nếu lỗi khác (không phải quota), in ra và fallback về knowledge cho an toàn
+        #         print(f"⚠️ Lỗi Router (Không phải Quota): {e}")
+        #         return "knowledge"
         except Exception as e:
-            error_msg = str(e)
-            # Kiểm tra lỗi Quota để đổi key
-            if "429" in error_msg or "Quota" in error_msg or "ResourceExhausted" in error_msg:
-                print(f"⚠️ Router: Key lỗi (Lần {attempt+1}). Đang đổi key khác...")
-                continue # Thử lại vòng lặp với key mới
-            else:
-                # Nếu lỗi khác (không phải quota), in ra và fallback về knowledge cho an toàn
-                print(f"⚠️ Lỗi Router (Không phải Quota): {e}")
-                return "knowledge"
+                    error_msg = str(e)
+                    
+                    # --- SỬA ĐOẠN NÀY ---
+                    # Gộp chung các lỗi cần Retry: 
+                    # 429 (Hết Quota), 400 (Key sai định dạng), 403 (Key bị leak/chết)
+                    if any(code in error_msg for code in ["429", "400", "403", "Quota", "Key not found", "API_KEY_INVALID"]):
+                        print(f"⚠️ Router: Key lỗi (Lần {attempt+1}) -> {error_msg.splitlines()[0]}...") 
+                        print("   ↪ Đang đổi key khác...")
+                        continue # <--- QUAN TRỌNG: Tiếp tục thử key sau
+                    else:
+                        # Chỉ dừng lại nếu là lỗi code (ví dụ sai cú pháp Python)
+                        print(f"⚠️ Lỗi Router nghiêm trọng: {e}")
+                        return "knowledge"
 
     # Nếu thử hết 3 lần vẫn lỗi
     print("⚠️ Router: Hết sạch quota sau 3 lần thử. Fallback về Knowledge.")
