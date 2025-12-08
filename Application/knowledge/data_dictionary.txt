@@ -1,0 +1,439 @@
+==========================================
+DATA DICTIONARY – SPOTIFY & BILLBOARD PROJECT
+==========================================
+
+I. TỔNG QUAN DỮ LIỆU
+------------------------------------------
+Dữ liệu dự án gồm 3 nguồn chính:
+
+1. Spotify Top 50 (năm 2024)
+   - Top 50 bài hát cho từng quốc gia, theo ngày/tuần.
+   - Nhiều collection khác nhau, mỗi collection tương ứng 1 quốc gia.
+
+2. Spotify Global Streaming Tracker (năm 2024)
+   - Dữ liệu cấp độ album/global: số lượt stream, giờ nghe, skip rate, user type,…
+
+3. Billboard Hot 100 (năm 2025 – USA)
+   - Dữ liệu bảng xếp hạng Billboard Hot 100, theo tuần, chỉ riêng nước Mỹ.
+
+Tất cả dữ liệu được lưu trong MongoDB Atlas:
+
+- Database: spotify_project
+
+Các collection chính:
+- top50_<country>_2024 
+- top100_usa_2025  (Billboard Hot 100, USA 2025)
+- album_stats_global_2 hoặc spotify_global_2024 (Global streaming data)
+- audio_features (dữ liệu âm thanh từ ReccoBeats/Spotify API)
+- track_metadata (metadata bài hát từ Spotify API)
+
+
+---------------------------------------
+II. ĐỊNH NGHĨA TRƯỜNG (FIELDS DEFINITION)
+---------------------------------------
+
+A. TRƯỜNG CHUNG CHO SPOTIFY TRACKS (Top 50)
+-------------------------------------------
+Áp dụng cho các collection: top50_<country>_2024
+
+1. track_name / song: Tên bài hát.
+2. artist: Nghệ sĩ chính.
+3. artist_list / artists: Danh sách nghệ sĩ (dùng để phân biệt solo hay collab).
+4. country: Quốc gia tương ứng playlist (usa, uk, japan, korea, mexico, spain, italy, argentina, world…).
+5. position: Xếp hạng trong Top 50 (1–50).
+6. date / week: Ngày hoặc tuần thu dữ liệu (thường là ngày).
+7. explicit: 1 = có lời nhạy cảm, 0 = sạch.
+8. popularity: Chỉ số phổ biến Spotify (0–100).
+9. spotify_track_id / track_id: ID bài hát trên Spotify.
+10. spotify_album_id / album_id: ID album.
+11. duration_ms: Độ dài bài hát (millisecond).
+12. genres: Danh sách thể loại của bài hát.
+13. audio_features: object chứa các trường audio (ở dưới).
+
+B. AUDIO FEATURES (từ ReccoBeats/Spotify)
+-----------------------------------------
+Các trường thuộc nhóm audio_features.*:
+
+1. danceability: Khả năng nhảy (0–1).
+2. energy: Mức độ năng lượng (0–1).
+3. valence: Độ vui tươi, cảm xúc tích cực (0–1).
+4. tempo: Nhịp độ (BPM).
+5. loudness: Độ lớn âm thanh (dB).
+6. acousticness: Mức acoustic (0–1).
+7. speechiness: Tỷ lệ lời nói (0–1).
+8. instrumentalness: Mức nhạc cụ (0–1).
+9. liveness: Mức độ live (0–1).
+10. key: Tông nhạc (0–11, tương ứng C, C#, D, …, B).
+11. key_name: Tên tông nhạc (C, C#, D, …, B).
+12. mode: 1 = major, 0 = minor.
+
+C. BILLBOARD HOT 100 (2025 – USA)
+---------------------------------
+Collection: top100_usa_2025
+
+1. song / title: Tên bài hát trên Billboard.
+2. artist: Nghệ sĩ chính (string).
+3. artist_list (nếu có): Danh sách nghệ sĩ.
+4. week: Ngày đại diện cho tuần xếp hạng (thường là Chủ Nhật).
+5. rank: Thứ hạng trong tuần (1–100).
+6. last_week_rank: Thứ hạng của tuần trước.
+7. peak_rank: Hạng cao nhất trong lịch sử xuất hiện.
+8. weeks_on_chart: Số tuần bài hát xuất hiện trên Hot 100 (liên tiếp hoặc tổng).
+9. weeks_on_chart_total: Tổng số tuần xuất hiện (nếu có field này).
+10. spotify_track_id / spotify_id: ID bài hát trên Spotify (mapping).
+11. genres: Danh sách thể loại chính của bài hát.
+12. is_new: 1 nếu bài hát mới xuất hiện tuần đó, 0 nếu đã có từ trước.
+13. is_top10: 1 nếu rank <= 10, 0 nếu ngược lại.
+14. is_collab: 1 nếu có từ 2 nghệ sĩ trở lên, 0 nếu solo.
+15. season: Mùa trong năm (Winter, Spring, Summer, Fall).
+16. audio_features.*: các thuộc tính âm thanh giống như phần B.
+
+D. GLOBAL STREAMING (album_stats_global_2 / spotify_global_2024)
+----------------------------------------------------------------
+1. country: Quốc gia.
+2. artist: Nghệ sĩ.
+3. album: Tên album.
+4. genre: Thể loại chính của album.
+5. total_streams_millions: Tổng lượt stream (triệu).
+6. total_hours_streamed_millions: Tổng số giờ nghe (triệu).
+7. monthly_listeners_millions: Người nghe hàng tháng (triệu).
+8. release_year / release_date: Năm / ngày phát hành album.
+9. user_type: Loại tài khoản (Free/Premium).
+10. skip_rate: Tỷ lệ người dùng bỏ qua bài hát/album.
+11. audio_features.*: Các thuộc tính âm thanh tổng hợp ở cấp album.
+
+
+-------------------------------
+III. LOGIC FEATURE ENGINEERING
+-------------------------------
+
+1. longevity
+   - Định nghĩa: Số tuần bài hát trụ trên bảng xếp hạng.
+   - Với Billboard: thường = weeks_on_chart hoặc weeks_on_chart_total.
+   - Dùng để đo “độ bền” của một hit.
+
+2. is_top10
+   - is_top10 = (rank <= 10).
+   - Dùng để nhận diện “hit lớn” trên chart.
+
+3. season (mùa)
+   - Dựa trên tháng trong week/date:
+     - Winter: tháng 12, 1, 2.
+     - Spring: tháng 3, 4, 5.
+     - Summer: tháng 6, 7, 8.
+     - Fall: tháng 9, 10, 11.
+   - Dùng để so sánh đặc trưng audio theo mùa (energy, tempo, valence…).
+
+4. collab
+   - collab = 1 nếu số nghệ sĩ trong artist_list >= 2.
+   - collab = 0 nếu chỉ có 1 nghệ sĩ (solo).
+
+5. genre_primary
+   - genre_primary = phần tử đầu tiên trong danh sách genres.
+   - Dùng cho các biểu đồ bar/pie về thể loại.
+
+6. popularity_score
+   - Là phiên bản chuẩn hóa của popularity (nếu có).
+   - Dùng khi so sánh giữa nhiều quốc gia hoặc nhiều dataset khác nhau.
+
+
+-------------------------------------
+IV. CÁC BẢNG/PHÂN TÍCH TRONG DASHBOARD
+-------------------------------------
+
+A. HOME PAGE
+------------
+- World map (choropleth):
+  - Tô màu xanh các quốc gia có dữ liệu (Top 50 2024).
+  - Màu xám cho quốc gia chưa có dữ liệu.
+- Bộ lọc năm: 2024 / 2025.
+  - 2024: có nhiều quốc gia (USA, UK, Japan, Korea, Mexico, Spain, Italy, Argentina, World…).
+  - 2025: chỉ có USA (Billboard Hot 100).
+- Click vào quốc gia → chuyển sang By Country.
+- Có nút:
+  - Global Overview (tổng quan toàn cầu).
+  - Gửi phản hồi (Google Form).
+- Có lời cảm ơn & mô tả ngắn về hệ thống.
+
+B. BY COUNTRY – SPOTIFY 2024
+-----------------------------
+Nguồn dữ liệu: các collection `top50_<country>_2024`.
+
+Các phân tích chính:
+1. Genre Trends
+   - Đếm số bài theo genre_primary.
+   - So sánh phân phối thể loại giữa các tuần/tháng.
+
+2. Popularity Trend
+   - Line chart: popularity trung bình theo tuần hoặc theo ngày.
+   - Có thể phân tách theo genre.
+
+3. Solo vs Collab
+   - So sánh tỉ lệ bài hát solo (artist_list length = 1) và collab (>= 2).
+
+4. Explicit vs Clean
+   - Phân phối explicit = 1 vs 0 cho từng quốc gia.
+   - Cho thấy mức độ nhạy cảm trong lời bài hát giữa các nước.
+
+5. Top Artists
+   - Đếm số lần một nghệ sĩ xuất hiện trong Top 50.
+   - Lọc top N nghệ sĩ phổ biến nhất.
+
+6. Top Songs
+   - Dựa trên tần suất xuất hiện, popularity, hoặc thời gian xuất hiện trong Top 50.
+
+7. Audio Feature Boxplot
+   - Boxplot cho energy, danceability, valence, tempo, loudness…
+   - So sánh phân phối đặc trưng âm thanh của từng quốc gia.
+
+8. Longevity vs Peak Rank (nếu có tuần)
+   - Scatter: trục X = peak_rank, trục Y = longevity (weeks_on_chart).
+   - Giúp nhận diện bài vừa đạt hạng cao vừa trụ lâu.
+
+9. Trendline Tempo/Energy/Valence
+   - Line chart theo thời gian để xem xu hướng nhanh – chậm, vui – buồn, năng lượng cao – thấp.
+
+10. Data Table
+   - Toàn bộ raw data Top 50.
+   - Cột link mở bài hát trên Spotify (nếu có uri).
+
+
+C. BILLBOARD 2025 – USA
+------------------------
+Nguồn dữ liệu: collection `top100_usa_2025`.
+
+Các phân tích chính:
+1. Weekly Filter
+   - Chọn tuần từ 05/01/2025 đến 28/09/2025 (hoặc rộng hơn nếu đủ dữ liệu).
+   - Cho phép xem chi tiết bảng xếp hạng của một tuần cụ thể.
+
+2. Genre Profiling
+   - Thống kê số lượng bài theo genre_primary.
+   - Tính trung bình energy, danceability, valence, tempo theo thể loại.
+
+3. Rank Movement / Hit Timeline
+   - Cho phép chọn một hoặc vài bài hát.
+   - Vẽ đường biến động rank theo week (trục X = tuần, Y = rank).
+   - Thể hiện rõ kiểu “leo top nhanh rồi rơi” hay “lên từ từ nhưng bền”.
+
+4. Seasonal Audio Features
+   - Nhóm theo season (Winter/Spring/Summer/Fall).
+   - Tính trung bình energy, valence, tempo… cho từng mùa.
+
+5. Top 10 Artists
+   - Đếm số bài của mỗi artist xuất hiện trên Hot 100 trong năm 2025.
+   - Bảng hoặc bar chart.
+
+6. Longevity & Peak Rank
+   - Scatter: X = peak_rank, Y = weeks_on_chart_total.
+   - Dùng để nhận diện “siêu hit” (peak_rank rất nhỏ, weeks_on_chart_total rất lớn).
+
+7. Hit Stability Curve
+   - Phân bố weeks_on_chart_total của các bài.
+   - Cho thấy đa số bài chỉ trụ dưới một số tuần nhất định, ít bài trụ cực lâu.
+
+8. Data Table + Filter
+   - Bảng đầy đủ các dòng Billboard Hot 100.
+   - Bộ lọc nâng cao: tuần, artist, genre, season, is_new, is_top10, năng lượng, tempo,…
+
+
+---------------------------
+V. INSIGHT RÚT RA TỪ BÁO CÁO
+---------------------------
+
+1. Thị hiếu âm nhạc khác nhau rõ rệt giữa các quốc gia:
+   - Nhật, Hàn: ưu tiên J-pop, K-pop, nhiều bài nội địa.
+   - Argentina, Mexico, Spain: Latin, Reggaeton, Corrido, Trap Latino rất mạnh.
+   - US & World: đa dạng thể loại, thường là nơi xuất hiện trước của các hit toàn cầu.
+
+2. Explicit rate:
+   - Nhật / Hàn: tỉ lệ explicit thấp, lời bài hát “sạch” hơn.
+   - Argentina / Mexico: explicit rate cao, nhiều bài có nội dung mạnh.
+   - US / UK / World: tỉ lệ cân bằng.
+
+3. Billboard 2025:
+   - Đầu năm có hiện tượng “reset chart”: nhiều bài mới nhập bảng tuần đầu.
+   - Đa số bài chỉ trụ dưới ~10 tuần; chỉ một số ít bài trụ rất lâu.
+
+4. Mùa vụ:
+   - Summer: energy và tempo tăng, nhiều nhạc dance/pop sôi động.
+   - Winter: valence thấp hơn, nhiều ballad và bài trữ tình.
+
+5. Peak_rank vs Longevity:
+   - Bài đạt peak_rank 1–5 thường có longevity cao.
+   - Có trường hợp “viral ngắn hạn”: peak_rank cao nhưng weeks_on_chart thấp.
+
+6. Collab:
+   - Bài collab (nhiều nghệ sĩ) có xu hướng được chú ý nhiều hơn, nhất là khi có 1 nghệ sĩ nổi tiếng kéo bài lên.
+
+
+---------------------------
+VI. QUY TẮC TRUY VẤN CƠ BẢN
+---------------------------
+
+- Lọc theo quốc gia: filter field `country`.
+- Lọc theo ngày/tuần: filter field `date` hoặc `week`.
+- Lấy audio features: join theo `spotify_track_id` giữa track_metadata/audio_features và các bảng Top 50/Billboard.
+- Billboard chỉ áp dụng cho USA (top100_usa_2025).
+- Lọc theo thể loại: filter `genres` hoặc `genre_primary`.
+- Lọc explicit: theo `explicit` (0/1).
+- Lọc solo/collab: dựa `artist_list` hoặc `is_collab`.
+
+
+VII. CẤU TRÚC MONGODB & CÁC COLLECTION CHÍNH
+---------------------------------------------
+
+Database: spotify_project
+
+Nhóm collection Top 50 (Spotify 2024):
+- top50_argentina_2024
+- top50_france_2024
+- top50_usa_2024
+- top50_japan_2024
+- top50_south_korea_2024
+- top50_italy_2024
+- top50_mexico_2024
+- top50_spain_2024
+- top50_world_2024
+Mỗi document = 1 bài hát trong Top 50 của 1 ngày/tuần tại 1 quốc gia khu vực .
+
+Nhóm Global Streaming:
+- album_stats_global_2 hoặc spotify_global_2024
+Chứa dữ liệu cấp album/global: streams, hours, listeners, skip_rate, user_type, audio_features,…
+
+Nhóm Billboard:
+- top100_usa_2025
+Chứa dữ liệu Hot 100 cho USA năm 2025, đã enrich với Spotify & Recobeats.
+
+Nhóm hỗ trợ:
+- audio_features: bảng audio features chi tiết, join qua spotify_track_id.
+- track_metadata: metadata bài hát (artist list, album, genres, popularity…).
+
+
+VIII. PIPELINE THU THẬP & ENRICH DỮ LIỆU
+----------------------------------------
+
+Nguồn 1 – Spotify Top 50 2024
+- Crawl playlist Top 50 của nhiều quốc gia theo ngày/tuần.
+- Lưu dữ liệu thô vào CSV.
+- Gọi Spotify API để lấy:
+  - spotify_track_id, spotify_album_id, uri, album, artist list đầy đủ.
+  - genres.
+- Gọi ReccoBeats API hoặc Spotify Audio Features:
+  - danceability, energy, valence, tempo, loudness, acousticness, speechiness, instrumentalness, liveness, key, mode.
+- Chuẩn hóa:
+  - Định dạng date.
+  - Loại bỏ null bất thường.
+  - Chuẩn hóa genres, explicit, key_name.
+- Nạp vào MongoDB: các collection `top50_<country>_2024`.
+
+Nguồn 2 – Global Streaming 2024
+- Bắt đầu từ file csv: tổng số stream & giờ nghe theo album/quốc gia.
+- Chuẩn hóa cột thời gian, kiểu dữ liệu.
+- Gọi Spotify Search API → lấy album_id.
+- Gọi ReccoBeats → audio_features cấp album.
+- Tạo thêm KPI: skip_rate theo loại người dùng (Free/Premium), tương quan streams – hours – listeners.
+- Nạp vào collection `album_stats_global_2`.
+
+Nguồn 3 – Billboard Hot 100 USA 2025
+- Dùng thư viện `billboard` trong Python crawl toàn bộ Hot 100 theo từng tuần.
+- Dữ liệu ban đầu: week, rank, song/title, artist.
+- Gọi Spotify Search API → map sang spotify_track_id.
+- Gọi ReccoBeats → audio_features cho từng track.
+- Tính thêm:
+  - weeks_on_chart, weeks_on_chart_total.
+  - peak_rank.
+  - is_new, is_top10, is_collab.
+  - season (theo week).
+- Nạp vào MongoDB: collection `top100_usa_2025`.
+
+
+IX. KPI & FIELD QUAN TRỌNG (GIẢI THÍCH KỸ)
+-------------------------------------------
+
+1. Popularity / popularity_score
+   - Popularity: chỉ số 0–100 trên Spotify.
+   - Phản ánh độ phổ biến, mức stream, tốc độ tăng trưởng.
+   - popularity_score: phiên bản đã chuẩn hóa cho mục đích so sánh.
+
+2. Skip_rate
+   - Tỉ lệ người nghe bấm skip.
+   - skip_rate cao = nội dung chưa đủ hấp dẫn hoặc không đúng đối tượng.
+   - Kết hợp với total_hours_streamed_millions để đánh giá chất lượng nghe.
+
+3. Weeks_on_chart / longevity
+   - Số tuần một bài xuất hiện trên BXH.
+   - Dùng để phân biệt hit ngắn hạn và hit dài hơi.
+
+4. Peak_rank
+   - Thứ hạng cao nhất từng đạt được.
+   - Kết hợp với weeks_on_chart cho thấy:
+     - Hit bùng nổ (peak rất cao, nhưng trụ ngắn).
+     - Hit bền (peak cao + weeks_on_chart lớn).
+
+5. Energy / Danceability / Valence
+   - Energy: độ “cháy”, phù hợp nhạc EDM, rock, dance.
+   - Danceability: dễ nhún nhảy.
+   - Valence: độ vui/buồn (0 buồn, 1 rất vui).
+   - Đây là 3 trục quan trọng để hiểu “tính chất cảm xúc” của playlist từng quốc gia.
+
+6. Season (Mùa)
+   - Giúp phân tích xu hướng theo mùa:
+     - Mùa hè: nhạc nhanh, sôi động, tempo cao.
+     - Mùa đông: nhiều ballad, valence thấp.
+
+7. Explicit / Clean
+   - Dùng để phân tích sự khác biệt văn hóa/khán giả giữa quốc gia:
+     - Một số thị trường cởi mở hơn với nội dung explicit.
+     - Một số thị trường ưa chuộng nội dung family-friendly.
+
+
+X. LIÊN KẾT GIỮA DASHBOARD & DỮ LIỆU
+------------------------------------
+
+1. HomePage
+   - Lấy danh sách quốc gia từ các collection Top 50.
+   - Năm 2024: hiển thị tất cả quốc gia có collection tương ứng.
+   - Năm 2025: chỉ cho chọn USA vì chỉ có dataset Billboard.
+
+2. By Country 2024
+   - Dựa trên Top 50 của quốc gia:
+     - Collection: top50_<country>_2024.
+   - Từ country được chọn trên HomePage:
+     - Query tới collection tương ứng.
+   - Các biểu đồ đều dựa trên các cột:
+     - track_name/song, artist/artist_list, genres, explicit, popularity, audio_features.
+
+3. By Country 2025 – Billboard USA
+   - Dùng collection: top100_usa_2025.
+   - Bộ lọc tuần: field week.
+   - Phân tích bổ sung:
+     - weeks_on_chart, peak_rank, is_new, is_collab, season.
+
+4. Global Overview (nếu có)
+   - Dùng album_stats_global_2.
+   - Tổng hợp KPI ở mức global/album:
+     - streams, hours, listeners, skip_rate, genre, country.
+
+
+XI. MAPPING NGÔN NGỮ TỰ NHIÊN → FIELD DỮ LIỆU
+----------------------------------------------
+
+(Phần này giúp Chatbot hiểu câu hỏi người dùng và map sang trường dữ liệu.)
+
+- “bài hát”, “track”, “ca khúc” → track_name (Spotify), song/title (Billboard).
+- “nghệ sĩ”, “ca sĩ”, “artist/band” → artist, artist_list.
+- “quốc gia”, “nước” → country (Spotify), ngầm hiểu USA khi nói riêng về Billboard 2025.
+- “thể loại”, “dòng nhạc”, “genre” → genres, genre_primary.
+- “tuần”, “week”, “trong tuần X” → week.
+- “xếp hạng”, “thứ hạng”, “vị trí” → position (Top 50), rank/peak_rank (Billboard).
+- “trụ hạng bao lâu”, “giữ trên bảng mấy tuần” → weeks_on_chart, weeks_on_chart_total, longevity.
+- “hit”, “bài rất nổi”, “bài top 10” → rank <= 10, is_top10, peak_rank nhỏ.
+- “nhạc mùa hè/đông/xuân/thu” → filter theo season.
+- “bài explicit/nhạy cảm” → explicit = 1.
+- “nhạc sạch/clean” → explicit = 0.
+- “bài solo/collab, kết hợp, ft.” → artist_list length, is_collab.
+
+==========================================
+KẾT THÚC DATA DICTIONARY
+==========================================

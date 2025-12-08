@@ -47,7 +47,7 @@
 
 % Configurations
 \coursename{Đồ án tổng hợp - hướng kỹ thuật dữ liệu  (CO3127)}
-\reporttype{ Report tuần 40} 
+\reporttype{ Report tuần 47} 
 \title{Thu thập và phân tích dữ liệu của ứng dụng giải trí Spotify}
 \advisor{ GV.Dương Huỳnh Anh Đức }
 \stuname{%
@@ -75,6 +75,8 @@
 % Set depth of numbering for counters
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 
+
+
 % Rename some sections
 %\AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
 %\AtBeginDocument{\renewcommand*{\refname}{References}}
@@ -97,10 +99,26 @@
 
 \coverpage
 
+% ======= MỤC LỤC ========
+\tableofcontents
+\clearpage
+
+% ======= DANH MỤC BẢNG ========
+\renewcommand{\listtablename}{DANH MỤC BẢNG}
+\listoftables
+\clearpage
+
+% ======= DANH MỤC HÌNH (nếu có) ========
+\listoffigures
+\clearpage
+
 
 
 \section*{Nhiệm cụ công việc}
-\subsection*{Danh sách phân công ở giai đoạn 1(tuần 37-40)}
+
+
+
+\subsection*{Danh sách phân công ở giai đoạn 2(tuần 41-47)}
 \renewcommand{\arraystretch}{1.3} % tăng khoảng cách dòng trong ô
 \setlength{\tabcolsep}{8pt} % khoảng cách giữa các cột
 
@@ -122,57 +140,33 @@
 \endlastfoot
 
 \multirow{4}{*}{1} & \multirow{4}{*}{Nguyễn Minh Nhựt} 
-    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
-& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
-& & 39 & Lấy data từ Kaggle; Dùng Spotify API để làm đầy metadata; ReccoBeats để lấy audio features; Viết report & \\ \cline{3-4}
-& & 40 & Tiền xử lý, khám phá insight dữ liệu & \\ \hline
+    & 41-42 &Lựa chọn công nghệ lưu trữ và ứng dụng thực tế & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 44-45 & Tải dữ liệu lên mongoDB & \\ \cline{3-4}
+& & 46 & Xây dựng hệ thống web bằng công nghệ streamlit & \\ \cline{3-4}
+& & 47 & Viết báo cáo và làm slide thuyết trình & \\ \hline
 
 \multirow{4}{*}{2} & \multirow{4}{*}{Phạm Đình Phương Nam} 
-    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
-& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
-& & 39 & Tìm hiểu nguồn data; Thu thập dữ liệu; Giải quyết vấn đề về data & \\ \cline{3-4}
-& & 40 & Hoàn chỉnh cho thu thập, phân tích dữ liệu, demo code cho nguồn thứ 3; Viết báo cáo, chuẩn bị slide & \\ \hline
+    & 41-42 & Lựa chọn công nghệ lưu trữ và ứng dụng thực tế & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 44-45 & Tải dữ liệu lên mongoDB & \\ \cline{3-4}
+& & 46 & Xây dựng hệ thống web bằng công nghệ streamlit & \\ \cline{3-4}
+& & 47 & Viết báo cáo và làm slide thuyết trình & \\ \hline
 
 \multirow{4}{*}{3} & \multirow{4}{*}{Đoàn Mạnh Tất} 
-    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
-& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
-& & 39 & Tìm hiểu dữ liệu, xử lí vấn đề về dữ liệu & \\ \cline{3-4}
-& & 40 & Viết demo phân tích dữ liệu , làm báo cáo và slide thuyết trình & \\ \hline
+    & 41-42 & Lựa chọn công nghệ lưu trữ và ứng dụng thực tế & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 44-45 & Vẽ Data Pipeline& \\ \cline{3-4}
+& & 46 & Xây dựng hệ thống web bằng công nghệ streamlit & \\ \cline{3-4}
+& & 47 & Viết báo cáo và làm slide thuyết trình & \\ \hline
 
 \multirow{4}{*}{4} & \multirow{4}{*}{Phạm Đức Hoài Nam} 
-    & 37 & Tìm hiểu đề tài & \multirow{4}{*}{100\%} \\ \cline{3-4}
-& & 38 & Họp online, phân chia nhiệm vụ, phân tích rõ bối cảnh vấn đề của đề tài & \\ \cline{3-4}
-& & 39 & Tiền xử lý dữ liệu;Phân tích tương quan dữ liệu & \\ \cline{3-4}
-& & 40 & Demo code, chuẩn bị báo cáo & \\ \hline
+    & 41-42 & Lựa chọn công nghệ lưu trữ và ứng dụng thực tế & \multirow{4}{*}{100\%} \\ \cline{3-4}
+& & 44-45 &Vẽ schema theo mongoDB & \\ \cline{3-4}
+& & 46 & Xây dựng hệ thống web bằng công nghệ streamlit & \\ \cline{3-4}
+& & 47 & Viết báo cáo và làm slide thuyết trình & \\ \hline
 
 \end{longtable}
 
-\subsection*{Nhận xét từ giảng viên}
-
-  \begin{tabular}{|c|c|c|c|}
-    \hline
-    \textbf{STT} & \textbf{Họ và tên} & \textbf{Điểm số} & \textbf{Nhận xét} \\
-    \hline
-    1 &  Nguyễn Minh Nhựt   & \hspace{1cm} & \hspace{7.5cm} \\    \hline
-    2 & Phạm Đình Phương Nam &  &  \\     \hline
-    3 & Đoàn Mạnh Tất  &  &  \\       \hline
-    4 & Phạm Đức Hoài Nam  &  &  \\ \hline 
-
-  \end{tabular}
 
 
-
-\clearpage
-\pagenumbering{gobble}
-\tableofcontents
-\listoffigures
-%\listoftables
-%\lstlistoflistings{}
-\clearpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
-\setcounter{section}{0}
 
 \section{ Giới thiệu}
 \subsection{Tổng quan về Spotify }
@@ -252,12 +246,12 @@ Trong kỷ nguyên số, lượng dữ liệu âm nhạc mà Spotify quản lý 
     \item Làm sạch và chuẩn hóa dữ liệu: xử lý giá trị thiếu, định dạng ngày, chuẩn hóa các trường thuộc tính, loại bỏ dữ liệu dư thừa.
 \end{itemize}
 
-\subsection{Thiết kế và xây dựng hệ thống dữ liệu}
-\begin{itemize}
-    \item Thiết kế mô hình dữ liệu quan hệ (ERD, RM) dựa trên các file CSV đã chuẩn hóa.
-    \item Tổ chức dữ liệu vào hệ quản trị CSDL (MySQL,..) nhằm đảm bảo tính toàn vẹn, tối ưu truy vấn và dễ dàng mở rộng.
-    \item Áp dụng các kỹ thuật Data Engineering: indexing, trigger, backup/restore, tối ưu hóa dữ liệu.
-\end{itemize}
+% \subsection{Thiết kế và xây dựng hệ thống dữ liệu}
+% \begin{itemize}
+%     \item Thiết kế mô hình dữ liệu quan hệ (ERD, RM) dựa trên các file CSV đã chuẩn hóa.
+%     \item Tổ chức dữ liệu vào hệ quản trị CSDL (MySQL,..) nhằm đảm bảo tính toàn vẹn, tối ưu truy vấn và dễ dàng mở rộng.
+%     \item Áp dụng các kỹ thuật Data Engineering: indexing, trigger, backup/restore, tối ưu hóa dữ liệu.
+% \end{itemize}
 
 \subsection{Xây dựng pipeline xử lý và phân tích dữ liệu}
 \begin{itemize}
@@ -347,30 +341,18 @@ Việc sử dụng MongoDB thay cho các hệ quản trị quan hệ truyền th
     \label{fig:example} % nhãn để tham chiếu
 \end{figure}
 
-\begin{enumerate}
-    \item \textbf{Cấu trúc dữ liệu phi quan hệ (NoSQL) linh hoạt:}  
-    Bộ dữ liệu âm nhạc có cấu trúc đa dạng, gồm nhiều cấp thông tin lồng nhau như \textit{thông tin bài hát}, \textit{nghệ sĩ}, \textit{đặc trưng âm thanh (audio features)}, \textit{thứ hạng theo tuần}, v.v.  
-    MongoDB cho phép lưu trữ trực tiếp các đối tượng dạng \textit{JSON document} mà không cần thiết kế bảng và ràng buộc phức tạp như mô hình quan hệ.  
-    Việc này giúp dễ dàng thêm mới hoặc thay đổi thuộc tính mà không phải chỉnh sửa toàn bộ cấu trúc dữ liệu.
+\begin{itemize}
+    \item \textbf{Linh hoạt với dữ liệu phi quan hệ}: Dữ liệu âm nhạc có cấu trúc lồng nhau (bài hát, nghệ sĩ, album, audio features). MongoDB lưu trữ dạng JSON document, dễ mở rộng và không yêu cầu schema cố định.
+    
+    \item \textbf{Hiệu năng phân tích cao}: Nhờ cơ chế indexing và aggregation pipeline, MongoDB hỗ trợ truy vấn nhanh và xử lý hiệu quả hàng nghìn bản ghi theo tuần, theo quốc gia.
+    
+    \item \textbf{Khả năng mở rộng và tích hợp tốt}: Hỗ trợ sharding và kết nối trực tiếp với các công cụ như Python (pymongo, pandas), Streamlit, LangChain và môi trường AI.
+    
+    \item \textbf{Phù hợp cho Dashboard và Chatbot}: Dữ liệu được truy xuất linh hoạt, phục vụ trực quan hoá trên Streamlit và truy vấn tự động trong mô-đun Chatbot AI.
+    
+\end{itemize}
 
-    \item \textbf{Hiệu năng cao trong truy vấn và phân tích dữ liệu phi cấu trúc:}  
-    MongoDB được tối ưu cho các truy vấn đọc nhanh và xử lý dữ liệu lớn (Big Data) thông qua cơ chế \textit{document indexing} và \textit{aggregation pipeline}.  
-    Điều này đặc biệt phù hợp với yêu cầu phân tích hàng nghìn bản ghi về bài hát, thể loại, và chỉ số năng lượng âm nhạc theo tuần, theo quốc gia.
-
-    \item \textbf{Khả năng mở rộng và tích hợp dễ dàng:}  
-    MongoDB hỗ trợ mở rộng theo chiều ngang (\textit{horizontal scaling}) bằng sharding, cho phép hệ thống hoạt động ổn định khi khối lượng dữ liệu tăng nhanh.  
-    Đồng thời, MongoDB tích hợp tốt với các công cụ trong hệ sinh thái dữ liệu hiện đại như \textbf{Python (pymongo, pandas)}, \textbf{Streamlit}, \textbf{LangChain}, và các dịch vụ đám mây như \textbf{MongoDB Atlas}.
-
-    \item \textbf{Phù hợp cho ứng dụng trực quan và trí tuệ nhân tạo:}  
-    Dữ liệu lưu trong MongoDB có thể được truy xuất trực tiếp từ các ứng dụng Streamlit để hiển thị dashboard phân tích (như biểu đồ xu hướng Billboard theo mùa, biểu đồ năng lượng bài hát).  
-    Ngoài ra, MongoDB còn đóng vai trò là kho dữ liệu nền cho mô-đun \textit{Chatbot AI}, cho phép truy vấn động và trả lời gợi ý nhạc theo ngữ cảnh người dùng.
-
-    \item \textbf{Dễ triển khai trên môi trường đám mây:}  
-    Việc triển khai MongoDB Atlas giúp nhóm lưu trữ dữ liệu trên môi trường \textit{cloud-based}, đảm bảo tính sẵn sàng, an toàn và có thể truy cập từ bất kỳ ứng dụng nào trong mạng nội bộ hoặc Internet.  
-    Điều này giảm thiểu chi phí vận hành, tránh các vấn đề cấu hình server thủ công như khi dùng MySQL on-premise.
-\end{enumerate}
-
-Tổng hợp các yếu tố trên cho thấy MongoDB là lựa chọn tối ưu cho dự án phân tích dữ liệu âm nhạc, nơi dữ liệu có cấu trúc linh hoạt, khối lượng lớn, và yêu cầu truy xuất nhanh phục vụ cho các ứng dụng phân tích, gợi ý nhạc và chatbot thông minh.
+Nhờ các ưu điểm trên, MongoDB đáp ứng tốt yêu cầu lưu trữ, phân tích và mở rộng của hệ thống trong phạm vi đồ án.
 
 
 
@@ -479,7 +461,18 @@ MongoDB là lựa chọn phù hợp nhất cho mục tiêu của dự án: lưu 
     \caption{Sơ đồ cấu trúc lưu trữ trên MongoDB} % chú thích
     \label{fig:example} % nhãn để tham chiếu
 \end{figure}
+Hình  mô tả cấu trúc lưu trữ dữ liệu trong cơ sở dữ liệu \textit{Spotify\_project} trên MongoDB. Hệ thống gồm ba nhóm collection chính, tương ứng với ba loại dữ liệu đầu vào của dự án.
 
+\begin{itemize}
+    \item \textbf{top50\_X}: gồm 9 collection cho từng quốc gia và thế giới (Argentina, France, USA, Japan, \ldots). Mỗi document chứa thông tin track theo ngày: \textit{song}, \textit{artist}, \textit{position}, \textit{genres}, \textit{audio features} (energy, valence, tempo, loudness, v.v.), kèm \textit{track\_id} và \textit{album\_id}. Đây là nguồn dữ liệu chính cho dashboard Spotify Top~50 theo quốc gia.
+
+    \item \textbf{album\_stats\_global\_2}: lưu các thông tin tổng quan về album trên toàn cầu: lượng nghe theo tháng, tổng số giờ phát, thời lượng trung bình mỗi lần nghe, tỉ lệ bỏ qua, năm phát hành, nền tảng streaming, cùng metadata từ Spotify API như \textit{artists}, \textit{label}, \textit{popularity}. Collection này hỗ trợ phân tích mức độ phổ biến và hành vi nghe nhạc của người dùng.
+
+    \item \textbf{top100\_usa\_2025}: chứa dữ liệu Billboard Hot~100 năm~2025 cho thị trường Hoa Kỳ. Mỗi record gồm \textit{rank}, \textit{title}, \textit{artist}, \textit{spotify\_id}, đặc trưng âm thanh và thông tin thống kê như \textit{weeks\_on\_chart}, \textit{peak\_rank}, \textit{is\_new}, \textit{is\_collab} và \textit{season}. Đây là nguồn dữ liệu phục vụ các phân tích chuyên sâu về xu hướng âm nhạc tại Mỹ.
+\end{itemize}
+
+\noindent
+Ba nhóm collection này được ứng dụng truy vấn trực tiếp để xây dựng Dashboard Streamlit và hỗ trợ mô-đun Chatbot AI trong việc tìm kiếm, gợi ý và phân tích dữ liệu âm nhạc
 
 
 \input{udtt.tex}
@@ -529,52 +522,54 @@ MongoDB là lựa chọn phù hợp nhất cho mục tiêu của dự án: lưu 
 \end{longtable}
 
 
-\subsubsection{Phân công nhiệm vụ dự kiến sau tuần 40}
+\subsubsection{Phân công nhiệm vụ dự kiến sau tuần 47}
 
 \begin{center}
 \begin{longtable}{|c|c|p{10cm}|}
 \hline
 \textbf{Tuần} & \textbf{Thành viên} & \textbf{Nhiệm vụ} \\
 \hline
-41 & Nguyễn Minh Nhựt & Thiết kế kiến trúc dữ liệu, vẽ ERD sơ bộ \\
-   & Phạm Đình Phương Nam & Tìm hiểu mô hình quan hệ, chuẩn bị ràng buộc dữ liệu \\
-   & Đoàn Mạnh Tất & Bắt đầu tiền xử lý dataset bằng Python/Pandas \\
-   & Phạm Đức Hoài Nam & Khảo sát công nghệ triển khai (DB, web) \\
-\hline
-42 & Nguyễn Minh Nhựt & Hoàn thiện ERD, mô hình dữ liệu quan hệ \\
-   & Phạm Đình Phương Nam & Viết phần chuẩn hóa (1NF–BCNF) \\
-   & Đoàn Mạnh Tất & Tiếp tục xử lý dữ liệu, sinh file clean \\
-   & Phạm Đức Hoài Nam & Thiết kế sơ đồ kiến trúc hệ thống \\
-\hline
-43 & Cả nhóm & Thi giữa kỳ, rà soát tiến độ, chỉnh sửa báo cáo \\
-\hline
-44 & Nguyễn Minh Nhựt & Hỗ trợ tạo bảng trong DB \\
-   & Phạm Đình Phương Nam & Thêm ràng buộc, trigger, index \\
-   & Đoàn Mạnh Tất & Import dữ liệu vào DB \\
-   & Phạm Đức Hoài Nam & Kiểm tra pipeline DB–ứng dụng \\
-\hline
-45 & Nguyễn Minh Nhựt & Viết kịch bản kiểm thử dữ liệu \\
-   & Phạm Đình Phương Nam & Kiểm thử CSDL (truy vấn, trigger) \\
-   & Đoàn Mạnh Tất & Kiểm thử pipeline xử lý dữ liệu \\
-   & Phạm Đức Hoài Nam & Tổng hợp so sánh kết quả với yêu cầu ban đầu \\
-\hline
-46 & Cả nhóm & Hoàn thiện phần kiểm thử \& đánh giá, chuẩn bị L.0.2 \\
-\hline
-47 & Nguyễn Minh Nhựt & Chuẩn bị slide kiến trúc \& ERD \\
-   & Phạm Đình Phương Nam & Chuẩn bị slide CSDL \\
-   & Đoàn Mạnh Tất & Chuẩn bị slide xử lý dữ liệu \\
-   & Phạm Đức Hoài Nam & Chuẩn bị slide triển khai \& demo ứng dụng \\
-   & Cả nhóm &   Trình bày L.0.2 \\
-\hline
+% 41 & Nguyễn Minh Nhựt & Thiết kế kiến trúc dữ liệu, vẽ ERD sơ bộ \\
+%    & Phạm Đình Phương Nam & Tìm hiểu mô hình quan hệ, chuẩn bị ràng buộc dữ liệu \\
+%    & Đoàn Mạnh Tất & Bắt đầu tiền xử lý dataset bằng Python/Pandas \\
+%    & Phạm Đức Hoài Nam & Khảo sát công nghệ triển khai (DB, web) \\
+% \hline
+% 42 & Nguyễn Minh Nhựt & Hoàn thiện ERD, mô hình dữ liệu quan hệ \\
+%    & Phạm Đình Phương Nam & Viết phần chuẩn hóa (1NF–BCNF) \\
+%    & Đoàn Mạnh Tất & Tiếp tục xử lý dữ liệu, sinh file clean \\
+%    & Phạm Đức Hoài Nam & Thiết kế sơ đồ kiến trúc hệ thống \\
+% \hline
+% 43 & Cả nhóm & Thi giữa kỳ, rà soát tiến độ, chỉnh sửa báo cáo \\
+% \hline
+% 44 & Nguyễn Minh Nhựt & Hỗ trợ tạo bảng trong DB \\
+%    & Phạm Đình Phương Nam & Thêm ràng buộc, trigger, index \\
+%    & Đoàn Mạnh Tất & Import dữ liệu vào DB \\
+%    & Phạm Đức Hoài Nam & Kiểm tra pipeline DB–ứng dụng \\
+% \hline
+% 45 & Nguyễn Minh Nhựt & Viết kịch bản kiểm thử dữ liệu \\
+%    & Phạm Đình Phương Nam & Kiểm thử CSDL (truy vấn, trigger) \\
+%    & Đoàn Mạnh Tất & Kiểm thử pipeline xử lý dữ liệu \\
+%    & Phạm Đức Hoài Nam & Tổng hợp so sánh kết quả với yêu cầu ban đầu \\
+% \hline
+% 46 & Cả nhóm & Hoàn thiện phần kiểm thử \& đánh giá, chuẩn bị L.0.2 \\
+% \hline
+% 47 & Nguyễn Minh Nhựt & Chuẩn bị slide kiến trúc \& ERD \\
+%    & Phạm Đình Phương Nam & Chuẩn bị slide CSDL \\
+%    & Đoàn Mạnh Tất & Chuẩn bị slide xử lý dữ liệu \\
+%    & Phạm Đức Hoài Nam & Chuẩn bị slide triển khai \& demo ứng dụng \\
+%    & Cả nhóm &   Trình bày L.0.2 \\
+% \hline
 48 & Nguyễn Minh Nhựt & Viết phần ứng dụng tra cứu dữ liệu \\
-   & Phạm Đình Phương Nam & Thiết kế giao diện web/dashboard \\
-   & Đoàn Mạnh Tất & Vẽ biểu đồ trực quan hóa \\
-   & Phạm Đức Hoài Nam & Tích hợp kết quả vào ứng dụng demo \\
+   & Phạm Đình Phương Nam & Thu thập , gán nhãn câu hỏi,trả lời từ báo cáo, dashboard, FAQ cho tập dữ liệu chat bot\\
+   & Đoàn Mạnh Tất & Thiết kế lược đồ lưu hội thoại, user context trong MongoDB và kịch bản logging\\
+   & Phạm Đức Hoài Nam & Làm POC gọi API LLM, thử nghiệm prompt cơ bản trả lời câu hỏi về dữ liệu âm nhạc\\
 \hline
-49 & Nguyễn Minh Nhựt & Viết kết quả đạt được \\
-   & Phạm Đình Phương Nam & Viết hạn chế còn tồn tại \\
-   & Đoàn Mạnh Tất & Viết hướng phát triển (data/ML) \\
-   & Phạm Đức Hoài Nam & Hoàn thiện báo cáo tiến độ \\
+49 & Nguyễn Minh Nhựt & Cài đặt service backend FastAPI/Flask cho chat bot, kết nối với Streamlit và MongoDB \\
+   & Phạm Đình Phương Nam & Xây dựng module truy xuất tri thức search/vector trên tài liệu dự án và tinh chỉnh prompt\\
+   & Đoàn Mạnh Tất & Hoàn thiện lưu trữ log, thống kê phiên chat, thiết kế vài dashboard đánh giá hiệu quả chat bot \\
+   & Phạm Đức Hoài Nam & Viết test kịch bản hội thoại, đo chất lượng trả lời, hoàn thiện tài liệu hướng dẫn và slide demo\\
+  
+
 \hline
 50 & Cả nhóm & Hoàn thành báo cáo, hoàn thiện slide cuối kỳ \\
 \hline
@@ -609,6 +604,27 @@ Billboard. \textit{Billboard Hot 100 – Music Charts}.
 \bibitem{ReccoBeats}
 ReccoBeats. \textit{Track Audio Features API}.  
 \url{https://reccobeats.com/docs/apis/get-track-audio-features}
+
+\bibitem{Streamlit}
+Streamlit. \textit{Streamlit Documentation}.  
+\url{https://docs.streamlit.io/}
+
+\bibitem{MongoDB}
+MongoDB. \textit{MongoDB Atlas Documentation}.  
+\url{https://www.mongodb.com/docs/atlas/}
+
+\bibitem{PyMongo}
+PyMongo. \textit{PyMongo API Reference}.  
+\url{https://pymongo.readthedocs.io/en/stable/}
+
+\bibitem{Plotly}
+Plotly. \textit{Plotly Python Graphing Library}.  
+\url{https://plotly.com/python/}
+
+\bibitem{PyCountry}
+PyCountry. \textit{PyCountry Documentation}.  
+\url{https://pypi.org/project/pycountry/}
+
 
 \end{thebibliography}
 

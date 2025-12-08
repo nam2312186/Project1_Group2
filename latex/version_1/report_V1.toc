@@ -1,68 +1,67 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {section}{\numberline {1} Giới thiệu}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Tổng quan về Spotify }{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Vấn đề thực tế – Nhu cầu phân tích dữ liệu Spotify (xu hướng âm nhạc, gợi ý nhạc, phân tích nghệ sĩ)}{2}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Nhà nghiên cứu âm nhạc và dữ liệu}{3}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Người dùng và cộng đồng nghe nhạc:}{3}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Nghệ sĩ và hãng thu âm}{3}{subsubsection.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.2.4}Doanh nghiệp và tổ chức quảng cáo}{3}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Kỹ sư dữ liệu và nhà phát triển hệ thống}{4}{subsubsection.1.2.5}%
-\contentsline {section}{\numberline {2}Mục tiêu đồ án}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Thu thập và tiền xử lý dữ liệu}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Thiết kế và xây dựng hệ thống dữ liệu}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Xây dựng pipeline xử lý và phân tích dữ liệu}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Phân tích và trực quan hóa dữ liệu Spotify}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Ứng dụng và mở rộng}{5}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Tìm hiểu và phân tích đặc điểm của nguồn dữ liệu}{5}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Nguồn 1: Spotify Top 50 Playlist Songs }{6}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Giới thiệu dữ liệu}{6}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Bổ sung dữ liệu:}{7}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Tiền xử lý}{11}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Phân tích và tìm insight:}{15}{subsubsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.2}Nguồn 2: }{31}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Giới thiệu Dataset:}{31}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Data enrichment:}{31}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Data cleaning and preprocessing: }{31}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Overview and Analysis}{35}{subsubsection.3.2.4}%
-\contentsline {subsubsection}{\numberline {3.2.5}Mục tiêu:}{41}{subsubsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.3}Nguồn 3: Billboard Hot 100}{42}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Giới thiệu dữ liệu}{42}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Thu thập và bổ sung dữ liệu }{43}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Phân tích dữ liệu ban đầu}{44}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Làm sạch dữ liệu (Data Cleaning)}{51}{subsubsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.5}Tạo đặc trưng (Feature Engineering)}{53}{subsubsection.3.3.5}%
-\contentsline {subsubsection}{\numberline {3.3.6}Phân tích xu hướng (Trend Analysis)}{55}{subsubsection.3.3.6}%
-\contentsline {subsubsection}{\numberline {3.3.7}Kết quả và Ý nghĩa}{64}{subsubsection.3.3.7}%
-\contentsline {section}{\numberline {4}Xây dựng pipeline xử lý và phân tích dữ liệu}{66}{section.4}%
-\contentsline {section}{\numberline {5}Kiến trúc lưu trữ}{67}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Lý do lựa chọn MongoDB làm hệ quản trị cơ sở dữ liệu}{67}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}So sánh với các DBMS khác}{69}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Sơ đồ cấu trúc lưu trữ trên MongoDB}{71}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Ứng dụng thực tế}{72}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Người dùng xem tổng quan về các bài hát và album trên Streamlit}{72}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Lý do lựa chọn Streamlit}{72}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}Mục tiêu}{73}{subsubsection.6.1.2}%
-\contentsline {subsubsection}{\numberline {6.1.3}Trang HomePage — Giao diện khởi đầu hệ thống}{75}{subsubsection.6.1.3}%
-\contentsline {subsubsection}{\numberline {6.1.4}Trang Global Overview}{76}{subsubsection.6.1.4}%
-\contentsline {paragraph}{1. Hướng Phân Tích Album}{77}{section*.61}%
-\contentsline {paragraph}{- Tab Tổng Quan (Overview – Album)}{77}{section*.62}%
-\contentsline {paragraph}{- Tab Phân tích Nghệ sĩ (Artist Analysis)}{77}{section*.63}%
-\contentsline {paragraph}{- Tab Quốc gia \& Thị trường (Country Analysis)}{77}{section*.64}%
-\contentsline {paragraph}{- Tab Chuỗi thời gian (Time Series – Album)}{78}{section*.65}%
-\contentsline {paragraph}{- Tab Insights khác}{78}{section*.66}%
-\contentsline {paragraph}{2. Hướng Phân Tích Single (Top 50 World)}{78}{section*.67}%
-\contentsline {paragraph}{- Tab Tổng Quan (Overview – Single)}{78}{section*.68}%
-\contentsline {paragraph}{- Tab Audio Features (Đặc tính âm thanh)}{78}{section*.69}%
-\contentsline {paragraph}{- Tab Phân tích Nghệ sĩ}{78}{section*.70}%
-\contentsline {paragraph}{- Tab Chuỗi thời gian (Time Series – Single)}{78}{section*.71}%
-\contentsline {paragraph}{- Tab Insights khác}{78}{section*.72}%
-\contentsline {paragraph}{- Chức năng bổ sung}{79}{section*.73}%
-\contentsline {subsubsection}{\numberline {6.1.5}Trang By Country 2025 — Billboard Hot 100 Dashboard}{79}{subsubsection.6.1.5}%
-\contentsline {subsubsection}{\numberline {6.1.6}Trang By Country 2024}{80}{subsubsection.6.1.6}%
-\contentsline {subsection}{\numberline {6.2}Hỗ trợ chatbotAI}{80}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Phụ lục}{80}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Timeline công việc và bảng phân công nhiệm vụ}{80}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Timeline thực hiện đề tài}{80}{subsubsection.7.1.1}%
-\contentsline {subsubsection}{\numberline {7.1.2}Phân công nhiệm vụ dự kiến sau tuần 40}{81}{subsubsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.2}Source code (link GitHub)}{83}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Tài liệu tham khảo}{83}{subsection.7.3}%
+\contentsline {section}{\numberline {1} Giới thiệu}{8}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Tổng quan về Spotify }{8}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Vấn đề thực tế – Nhu cầu phân tích dữ liệu Spotify (xu hướng âm nhạc, gợi ý nhạc, phân tích nghệ sĩ)}{10}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Nhà nghiên cứu âm nhạc và dữ liệu}{10}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Người dùng và cộng đồng nghe nhạc:}{10}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Nghệ sĩ và hãng thu âm}{10}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Doanh nghiệp và tổ chức quảng cáo}{11}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Kỹ sư dữ liệu và nhà phát triển hệ thống}{11}{subsubsection.1.2.5}%
+\contentsline {section}{\numberline {2}Mục tiêu đồ án}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Thu thập và tiền xử lý dữ liệu}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Xây dựng pipeline xử lý và phân tích dữ liệu}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Phân tích và trực quan hóa dữ liệu Spotify}{12}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Ứng dụng và mở rộng}{12}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Tìm hiểu và phân tích đặc điểm của nguồn dữ liệu}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Nguồn 1: Spotify Top 50 Playlist Songs }{13}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Giới thiệu dữ liệu}{13}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Bổ sung dữ liệu:}{14}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Tiền xử lý}{18}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Phân tích và tìm insight:}{22}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Nguồn 2: }{38}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Giới thiệu Dataset:}{38}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Data enrichment:}{38}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Data cleaning and preprocessing: }{38}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Overview and Analysis}{42}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Mục tiêu:}{48}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Nguồn 3: Billboard Hot 100}{49}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Giới thiệu dữ liệu}{49}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Thu thập và bổ sung dữ liệu }{50}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Phân tích dữ liệu ban đầu}{51}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Làm sạch dữ liệu (Data Cleaning)}{58}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Tạo đặc trưng (Feature Engineering)}{60}{subsubsection.3.3.5}%
+\contentsline {subsubsection}{\numberline {3.3.6}Phân tích xu hướng (Trend Analysis)}{62}{subsubsection.3.3.6}%
+\contentsline {subsubsection}{\numberline {3.3.7}Kết quả và Ý nghĩa}{71}{subsubsection.3.3.7}%
+\contentsline {section}{\numberline {4}Xây dựng pipeline xử lý và phân tích dữ liệu}{73}{section.4}%
+\contentsline {section}{\numberline {5}Kiến trúc lưu trữ}{74}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Lý do lựa chọn MongoDB làm hệ quản trị cơ sở dữ liệu}{74}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}So sánh với các DBMS khác}{75}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Sơ đồ cấu trúc lưu trữ trên MongoDB}{77}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Ứng dụng thực tế}{78}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Người dùng xem tổng quan về các bài hát và album trên Streamlit}{78}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Lý do lựa chọn Streamlit}{78}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Mục tiêu}{79}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Trang HomePage — Giao diện khởi đầu hệ thống}{81}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}Trang Global Overview}{82}{subsubsection.6.1.4}%
+\contentsline {paragraph}{1. Hướng Phân Tích Album}{83}{section*.61}%
+\contentsline {paragraph}{- Tab Tổng Quan (Overview – Album)}{83}{section*.62}%
+\contentsline {paragraph}{- Tab Phân tích Nghệ sĩ (Artist Analysis)}{83}{section*.63}%
+\contentsline {paragraph}{- Tab Quốc gia \& Thị trường (Country Analysis)}{83}{section*.64}%
+\contentsline {paragraph}{- Tab Chuỗi thời gian (Time Series – Album)}{84}{section*.65}%
+\contentsline {paragraph}{- Tab Insights khác}{84}{section*.66}%
+\contentsline {paragraph}{2. Hướng Phân Tích Single (Top 50 World)}{84}{section*.67}%
+\contentsline {paragraph}{- Tab Tổng Quan (Overview – Single)}{84}{section*.68}%
+\contentsline {paragraph}{- Tab Audio Features (Đặc tính âm thanh)}{84}{section*.69}%
+\contentsline {paragraph}{- Tab Phân tích Nghệ sĩ}{84}{section*.70}%
+\contentsline {paragraph}{- Tab Chuỗi thời gian (Time Series – Single)}{84}{section*.71}%
+\contentsline {paragraph}{- Tab Insights khác}{84}{section*.72}%
+\contentsline {paragraph}{- Chức năng bổ sung}{85}{section*.73}%
+\contentsline {subsubsection}{\numberline {6.1.5}Trang By Country 2025 — Billboard Hot 100 Dashboard}{85}{subsubsection.6.1.5}%
+\contentsline {subsubsection}{\numberline {6.1.6}Trang By Country 2024}{87}{subsubsection.6.1.6}%
+\contentsline {subsection}{\numberline {6.2}Hỗ trợ chatbotAI}{88}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Phụ lục}{89}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Timeline công việc và bảng phân công nhiệm vụ}{89}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Timeline thực hiện đề tài}{89}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Phân công nhiệm vụ dự kiến sau tuần 47}{89}{subsubsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.2}Source code (link GitHub)}{90}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Tài liệu tham khảo}{90}{subsection.7.3}%

@@ -483,8 +483,9 @@ INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm207
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1728.tfm
 INPUT C:\Users\nhutn\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnr17.tfm
-INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnr12.tfm
-INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnbx12.tfm
+INPUT .\report_V1.toc
+INPUT .\report_V1.toc
+INPUT report_V1.toc
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\tex\latex\vntex\t5cmtt.fd
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\tex\latex\vntex\t5cmtt.fd
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\tex\latex\vntex\t5cmtt.fd
@@ -493,25 +494,22 @@ INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT .\report_V1.toc
-INPUT .\report_V1.toc
-INPUT report_V1.toc
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
 OUTPUT report_V1.toc
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT .\report_V1.lot
+INPUT .\report_V1.lot
+INPUT report_V1.lot
+OUTPUT report_V1.lot
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
 INPUT .\report_V1.lof
 INPUT .\report_V1.lof
 INPUT report_V1.lof
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -521,17 +519,19 @@ INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
-INPUT ..\graphics\spotify_logo.png
+INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnr12.tfm
+INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnbx12.tfm
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
+INPUT ..\graphics\spotify_logo.png
 INPUT ..\graphics\spotify_wrapped.png
 INPUT ..\graphics\spotify_wrapped.png
 INPUT ..\graphics\spotify_wrapped.png
@@ -558,6 +558,10 @@ INPUT ..\graphics\hcmut.png
 INPUT .\source_1.tex
 INPUT .\source_1.tex
 INPUT source_1.tex
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1440.tfm
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -574,10 +578,6 @@ INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\data_top50\figure\script\raw_meta\Screenshot 2025-09-30 225603.png
 INPUT ..\graphics\data_top50\figure\script\raw_meta\Screenshot 2025-09-30 225603.png
 INPUT ..\graphics\data_top50\figure\script\raw_meta\Screenshot 2025-09-30 225603.png
@@ -600,6 +600,10 @@ INPUT ..\graphics\data_top50\figure\script\raw_audio\Screenshot 2025-09-30 23021
 INPUT ..\graphics\data_top50\figure\script\raw_audio\Screenshot 2025-09-30 230213.png
 INPUT ..\graphics\data_top50\figure\script\raw_audio\Screenshot 2025-09-30 230213.png
 INPUT ..\graphics\data_top50\figure\script\raw_audio\Screenshot 2025-09-30 230213.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -1470,6 +1474,8 @@ INPUT ..\graphics\mongodb.drawio.png
 INPUT ..\graphics\mongodb.drawio.png
 INPUT ..\graphics\mongodb.drawio.png
 INPUT ..\graphics\mongodb.drawio.png
+INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnti10.tfm
+INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1095.tfm
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -1477,17 +1483,11 @@ INPUT ..\graphics\hcmut.png
 INPUT .\udtt.tex
 INPUT .\udtt.tex
 INPUT udtt.tex
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT ..\graphics\hcmut.png
-INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1095.tfm
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vntt10.tfm
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
-INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\vntex\vnr\vnti10.tfm
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -1533,6 +1533,17 @@ INPUT ..\graphics\us_dashboard_2025.png
 INPUT ..\graphics\us_dashboard_2025.png
 INPUT ..\graphics\us_dashboard_2025.png
 INPUT ..\graphics\us_dashboard_2025.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
+INPUT ..\graphics\top_50.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
@@ -1555,6 +1566,10 @@ INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tf
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Users\nhutn\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
+INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png
 INPUT ..\graphics\hcmut.png

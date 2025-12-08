@@ -75,12 +75,31 @@ def _preprocess(df_raw: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def _normalize_country_key_for_collection(country_name: str) -> str:
+    """
+    Chuẩn hoá tên quốc gia để map sang suffix collection:
+    - United States / USA / US -> 'usa'
+    - United Kingdom / UK / U.K. -> 'uk'
+    - Còn lại: lower + replace space = '_'
+    """
+    if not country_name:
+        return ""
+    key_norm = country_name.strip().lower().replace(" ", "_")
+    special = {
+        "united_states": "usa",
+        "us": "usa",
+        "usa": "usa",
+        "united_kingdom": "uk",
+        "u.k.": "uk",
+        "uk": "uk",
+    }
+    return special.get(key_norm, key_norm)
+
+
 # Các country KHÔNG muốn xuất hiện trong dropdown chọn tay
 EXCLUDED_DROPDOWN_COUNTRIES = {
-   # loại Mỹ khỏi dropdown, nhưng vẫn render được nếu truyền tham số
     "World"
 }
-
 
 MONGO_URI = "mongodb+srv://doanbk251:nhom210diem@cluster0.yly7ncp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
@@ -95,10 +114,7 @@ def get_db():
 # ============================================================
 def render_country_dashboard(country_name: str | None = None):
     db = get_db()  # ✅ luôn có db từ đầu
-    
 
-    if country_name ==  "United States":
-        country_name = "USA"
     # 1) Nếu có chọn từ Home → dùng
     if country_name is None and "selected_country" in st.session_state:
         country_name = st.session_state["selected_country"]
@@ -111,9 +127,16 @@ def render_country_dashboard(country_name: str | None = None):
             countries_from_mongo = []
             for col in collections:
                 if col.startswith("top50_"):
-                    raw = col.replace("top50_", "")         # ví dụ: 'south_korea'
-                    name = raw.replace("_", " ").title()    # -> 'South Korea'
-                    countries_from_mongo.append(name)
+                    raw = col.replace("top50_", "")         # ví dụ: 'south_korea', 'usa', 'uk'
+                    name = raw.replace("_", " ").title()    # -> 'South Korea', 'Usa', 'Uk'
+                    # map đặc biệt để hiển thị đẹp
+                    special = {
+                        "Usa": "United States",
+                        "Uk": "United Kingdom",
+                        "South Korea": "South Korea",
+                    }
+                    display_name = special.get(name, name)
+                    countries_from_mongo.append(display_name)
 
             # loại các nước không muốn hiển thị
             available = sorted({
@@ -123,9 +146,13 @@ def render_country_dashboard(country_name: str | None = None):
 
             # fallback nếu vì lý do gì đó không lấy được
             if not available:
-                available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina", "USA"]
+                available = ["United States", "United Kingdom",
+                             "France", "Italy", "Japan", "Mexico",
+                             "Spain", "South Korea", "Argentina"]
         except Exception:
-            available = ["France", "Italy", "Japan", "Mexico", "Spain", "South Korea", "Argentina", "USA"]
+            available = ["United States", "United Kingdom",
+                         "France", "Italy", "Japan", "Mexico",
+                         "Spain", "South Korea", "Argentina"]
 
         country_name = st.selectbox("🌍 Chọn quốc gia để phân tích", available, index=0)
 
@@ -138,7 +165,8 @@ def render_country_dashboard(country_name: str | None = None):
     # -----------------------------
     # Lấy collection tương ứng
     # -----------------------------
-    collection_name = f"top50_{country_name.lower().replace(' ', '_')}"
+    suffix = _normalize_country_key_for_collection(country_name)
+    collection_name = f"top50_{suffix}"
     collection = db[collection_name]
 
     @st.cache_data(ttl=3600, show_spinner=False)
@@ -148,12 +176,10 @@ def render_country_dashboard(country_name: str | None = None):
 
     df_raw = load_data(collection_name)
     if df_raw.empty:
-        st.warning(f"⚠️ Không có dữ liệu cho {country_name}.")
+        st.warning(f"⚠️ Không có dữ liệu cho {country_name}. (collection: {collection_name})")
         return
 
     df = _preprocess(df_raw)
-
-
 
     # ============================
     # 📚 MỤC LỤC ĐẦU TRANG
@@ -169,8 +195,6 @@ def render_country_dashboard(country_name: str | None = None):
     - <a href="#raw_data">📋 Dữ liệu gốc</a>
     <br>
     """, unsafe_allow_html=True)
-
-
 
     # -----------------------------
     # Smooth Scroll cho mục lục
@@ -197,9 +221,8 @@ def render_country_dashboard(country_name: str | None = None):
     </script>
     """, height=0)
 
-
     # -----------------------------
-    # 5️⃣ Bộ lọc thời gian chung (đặt ngay đầu trang)
+    # 5️⃣ Bộ lọc thời gian chung
     # -----------------------------
     time_col = None
     if "week" in df.columns:
@@ -260,7 +283,6 @@ def render_country_dashboard(country_name: str | None = None):
     # =========================
     # 3️⃣ Xu hướng thể loại
     # =========================
-
     st.markdown('<div id="genre_trend"></div>', unsafe_allow_html=True)
     st.subheader("🎧 Xu hướng thể loại")
 
@@ -271,20 +293,17 @@ def render_country_dashboard(country_name: str | None = None):
     )
 
     if "main_genre" in df.columns and feature in df.columns and "song" in df.columns:
-        # Gộp theo bài – mỗi bài chỉ tính 1 lần
         song_level = (
             df.groupby(["song", "main_genre"], as_index=False)[feature]
               .mean()
               .rename(columns={feature: f"{feature}_per_song"})
         )
 
-        # Bỏ các thể loại "unknown"
         remove_unknown = ["unknown", "unknow", "n/a", "none", "undefined", ""]
         song_level = song_level[
             ~song_level["main_genre"].str.lower().isin(remove_unknown)
         ]
 
-        # Lọc thể loại có số bài tối thiểu
         min_tracks = st.slider(
             "🔢 Lọc thể loại có ít nhất bao nhiêu bài",
             1, 20, 3,
@@ -320,7 +339,6 @@ def render_country_dashboard(country_name: str | None = None):
     # ============================================================
     # 4) Nghệ sĩ & Bài hát nổi bật
     # ============================================================
-
     st.markdown('<div id="top_artists_songs"></div>', unsafe_allow_html=True)
     st.subheader("🌟 Nghệ sĩ & Bài hát nổi bật")
     choice = st.radio(
@@ -354,7 +372,6 @@ def render_country_dashboard(country_name: str | None = None):
             },
             hover_data=["main_genre"]
         )
-        # Bài nổi nhất nằm TRÊN
         fig_song.update_yaxes(autorange="reversed")
         fig_song.update_coloraxes(colorbar_title="Độ nổi")
         st.plotly_chart(fig_song, use_container_width=True)
@@ -392,7 +409,6 @@ def render_country_dashboard(country_name: str | None = None):
         fig_artist.update_yaxes(autorange="reversed")
         st.plotly_chart(fig_artist, use_container_width=True)
 
-        # Solo vs Collab
         st.subheader("👥 Tỷ lệ Nghệ sĩ Solo vs Collaboration")
         df_collab = df.copy()
         df_collab["collab_type"] = df_collab["artist"].apply(
@@ -488,7 +504,6 @@ def render_country_dashboard(country_name: str | None = None):
     # 🎚️ Boxplot đặc trưng
     if {"energy", "danceability", "valence", "tempo"}.issubset(df.columns):
 
-
         st.markdown('<div id="boxplot"></div>', unsafe_allow_html=True)
         st.subheader("🎚️ Phân bố các đặc trưng âm nhạc")
         melted = df.melt(
@@ -505,7 +520,6 @@ def render_country_dashboard(country_name: str | None = None):
     # ============================================================
     # 8) Bảng dữ liệu gốc + bộ lọc & link Spotify
     # ============================================================
-
     st.markdown('<div id="raw_data"></div>', unsafe_allow_html=True)
     st.subheader("📋 Dữ liệu Gốc")
 
@@ -546,7 +560,6 @@ def render_country_dashboard(country_name: str | None = None):
                 filtered_df[c].astype(str).str.contains(val, case=False, na=False)
             ]
 
-    # 👉 Hiển thị: ẩn index + biến href thành LinkColumn
     df_show = filtered_df.reset_index(drop=True).copy()
     if "href" in df_show.columns:
         df_show["href"] = df_show["href"].replace("None", None)

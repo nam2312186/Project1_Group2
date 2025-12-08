@@ -25,7 +25,37 @@ render_country_dashboard = module.render_country_dashboard
 # ⚙️ 1️⃣ Cấu hình giao diện
 # =========================
 st.set_page_config(page_title="🌍 Music Analytics Home", layout="wide")
-st.title("🎵 Spotify 2024-2025 Dashboard ✨")
+
+# =========================
+# 🎵 Tiêu đề + Nút Chatbot
+# =========================
+
+col_title, col_chat = st.columns([10, 5])
+
+with col_title:
+    st.title("🎵 Spotify 2024-2025 Dashboard ✨")
+
+with col_chat:
+    # Đẩy khối xuống ngang hàng với title
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Đường dẫn tới ảnh chatbot
+    chatbot_icon_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "assets",
+        "chatbot.jpg",
+    )
+
+    # Hiển thị ảnh (icon chatbot)
+    st.image(chatbot_icon_path, width=110)
+
+    # Dòng chữ "Chat với bot" ngay dưới ảnh, là link sang Page 3
+    st.page_link(
+        "pages/3_Chatbot_Gemini.py",
+        label="🤖 Chat với bot",
+        icon=None,
+    )
+
 
 
 # =========================
@@ -50,26 +80,37 @@ def get_available_countries(year: int):
     available = {}
 
     if year == 2024:
-        # Các collection top50_xxx
+        # ⚓ Map tay các nước đặc biệt
+        manual_map = {
+            "top50_usa": "United States",
+            "top50_uk": "United Kingdom",
+        }
+
         for col in all_collections:
-            if col.startswith("top50_"):
-                # tách tên quốc gia
+            if col in manual_map:
+                # 2 thằng đặc biệt: USA & UK
+                display_name = manual_map[col]
+                available[display_name] = col
+            elif col.startswith("top50_"):
+                # Các nước còn lại: argentina, france, italy,...
                 country_code = col.replace("top50_", "")
-                # chuẩn hoá lại tên (vì dùng cho display)
                 display_name = country_code.replace("_", " ").title()
-                # map các từ đặc biệt
+
+                # Có thể giữ lại special nếu muốn
                 special = {
-                    "Usa": "United States",
-                    "Uk": "United Kingdom",
                     "South Korea": "South Korea",
                 }
                 display_name = special.get(display_name, display_name)
+
                 available[display_name] = col
+
     else:
         # Năm 2025 chỉ có top100_usa_2025
         if "top100_usa_2025" in all_collections:
             available["United States"] = "top100_usa_2025"
+
     return available
+
 
 
 available_countries = get_available_countries(year)
@@ -105,7 +146,7 @@ all_countries = ["United States", "Argentina", "France","Italy","Japan","Mexico"
     "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
     "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
     "Uganda", "Ukraine", "United Arab Emirates", "Uruguay", "Uzbekistan",
-    "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe","Russian Federation"
+    "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe","Russian Federation", "North Korea", "Syria"
 ]
 
 def get_iso3(name):
@@ -114,10 +155,13 @@ def get_iso3(name):
     except:
         custom = {
             "South Korea": "KOR",
+            "North Korea": "PRK",
             "United States": "USA",
             "United Kingdom": "GBR",
             "Russia": "RUS",
-            "Russian Federation": "RUS"
+            "Russian Federation": "RUS",
+            "Congo (Brazzaville)": "COG",
+            "Congo (Kinshasa)": "COD"
         }
         return custom.get(name, None)
 
