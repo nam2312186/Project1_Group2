@@ -45,7 +45,7 @@ def route_query(user_query: str, chat_history: List[Tuple[str, str]] = []) -> st
         history_text = "\n".join(history_lines)
 
     # 2. CƠ CHẾ RETRY XOAY KEY (Giống agent/core.py)
-    max_retries = 3 # Thử tối đa 3 key khác nhau nếu lỗi
+    max_retries = 37 # Thử tối đa 3 key khác nhau nếu lỗi
     
     for attempt in range(max_retries):
         try:
