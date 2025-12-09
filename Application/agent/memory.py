@@ -2,10 +2,7 @@ from typing import Dict, Any
 from langgraph.checkpoint.mongodb import MongoDBSaver
 from langchain_core.runnables import RunnableConfig
 from agent.config import get_resilient_llm # Import hàm lấy key
-from typing import Dict, Any
-from langgraph.checkpoint.mongodb import MongoDBSaver
-from langchain_core.runnables import RunnableConfig
-from agent.config import get_resilient_llm  # Import hàm lấy key từ config
+
 
 class LLMSummarizingMongoDBSaver(MongoDBSaver):
     """MongoDB saver with LLM-powered intelligent summarization AND Key Rotation"""
@@ -87,31 +84,49 @@ Examples:
 
 Summary:"""
 
+
+
+            max_retries = 40
+            summary = "📝 Processing..."
             # 6. Gọi LLM với cơ chế Key Rotation & Xử lý lỗi định dạng
-            try:
-                # Lấy một LLM mới từ danh sách key
-                current_llm = get_resilient_llm()
-                response = current_llm.invoke(prompt)
+            for attempt in range(max_retries):
+                try:
+                    # Lấy một LLM mới từ danh sách key
+                    current_llm = get_resilient_llm()
+                    response = current_llm.invoke(prompt)
 
-                # XỬ LÝ LỖI LIST: Gemini Flash đôi khi trả về List thay vì String
-                if isinstance(response.content, list):
-                    summary_text = " ".join([item.get("text", "") for item in response.content if isinstance(item, dict)])
-                else:
-                    summary_text = str(response.content)
+                    # XỬ LÝ LỖI LIST: Gemini Flash đôi khi trả về List thay vì String
+                    if isinstance(response.content, list):
+                        summary_text = " ".join([item.get("text", "") for item in response.content if isinstance(item, dict)])
+                    else:
+                        summary_text = str(response.content)
 
-                summary = summary_text.strip()[:60]
-                
-            except Exception as e:
-                print(f"⚠️ Key lỗi khi tóm tắt, đang thử key khác: {e}")
-                
-                # RETRY: Thử lại lần nữa với key tiếp theo
-                current_llm = get_resilient_llm()
-                response = current_llm.invoke(prompt)
-                
-                if isinstance(response.content, list):
-                    summary = " ".join([item.get("text", "") for item in response.content if isinstance(item, dict)]).strip()[:60]
-                else:
-                    summary = str(response.content).strip()[:60]
+                    summary = summary_text.strip()[:60]
+                    break
+                except Exception as e:
+                    # print(f"⚠️ Key lỗi khi tóm tắt, đang thử key khác: {e}")
+                    
+                    # # RETRY: Thử lại lần nữa với key tiếp theo
+                    # current_llm = get_resilient_llm()
+                    # response = current_llm.invoke(prompt)
+                    
+                    # if isinstance(response.content, list):
+                    #     summary = " ".join([item.get("text", "") for item in response.content if isinstance(item, dict)]).strip()[:60]
+                    # else:
+                    #     summary = str(response.content).strip()[:60]
+
+                    error_msg = str(e)
+                    # Chỉ retry nếu là lỗi Key/Quota
+                    if any(err in error_msg for err in ["429", "403", "Quota", "API_KEY_INVALID", "Key not found"]):
+                        print(f"⚠️ Memory Summarizer: Key lỗi (Lần {attempt+1}). Đang đổi key...")
+                        print(f" api_key = {current_llm.google_api_key} ")
+                        print(f"🔍 DEBUG: Lỗi chi tiết: {error_msg} " )
+                        continue 
+                    else:
+                        # Lỗi khác thì bỏ qua việc tóm tắt để không làm chậm app
+                        print(f"⚠️ Lỗi tóm tắt bộ nhớ: {e}")
+                        return "📝 Step processed"
+
 
             # 7. Lưu vào Cache và trả về
             self._summary_cache[cache_key] = summary

@@ -125,6 +125,79 @@ st.markdown(
         background-color: #e5e7eb;
         color: #111827;
     }
+
+/* CSS cho bảng trong tin nhắn */
+    .message-bubble table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 0.9em;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .message-bubble th {
+        background-color: #009879; /* Màu xanh Spotify */
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+        padding: 12px 15px;
+    }
+    .message-bubble td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #dddddd;
+    }
+    .message-bubble tr:nth-of-type(even) {
+        background-color: #f3f3f3; /* Màu xen kẽ cho dễ đọc */
+    }
+    .message-bubble tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .message-bubble table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: white; /* Nền bảng màu trắng */
+    }
+    
+    /* Header của bảng */
+    .message-bubble th {
+        background-color: #1DB954; /* Màu xanh Spotify */
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+        padding: 12px 15px;
+    }
+    
+    /* Các dòng dữ liệu */
+    .message-bubble td {
+        padding: 12px 15px;
+        color: #333; /* Chữ màu đen dễ đọc */
+        border-bottom: 1px solid #dddddd;
+    }
+    
+    /* Hiệu ứng dòng chẵn lẻ (Zebra striping) */
+    .message-bubble tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+    
+    /* Dòng cuối cùng có viền đậm hơn */
+    .message-bubble tr:last-of-type {
+        border-bottom: 2px solid #1DB954;
+    }
+    
+    /* Highlight chữ đậm trong bảng */
+    .message-bubble strong {
+        color: #d63384; /* Màu hồng đậm cho điểm nhấn */
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
