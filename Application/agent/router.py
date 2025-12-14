@@ -8,14 +8,15 @@ from typing import List, Tuple
 ROUTER_PROMPT = """
 Bạn là một Router Agent thông minh. Nhiệm vụ của bạn là phân loại câu hỏi hiện tại của người dùng vào 1 trong 2 nhóm: **DATABASE** tức là chat bot truy vấn hoặc **KNOWLEDGE** tức là chat bot kiến thức.
 
-HÃY SỬ DỤNG LỊCH SỬ HỘI THOẠI ĐỂ HIỂU NGỮ CẢNH (nếu câu hỏi ngắn gọn hoặc mơ hồ).
+HÃY SỬ DỤNG LỊCH SỬ HỘI THOẠI ĐỂ HIỂU NGỮ CẢNH (kể cả khi câu hỏi ngắn gọn hoặc mơ hồ) theo gợi ý sau.
 
 1. **DATABASE**: 
    - Truy xuất số liệu, thống kê, danh sách, so sánh, thông tin cụ thể về bài hát/nghệ sĩ.
-   - Ngữ cảnh: Nếu người dùng đang hỏi về số liệu và hỏi tiếp "còn bài kia thì sao?", "top 10 thì sao?".
-   - Các câu hỏi phân tích bài hát, nghệ sĩ, xu hướng cần dữ liệu cụ thể, có thể chỉ hỏi về bạn có biết về bài hát nghệ sĩ,... này không nhưng ngụ ý là cần dữ liệu về nó.
+   - Ngữ cảnh: Nếu người dùng đang hỏi về số liệu và hỏi tiếp "còn bài kia thì sao?", "top 10 thì sao?" (những câu hỏi liên quan có tính lịch sử câu này liên quan câu trước).
+   - Các câu hỏi phân tích bài hát, nghệ sĩ, xu hướng cần dữ liệu cụ thể, có thể chỉ hỏi về bạn có biết về bài hát nghệ sĩ,... này không ? Nhưng ngụ ý là cần dữ liệu về nó.
    - Tìm kiếm một bài hát, nghệ sĩ nào đó dựa trên tiêu chí có thể cụ thể có thể mơ hồ ( như là tôi muốn nghe một bái hát sôi động của nghệ sĩ nam nổi tiếng,...)
-
+   - Hỏi về lịch sử tìm kiếm trước đó( về câu lệnh, các đối tượng..) vd: bạn đã dùng lệnh gì ?, các collections/ bộ sưu tập bạn đã duyệt ? 
+   
 2. **KNOWLEDGE**: 
    - Định nghĩa, khái niệm, giải thích ý nghĩa KPI, quy trình, thông tin chung.
    - Ngữ cảnh: Nếu người dùng đang hỏi định nghĩa và hỏi tiếp "nó có ý nghĩa gì?".
@@ -46,7 +47,7 @@ def route_query(user_query: str, chat_history: List[Tuple[str, str]] = []) -> st
         history_text = "\n".join(history_lines)
 
     # 2. CƠ CHẾ RETRY XOAY KEY (Giống agent/core.py)
-    max_retries = 38 # Thử tối đa 3 key khác nhau nếu lỗi
+    max_retries = 148 # Thử tối đa 3 key khác nhau nếu lỗi
     
     for attempt in range(max_retries):
         try:

@@ -1,7 +1,7 @@
 from typing import Dict, Any
 from langgraph.checkpoint.mongodb import MongoDBSaver
 from langchain_core.runnables import RunnableConfig
-from agent.config import get_resilient_llm # Import hàm lấy key
+from agent.config import get_resilient_llm, key_manager# Import hàm lấy key
 
 
 class LLMSummarizingMongoDBSaver(MongoDBSaver):
@@ -86,7 +86,7 @@ Summary:"""
 
 
 
-            max_retries = 40
+            max_retries = 100
             summary = "📝 Processing..."
             # 6. Gọi LLM với cơ chế Key Rotation & Xử lý lỗi định dạng
             for attempt in range(max_retries):
@@ -172,3 +172,4 @@ Summary:"""
             print(f"❌ Error adding LLM summary: {e}")
             # Fallback to basic metadata
             return super().put(config, checkpoint, metadata, new_versions)
+
