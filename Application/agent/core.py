@@ -80,7 +80,10 @@ def process_user_query(user_input: str, thread_id: str) -> str:
         pass
     # ... (Hết phần Logic cũ) ...
 
-    config = {"configurable": {"thread_id": active_thread_id}}
+    config = {"configurable": 
+              {"thread_id": active_thread_id},
+              "recursion_limit": 50
+              }
     
     try:
         # Tạo agent (Hành động này sẽ lấy 1 key -> bộ đếm tăng lên 1)
