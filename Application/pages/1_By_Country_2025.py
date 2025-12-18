@@ -6,6 +6,20 @@ from pymongo import MongoClient
 import plotly.express as px
 import streamlit.components.v1 as components
 
+LIGHT_PLOTLY_CONFIG = {
+    "displayModeBar": False,
+    "staticPlot": True,
+    "responsive": True,
+}
+
+
+def _sample_df(df: pd.DataFrame, max_points: int = 120) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+    if len(df) <= max_points:
+        return df
+    return df.sample(n=max_points, random_state=42)
+
 # =============================
 # 🧩 Import module By_Country (phòng khi cần)
 # =============================
@@ -21,6 +35,25 @@ import streamlit.components.v1 as components
 # 1️⃣ Cấu hình giao diện
 # -----------------------------
 st.set_page_config(page_title="By Country 2025", layout="wide")
+st.markdown(
+    """
+    <style>
+    body { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+    .stPlotlyChart { min-height: 320px; }
+    .stDataFrame { min-height: 240px; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Preconnect Plotly CDN to reduce LCP wait
+st.markdown(
+    """
+    <link rel="preconnect" href="https://cdn.plot.ly" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.plot.ly">
+    """,
+    unsafe_allow_html=True,
+)
 st.title("🎶 Music Trends Dashboard – United States (Billboard Hot 100, 2025)")
 st.caption("Dữ liệu được lấy từ collection **top100_usa_2025** trong MongoDB Atlas")
 
@@ -35,9 +68,17 @@ collection = db["top100_usa_2025"]
 # -----------------------------
 # 3️⃣ Load dữ liệu Billboard 2025
 # -----------------------------
-@st.cache_data
+@st.cache_data(ttl=3600, show_spinner="Loading Billboard data...")
 def load_billboard_data():
-    data = list(collection.find({}, {"_id": 0}))
+    projection = {
+        "_id": 0,
+        "week": 1, "rank": 1, "title": 1, "artist": 1, "genre": 1,
+        "energy": 1, "danceability": 1, "valence": 1, "tempo": 1,
+        "acousticness": 1, "liveness": 1, "speechiness": 1,
+        "weeks_on_chart_total": 1, "peak_rank": 1, "season": 1,
+        "is_top10": 1, "is_new": 1, "is_collab": 1, "is_explicit": 1,
+    }
+    data = list(collection.find({}, projection))
     return pd.DataFrame(data)
 
 df = load_billboard_data()
@@ -46,28 +87,7 @@ if df.empty:
     st.stop()
 
 # -----------------------------
-# 4️⃣ Hiệu ứng cuộn mượt (JS)
-# -----------------------------
-components.html("""
-<script>
-const links = document.querySelectorAll('a[href^="#"]');
-for (let link of links) {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    });
-}
-</script>
-""", height=0)
-
-# -----------------------------
-# 5️⃣ Bộ lọc thời gian chung
+# 4️⃣ Bộ lọc thời gian chung
 # -----------------------------
 if "week" in df.columns:
     st.markdown("### 📆 Bộ lọc thời gian phân tích (Billboard 2025)")
@@ -123,30 +143,29 @@ st.markdown("---")
 # 🎧 2. PHÂN TÍCH THỂ LOẠI
 # =====================================================================
 st.markdown('<a id="section-the-loai"></a>', unsafe_allow_html=True)
-st.markdown("## 🎧 Phân tích xu hướng thể loại (Genre Trends)")
-
-if 'genre' in df_filtered.columns:
-    selected_feature = st.selectbox(
-        "Chọn đặc trưng âm nhạc",
-        [f for f in ["energy", "danceability", "valence", "tempo"] if f in df_filtered.columns]
-    )
-    if selected_feature:
-        genre_stats = (
-            df_filtered.groupby("genre")[selected_feature]
-            .mean()
-            .sort_values(ascending=False)
-            .reset_index()
+with st.expander("🎧 Phân tích xu hướng thể loại (Genre Trends)", expanded=False):
+    if 'genre' in df_filtered.columns:
+        selected_feature = st.selectbox(
+            "Chọn đặc trưng âm nhạc",
+            [f for f in ["energy", "danceability", "valence", "tempo"] if f in df_filtered.columns]
         )
-        fig_genre = px.bar(
-            genre_stats.head(15),
-            x="genre",
-            y=selected_feature,
-            color=selected_feature,
-            title=f"Top 15 Thể loại theo {selected_feature}"
-        )
-        st.plotly_chart(fig_genre, use_container_width=True)
-else:
-    st.warning("⚠️ Dữ liệu chưa có cột 'genre'.")
+        if selected_feature:
+            genre_stats = (
+                df_filtered.groupby("genre")[selected_feature]
+                .mean()
+                .sort_values(ascending=False)
+                .reset_index()
+            )
+            fig_genre = px.bar(
+                genre_stats.head(15),
+                x="genre",
+                y=selected_feature,
+                color=selected_feature,
+                title=f"Top 15 Thể loại theo {selected_feature}"
+            )
+            st.plotly_chart(fig_genre, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
+    else:
+        st.warning("⚠️ Dữ liệu chưa có cột 'genre'.")
 
 st.markdown("---")
 
@@ -154,36 +173,37 @@ st.markdown("---")
 # 🌟 3. NGHỆ SĨ & BÀI HÁT NỔI BẬT
 # =====================================================================
 st.markdown('<a id="section-nghe-si"></a>', unsafe_allow_html=True)
-st.markdown("## 🌟 Nghệ sĩ & Bài hát nổi bật")
-
-if 'artist' in df_filtered.columns:
-    option = st.radio("Chọn tiêu chí hiển thị", ["Top 10 Nghệ sĩ", "Top 10 Bài hát"])
-    if option == "Top 10 Nghệ sĩ":
-        top_artist = df_filtered['artist'].value_counts().head(10)
-        fig_artist = px.bar(
-            top_artist,
-            x=top_artist.index,
-            y=top_artist.values,
-            title="Top 10 Nghệ sĩ có nhiều bài trên BXH nhất"
-        )
-        st.plotly_chart(fig_artist, use_container_width=True)
+with st.expander("🌟 Nghệ sĩ & Bài hát nổi bật", expanded=False):
+    if {'artist', 'title'}.issubset(df_filtered.columns):
+        option = st.radio("Chọn tiêu chí hiển thị", ["Top 10 Nghệ sĩ", "Top 10 Bài hát"], key="artist_song_choice")
+        if option == "Top 10 Nghệ sĩ":
+            top_artist = df_filtered['artist'].value_counts().head(10)
+            fig_artist = px.bar(
+                top_artist,
+                x=top_artist.index,
+                y=top_artist.values,
+                title="Top 10 Nghệ sĩ có nhiều bài trên BXH nhất"
+            )
+            st.plotly_chart(fig_artist, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
+        else:
+            if 'weeks_on_chart_total' in df_filtered.columns:
+                top_songs = (
+                    df_filtered.groupby("title")["weeks_on_chart_total"]
+                    .max()
+                    .sort_values(ascending=False)
+                    .head(10)
+                )
+                fig_song = px.bar(
+                    top_songs,
+                    x=top_songs.index,
+                    y=top_songs.values,
+                    title="Top 10 Bài hát trụ BXH lâu nhất"
+                )
+                st.plotly_chart(fig_song, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
+            else:
+                st.warning("⚠️ Thiếu cột 'weeks_on_chart_total' để xếp hạng bài hát.")
     else:
-        if 'weeks_on_chart_total' in df_filtered.columns and 'title' in df_filtered.columns:
-            top_songs = (
-                df_filtered.groupby("title")["weeks_on_chart_total"]
-                .max()
-                .sort_values(ascending=False)
-                .head(10)
-            )
-            fig_song = px.bar(
-                top_songs,
-                x=top_songs.index,
-                y=top_songs.values,
-                title="Top 10 Bài hát trụ BXH lâu nhất"
-            )
-            st.plotly_chart(fig_song, use_container_width=True)
-else:
-    st.warning("⚠️ Dữ liệu chưa có trường 'artist' hoặc 'title'.")
+        st.warning("⚠️ Dữ liệu chưa có trường 'artist' hoặc 'title'.")
 
 st.markdown("---")
 
@@ -200,13 +220,13 @@ if 'season' in df_filtered.columns:
         .reset_index()
     )
     fig_season = px.line(
-        season_features,
+        _sample_df(season_features, 120),
         x="season",
         y=["energy", "valence", "danceability"],
         markers=True,
         title="Thay đổi đặc trưng âm nhạc theo mùa"
     )
-    st.plotly_chart(fig_season, use_container_width=True)
+    st.plotly_chart(fig_season, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
 else:
     st.info("⚠️ Dữ liệu không có cột 'season' để phân tích theo mùa.")
 
@@ -219,15 +239,16 @@ st.markdown('<a id="section-do-ben"></a>', unsafe_allow_html=True)
 st.markdown("## 📈 Phân tích độ bền & Thứ hạng (Longevity vs Peak Rank)")
 
 if all(c in df_filtered.columns for c in ["peak_rank", "weeks_on_chart_total"]):
-    fig_corr = px.scatter(
-        df_filtered,
-        x="peak_rank",
-        y="weeks_on_chart_total",
-        color="genre" if "genre" in df_filtered else None,
-        hover_data=["title", "artist"],
-        title="Mối quan hệ giữa Peak Rank và Số tuần trụ BXH"
-    )
-    st.plotly_chart(fig_corr, use_container_width=True)
+    if st.checkbox("Hiển thị scatter Peak Rank vs Weeks", value=False, key="show_corr_scatter"):
+        fig_corr = px.scatter(
+            _sample_df(df_filtered, 200),
+            x="peak_rank",
+            y="weeks_on_chart_total",
+            color="genre" if "genre" in df_filtered else None,
+            hover_data=["title", "artist"],
+            title="Mối quan hệ giữa Peak Rank và Số tuần trụ BXH"
+        )
+        st.plotly_chart(fig_corr, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
 else:
     st.warning("⚠️ Dữ liệu thiếu 'peak_rank' hoặc 'weeks_on_chart_total'.")
 
@@ -240,26 +261,27 @@ st.markdown('<a id="section-do-hot"></a>', unsafe_allow_html=True)
 st.markdown("## 🔥 Biến động độ hot của bài hát trong năm 2025")
 
 if all(c in df_filtered.columns for c in ["week", "rank", "title"]):
-    selected_song = st.selectbox("Chọn bài hát để xem độ hot", sorted(df_filtered['title'].unique()))
-    song_data = df_filtered[df_filtered['title'] == selected_song].sort_values("week")
+    if st.checkbox("Hiển thị biểu đồ độ hot chi tiết", value=False, key="show_rank_chart"):
+        selected_song = st.selectbox("Chọn bài hát để xem độ hot", sorted(df_filtered['title'].unique()))
+        song_data = df_filtered[df_filtered['title'] == selected_song].sort_values("week")
 
-    if not song_data.empty:
-        fig_rank = px.line(
-            song_data,
-            x="week",
-            y="rank",
-            markers=True,
-            title=f"Biến động thứ hạng của bài hát: {selected_song}",
-            labels={"rank": "Thứ hạng (1 là cao nhất)", "week": "Tuần"},
-        )
-        fig_rank.update_yaxes(autorange="reversed")
-        st.plotly_chart(fig_rank, use_container_width=True)
+        if not song_data.empty:
+            fig_rank = px.line(
+                _sample_df(song_data, 200),
+                x="week",
+                y="rank",
+                markers=True,
+                title=f"Biến động thứ hạng của bài hát: {selected_song}",
+                labels={"rank": "Thứ hạng (1 là cao nhất)", "week": "Tuần"},
+            )
+            fig_rank.update_yaxes(autorange="reversed")
+            st.plotly_chart(fig_rank, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
 
-        best_rank = int(song_data["rank"].min())
-        longest_weeks = song_data["week"].nunique()
-        st.info(f"🎤 {selected_song} đạt hạng cao nhất là **Top {best_rank}**, trụ BXH trong **{longest_weeks} tuần**.")
-    else:
-        st.warning("⚠️ Không có dữ liệu thứ hạng cho bài hát này.")
+            best_rank = int(song_data["rank"].min())
+            longest_weeks = song_data["week"].nunique()
+            st.info(f"🎤 {selected_song} đạt hạng cao nhất là **Top {best_rank}**, trụ BXH trong **{longest_weeks} tuần**.")
+        else:
+            st.warning("⚠️ Không có dữ liệu thứ hạng cho bài hát này.")
 else:
     st.error("⚠️ Dữ liệu hiện chưa có trường 'week' hoặc 'rank'.")
 

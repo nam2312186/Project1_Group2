@@ -6,12 +6,47 @@ from pymongo import MongoClient
 import streamlit.components.v1 as components
 import datetime
 
+LIGHT_PLOTLY_CONFIG = {
+    "displayModeBar": False,
+    "staticPlot": True,
+    "responsive": True,
+}
+
+
+def _sample_df(df: pd.DataFrame, max_points: int = 120) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+    if len(df) <= max_points:
+        return df
+    return df.sample(n=max_points, random_state=42)
+
 # -----------------------------
 # 1️⃣ Cấu hình giao diện
 # -----------------------------
 st.set_page_config(page_title="Global Music Analytics", layout="wide", page_icon="🌍")
 st.title("🌍 Global Music Analytics – Spotify Trends")
 st.markdown("*Phân tích dữ liệu chuyên sâu từ MongoDB Atlas*")
+
+# CSS nhẹ: ưu tiên system font (tránh tải webfont) và cố định chiều cao chart để giảm CLS
+st.markdown(
+    """
+    <style>
+    body { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+    .stPlotlyChart { min-height: 360px; }
+    .stDataFrame { min-height: 260px; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Preconnect Plotly CDN to reduce render-blocking
+st.markdown(
+    """
+    <link rel="preconnect" href="https://cdn.plot.ly" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.plot.ly">
+    """,
+    unsafe_allow_html=True,
+)
 
 # -----------------------------
 # 2️⃣ Kết nối MongoDB & Load Data
@@ -30,15 +65,25 @@ except Exception as e:
     st.error(f"❌ Lỗi kết nối MongoDB: {e}")
     st.stop()
 
-@st.cache_data
+@st.cache_data(ttl=3600, show_spinner="Loading data...")
 def load_data():
-    # --- 1. LOAD ALBUM DATA ---
+    """Load album + single data with projection to trim payload."""
     try:
-        album_data = list(db["album_stats_global_2"].find())
+        album_projection = {
+            "_id": 0,
+            "releaseDate": 1, "Release Date": 1, "Release Year": 1,
+            "Genre": 1, "genre": 1,
+            "Album": 1, "Artist": 1,
+            "Total Streams (Millions)": 1, "Monthly Listeners (Millions)": 1,
+            "Streams Last 30 Days (Millions)": 1, "Skip Rate (%)": 1,
+            "popularity": 1, "totalTracks": 1, "Avg Stream Duration (Min)": 1,
+            "energy": 1, "danceability": 1, "valence": 1, "acousticness": 1,
+            "Platform Type": 1,
+        }
+        album_data = list(db["album_stats_global_2"].find({}, album_projection))
         album_df = pd.DataFrame(album_data)
-        
+
         if not album_df.empty:
-            # Xử lý ngày tháng: releaseDate -> Release Date
             if "releaseDate" in album_df.columns:
                 album_df["Release Date"] = pd.to_datetime(album_df["releaseDate"], errors="coerce")
                 album_df["Release Year"] = album_df["Release Date"].dt.year
@@ -46,16 +91,14 @@ def load_data():
                 album_df["Release Date"] = pd.to_datetime(album_df["Release Date"], errors="coerce")
                 album_df["Release Year"] = album_df["Release Date"].dt.year
 
-            # Đổi tên cột genre cho thống nhất nếu cần
             if "Genre" not in album_df.columns and "genre" in album_df.columns:
                 album_df.rename(columns={"genre": "Genre"}, inplace=True)
 
-            # Xử lý số liệu
             cols_to_num = [
-                "Total Streams (Millions)", "Monthly Listeners (Millions)", 
-                "Streams Last 30 Days (Millions)", "Skip Rate (%)", 
+                "Total Streams (Millions)", "Monthly Listeners (Millions)",
+                "Streams Last 30 Days (Millions)", "Skip Rate (%)",
                 "popularity", "totalTracks", "Avg Stream Duration (Min)",
-                "energy", "danceability", "valence", "acousticness" 
+                "energy", "danceability", "valence", "acousticness",
             ]
             for col in cols_to_num:
                 if col in album_df.columns:
@@ -64,27 +107,32 @@ def load_data():
         st.error(f"Lỗi load Album: {e}")
         album_df = pd.DataFrame()
 
-    # --- 2. LOAD SINGLE DATA ---
     try:
-        single_data = list(db["top50_world"].find())
+        single_projection = {
+            "_id": 0,
+            "date": 1, "song": 1, "artist": 1, "main_genre": 1,
+            "acousticness": 1, "danceability": 1, "energy": 1,
+            "instrumentalness": 1, "liveness": 1, "loudness": 1,
+            "speechiness": 1, "tempo": 1, "valence": 1,
+            "popularity": 1, "position": 1, "duration_ms": 1,
+            "is_explicit": 1, "key_name": 1,
+        }
+        single_data = list(db["top50_world"].find({}, single_projection))
         top50_df = pd.DataFrame(single_data)
-        
+
         if not top50_df.empty:
-            # Xử lý ngày tháng (date)
             if "date" in top50_df.columns:
                 top50_df["date"] = pd.to_datetime(top50_df["date"], errors="coerce")
-            
-            # Xử lý Audio Features & Stats
+
             audio_feats = [
-                "acousticness", "danceability", "energy", "instrumentalness", 
-                "liveness", "loudness", "speechiness", "tempo", "valence", 
-                "popularity", "position", "duration_ms"
+                "acousticness", "danceability", "energy", "instrumentalness",
+                "liveness", "loudness", "speechiness", "tempo", "valence",
+                "popularity", "position", "duration_ms",
             ]
             for col in audio_feats:
                 if col in top50_df.columns:
                     top50_df[col] = pd.to_numeric(top50_df[col], errors="coerce")
-            
-            # Chuyển duration ra phút
+
             if "duration_ms" in top50_df.columns:
                 top50_df["duration_min"] = top50_df["duration_ms"] / 60000
     except Exception as e:
@@ -200,42 +248,38 @@ with t_overview:
         
         # --- SỬA LẠI PHẦN BIỂU ĐỒ TOP 10 ---
         with c1:
-            # BƯỚC 1: GOM NHÓM VÀ TÍNH TỔNG (AGGREGATE)
-            # Gom theo Tên Album và Nghệ sĩ -> Tính tổng Stream
-            if "Total Streams (Millions)" in df.columns and "Album" in df.columns:
-                album_rank = df.groupby(["Album", "Artist"]).agg({
-                    "Total Streams (Millions)": "sum"
-                }).reset_index()
-                
-                # BƯỚC 2: LẤY TOP 10
-                top_10_grouped = album_rank.nlargest(10, "Total Streams (Millions)").sort_values("Total Streams (Millions)", ascending=True)
-                
-                # BƯỚC 3: VẼ BIỂU ĐỒ
-                fig_top = px.bar(
-                    top_10_grouped, 
-                    x="Total Streams (Millions)", 
-                    y="Album", 
-                    orientation='h', 
-                    title="🏆 Top 10 Album có lượt Stream cao nhất (Tổng hợp)", 
-                    text="Total Streams (Millions)", # Hiển thị số liệu tổng
-                    color="Total Streams (Millions)",
-                    color_continuous_scale="Viridis", # Hoặc màu bạn thích
-                    labels={"Total Streams (Millions)": "Tổng Stream (Triệu)", "Album": ""}
-                )
-                
-                # Tinh chỉnh hiển thị: Số liệu nằm bên ngoài cột cho dễ nhìn
-                fig_top.update_traces(texttemplate='%{text:.3s}', textposition='outside') 
-                fig_top.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-                
-                st.plotly_chart(fig_top, use_container_width=True)
-            else:
-                st.warning("Thiếu dữ liệu để xếp hạng.")
-            
-            
+            with st.expander("🏆 Top 10 Album (ẩn mặc định)", expanded=False):
+                if "Total Streams (Millions)" in df.columns and "Album" in df.columns:
+                    album_rank = df.groupby(["Album", "Artist"]).agg({
+                        "Total Streams (Millions)": "sum"
+                    }).reset_index()
+
+                    top_10_grouped = album_rank.nlargest(10, "Total Streams (Millions)").sort_values("Total Streams (Millions)", ascending=True)
+
+                    fig_top = px.bar(
+                        top_10_grouped, 
+                        x="Total Streams (Millions)", 
+                        y="Album", 
+                        orientation='h', 
+                        title="🏆 Top 10 Album có lượt Stream cao nhất (Tổng hợp)", 
+                        text="Total Streams (Millions)",
+                        color="Total Streams (Millions)",
+                        color_continuous_scale="Viridis",
+                        labels={"Total Streams (Millions)": "Tổng Stream (Triệu)", "Album": ""}
+                    )
+
+                    fig_top.update_traces(texttemplate='%{text:.3s}', textposition='outside') 
+                    fig_top.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+
+                    st.plotly_chart(fig_top, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
+                else:
+                    st.warning("Thiếu dữ liệu để xếp hạng.")
+
         with c2:
-            if "Platform Type" in df.columns:
-                fig_pie = px.pie(df, names="Platform Type", title="💿 Tỷ lệ nền tảng (Free vs Premium)", hole=0.4)
-                st.plotly_chart(fig_pie, use_container_width=True)
+            with st.expander("💿 Tỷ lệ nền tảng (ẩn mặc định)", expanded=False):
+                if "Platform Type" in df.columns:
+                    fig_pie = px.pie(df, names="Platform Type", title="💿 Tỷ lệ nền tảng (Free vs Premium)", hole=0.4)
+                    st.plotly_chart(fig_pie, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
 
     else: # Single
         # --- LOGIC TÍNH TOÁN KPI MỚI (ĐÃ LỌC UNKNOWN) ---
@@ -281,35 +325,44 @@ with t_overview:
                                   color="days_on_chart",
                                   color_continuous_scale="Viridis")
                 fig_long.update_yaxes(autorange="reversed")
-                st.plotly_chart(fig_long, use_container_width=True)
+                st.plotly_chart(fig_long, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
         
         with c2:
-             # Phân bố Main Genre (LỌC BỎ UNKNOWN CHO BIỂU ĐỒ)
+            # Phân bố Main Genre (LỌC BỎ UNKNOWN CHO BIỂU ĐỒ)
             if "main_genre" in df.columns:
                 # Lọc dữ liệu chỉ cho biểu đồ này
                 df_chart_genre = df[df["main_genre"].astype(str).str.lower() != "unknown"]
-                
+
                 if not df_chart_genre.empty:
                     genre_counts = df_chart_genre["main_genre"].value_counts().head(10)
-                    fig_g = px.bar(x=genre_counts.index, y=genre_counts.values, 
-                                   title="🎵 Top Thể loại nhạc đang thịnh hành",
-                                   labels={'x': 'Thể loại', 'y': 'Số lượng'},
-                                   color=genre_counts.values,
-                                   color_continuous_scale="Turbo")
+                    fig_g = px.bar(
+                        x=genre_counts.index,
+                        y=genre_counts.values,
+                        title="🎵 Top Thể loại nhạc đang thịnh hành",
+                        labels={'x': 'Thể loại', 'y': 'Số lượng'},
+                        color=genre_counts.values,
+                        color_continuous_scale="Turbo",
+                    )
                     st.plotly_chart(fig_g, use_container_width=True)
                 else:
                     st.warning("Không có dữ liệu thể loại hợp lệ (tất cả đều là unknown).")
-                
+
         # --- Ranking Section ---
         st.markdown("---")
         st.subheader("🏆 Biến động Xếp hạng")
-        if not df.empty:
+        if not df.empty and st.checkbox("Hiển thị biểu đồ xếp hạng", value=False, key="show_rank_global"):
             selected_song = st.selectbox("Chọn bài hát để xem hành trình leo hạng:", sorted(df["song"].unique()))
             song_df = df[df["song"] == selected_song].sort_values("date")
-            
-            fig_rank = px.line(song_df, x="date", y="position", title=f"Thứ hạng của '{selected_song}'", markers=True)
+
+            fig_rank = px.line(
+                _sample_df(song_df, 120),
+                x="date",
+                y="position",
+                title=f"Thứ hạng của '{selected_song}'",
+                markers=True,
+            )
             fig_rank.update_yaxes(autorange="reversed")
-            st.plotly_chart(fig_rank, use_container_width=True)
+            st.plotly_chart(fig_rank, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
 
 # ==============================================================================
 # TAB: AUDIO FEATURES (UPDATED: GENRE FINGERPRINTS & DURATION)
@@ -688,14 +741,20 @@ with t_artist:
 
                 # Cột Phải: Xu hướng leo hạng (Line Chart)
                 with c_chart2:
-                    if "date" in art_df.columns:
+                    if "date" in art_df.columns and st.checkbox("Hiển thị xu hướng Top 5 bài hát", value=False, key=f"artist_trend_{selected_artist}"):
                         top_s = art_df.groupby("song")["popularity"].max().nlargest(5).index.tolist()
                         df_tr = art_df[art_df["song"].isin(top_s)].sort_values("date")
-                        fig_l = px.line(df_tr, x="date", y="popularity", color="song", 
-                                        title="📈 Xu hướng Top 5 bài hát", labels={"date":""})
+                        fig_l = px.line(
+                            _sample_df(df_tr, 120),
+                            x="date",
+                            y="popularity",
+                            color="song",
+                            title="📈 Xu hướng Top 5 bài hát",
+                            labels={"date": ""},
+                        )
                         fig_l.update_traces(mode='lines+markers')
-                        st.plotly_chart(fig_l, use_container_width=True)
-                    else:
+                        st.plotly_chart(fig_l, use_container_width=True, config=LIGHT_PLOTLY_CONFIG)
+                    elif "date" not in art_df.columns:
                         st.info("Không có dữ liệu ngày tháng.")
             # 5. BẢNG CHI TIẾT (HYBRID)
             st.markdown(f"### 🎶 Danh sách {col_item} của {selected_artist}")
