@@ -385,7 +385,7 @@ class ResilientChatGoogleGenerativeAI(ChatGoogleGenerativeAI):
                         "429", "Quota", "ResourceExhausted", 
                         "403", "AccessDenied", "API_KEY_INVALID", 
                         "Key not found", "limit: 0",
-                        "503", "Overloaded", "UNAVAILABLE", "parse", "corresponding"
+                        "503", "Overloaded", "UNAVAILABLE", "parse", "corresponding", "400"
                     ]
                     
                     if any(code in error_msg for code in retry_codes):
@@ -396,34 +396,15 @@ class ResilientChatGoogleGenerativeAI(ChatGoogleGenerativeAI):
                         
                         # Cập nhật key mới (LangChain sẽ tự convert sang SecretStr nếu cần)
                         self.google_api_key = new_key
-                        
-                        # Xóa cache client cũ triệt để
-                        # for attr in ["_client", "client", "_async_client", "async_client"]:
-                        #     if hasattr(self, attr):
-                        #         delattr(self, attr)
-                        
-                        # time.sleep(1) 
-                        # continue
 
-                        if any(code in error_msg for code in retry_codes):
-                            # Lấy key mới
-                            new_key = self.key_manager.get_next_key()
-                            
-                            print(f"🔄 [System] Đang tự động đổi sang Key tiếp theo...")
-                            
-                            # Cập nhật key mới
-                            self.google_api_key = new_key
-                            
-                            # --- [ĐOẠN CẦN SỬA LẠI] ---
-                            # THAY VÌ XÓA (delattr), HÃY GÁN NONE CHO BIẾN PRIVATE
-                            self._client = None
-                            self._async_client = None
+                        self._client = None
+                        self._async_client = None
                             
                             # Lưu ý: KHÔNG được dùng delattr(self, "client") vì nó sẽ phá hỏng cấu trúc Class
                             # --------------------------
                             
-                            time.sleep(1) 
-                            continue                        
+                        time.sleep(1) 
+                        continue                        
                     else:
                         print(f"☠️ [Fatal] Lỗi không thể cứu vãn trên Key #{key_index}: {error_msg}")
                         raise e
@@ -466,44 +447,28 @@ class ResilientChatGoogleGenerativeAI(ChatGoogleGenerativeAI):
                         "429", "Quota", "ResourceExhausted", 
                         "403", "AccessDenied", "API_KEY_INVALID", 
                         "Key not found", "limit: 0",
-                        "503", "Overloaded", "UNAVAILABLE"
+                        "503", "Overloaded", "UNAVAILABLE", "parse", "corresponding", "400"
                     ]
-                    
-                    if any(code in error_msg for code in retry_codes):
-                        # Lấy key mới
-                        new_key = self.key_manager.get_next_key()
-                        print(f"🔄 [System - Stream] Đổi key và thử lại...")
-                        
-                        # Cập nhật key mới
-                        self.google_api_key = new_key
-                        
-                        # Xóa cache client
-                        # for attr in ["_client", "client", "_async_client", "async_client"]:
-                        #     if hasattr(self, attr):
-                        #         delattr(self, attr)
-                        
-                        # time.sleep(1)
-                        # continue # Thử lại vòng lặp
 
-                        if any(code in error_msg for code in retry_codes):
+                    if any(code in error_msg for code in retry_codes):
                             # Lấy key mới
-                            new_key = self.key_manager.get_next_key()
+                        new_key = self.key_manager.get_next_key()
                             
-                            print(f"🔄 [System] Đang tự động đổi sang Key tiếp theo...")
+                        print(f"🔄 [System] Đang tự động đổi sang Key tiếp theo...")
                             
                             # Cập nhật key mới
-                            self.google_api_key = new_key
+                        self.google_api_key = new_key
                             
                             # --- [ĐOẠN CẦN SỬA LẠI] ---
                             # THAY VÌ XÓA (delattr), HÃY GÁN NONE CHO BIẾN PRIVATE
-                            self._client = None
-                            self._async_client = None
+                        self._client = None
+                        self._async_client = None
                             
                             # Lưu ý: KHÔNG được dùng delattr(self, "client") vì nó sẽ phá hỏng cấu trúc Class
                             # --------------------------
                             
-                            time.sleep(1) 
-                            continue
+                        time.sleep(1) 
+                        continue
 
     
                     else:

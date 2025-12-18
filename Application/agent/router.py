@@ -100,3 +100,8 @@ def route_query(user_query: str, chat_history: List[Tuple[str, str]] = []) -> st
     # Nếu thử hết 3 lần vẫn lỗi
     print("⚠️ Router: Hết sạch quota sau 3 lần thử. Fallback về Knowledge.")
     return "knowledge"
+
+
+
+
+

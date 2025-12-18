@@ -50,19 +50,33 @@ def build_agent():
 
 # Trong file core.py
 
-def process_user_query(user_input: str, thread_id: str) -> str:
+def process_user_query(user_input: str, thread_id: str, retry_count: int = 0) -> str:
+    
+    if retry_count > 3:
+        print(f"🛑 [System] Đã thử sửa 3 lần không được. Buộc phải Reset Thread để cứu vãn.")
+                
+                # 1. Tạo ID mới để cắt đứt quá khứ lỗi
+        recovery_thread_id = f"{thread_id}_reset_{uuid.uuid4().hex[:4]}"
+        
+        # 2. Gọi lại hàm với ID mới (trả về retry_count = 0)
+        # Lưu ý: Chúng ta thêm một câu dẫn để Agent biết ngữ cảnh
+        recovery_response = process_user_query(user_input, recovery_thread_id, 0)
+        
+        return f"{recovery_response}\n\n*(⚠️ Lưu ý: Hệ thống đã tự động làm mới phiên chat do lỗi kẹt lặp lại)*"
     """
     Xử lý câu hỏi với Báo cáo Hiệu suất (Time & Keys).
     """
     # --- 1. KHỞI TẠO BỘ ĐẾM ---
     start_time = time.time()          # Bấm giờ
-    key_manager.reset_usage_stats()   # Reset bộ đếm key về 0
+    if retry_count == 0:
+        key_manager.reset_usage_stats()   # Reset bộ đếm key về 0
     
     # Lấy key đầu tiên cho Agent cũng cần tính vào bộ đếm
     # (Vì build_agent gọi get_resilient_llm -> gọi get_next_key)
     
     print(f"\n{'='*40}")
-    print(f"🧵 [Thread] Bắt đầu xử lý: {thread_id}")
+    print(f"🧵 [Thread] Bắt đầu xử lý: {thread_id} (Lần thử: {retry_count + 1})")
+    # print(f"🧵 [Thread] Bắt đầu xử lý: {thread_id}")
     print(f"👤 [User] Input: {user_input}")
     print(f"{'='*40}\n")
     
@@ -133,5 +147,36 @@ def process_user_query(user_input: str, thread_id: str) -> str:
         return final_response
 
     except Exception as e:
-        print(f"❌ [Error] {e}")
-        return f"⚠️ Lỗi: {str(e)}"
+        # print(f"❌ [Error] {e}")
+        # return f"⚠️ Lỗi: {str(e)}"
+
+
+        error_msg = str(e)
+        
+        # --- LOGIC SỬA LỖI TỰ ĐỘNG ---
+        if "corresponding ToolMessage" in error_msg:
+            print("🔄 [Auto-Fix] Phát hiện lịch sử bị hỏng (Thiếu ToolOutput). Đang sửa...")
+            
+            # 1. Lấy trạng thái hiện tại của Thread
+            current_state = agent.get_state(config)
+            
+            if current_state.values:
+                # 2. Lấy danh sách tin nhắn hiện tại
+                current_messages = current_state.values.get("messages", [])
+                
+                # 3. Loại bỏ tin nhắn cuối cùng (chính là cái ToolCall bị lỗi)
+                if current_messages:
+                    # Xóa tin nhắn cuối cùng bằng cách cập nhật lại state
+                    # Lưu ý: LangGraph cho phép update state để "ghi đè" lịch sử
+                    cleaned_messages = current_messages[:-1] 
+                    
+                    # Cập nhật lại bộ nhớ với danh sách tin nhắn đã xóa cái lỗi
+                    agent.update_state(config, {"messages": cleaned_messages})
+                    
+                    print("✅ [Auto-Fix] Đã xóa bước suy luận lỗi. Đang thử lại...")
+                    
+                    # 4. Thử chạy lại (Recursive call)
+                    # return process_user_query(user_input, thread_id)
+                    return process_user_query(user_input, thread_id, retry_count + 1)
+        
+        return f"⚠️ Lỗi: {error_msg}"
